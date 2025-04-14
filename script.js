@@ -63,6 +63,54 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Register button clicked');
     });
 
+    // Modal functionality
+    const modal = document.getElementById('register-modal');
+    const closeModal = document.getElementById('close-modal');
+    const modalForm = document.getElementById('modal-form');
+    registerBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+    modalForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        modal.style.display = 'none';
+        Toastify({
+            text: "Thank you for registering!",
+            duration: 3000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "linear-gradient(90deg, #9bfd21, #baff33)",
+        }).showToast();
+    });
+
+    // Scroll to Top Button functionality
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.onscroll = function() {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            scrollTopBtn.style.display = 'block';
+        } else {
+            scrollTopBtn.style.display = 'none';
+        }
+    };
+    scrollTopBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Smooth scroll for arrow (if you want to scroll to hero section)
+    const arrowSection = document.getElementById('arrowSection');
+    if (arrowSection) {
+        arrowSection.addEventListener('click', function() {
+            document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
     // Update copyright year automatically
     const footerYear = document.querySelector('footer');
     const currentYear = new Date().getFullYear();
@@ -81,4 +129,9 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'scale(1)';
         });
     });
+
+    // Initialize AOS for organizer images
+    if (window.AOS) {
+        AOS.init();
+    }
 });

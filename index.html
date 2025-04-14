@@ -44,23 +44,37 @@
             At BYTE CAMP, you'll gain insights into cutting-edge innovations, learn from inspiring Technical Talks, and participate in dynamic activities for the tech community.
         </p>
         <button class="btn" id="register-btn">Register Now</button>
+        <!-- Registration Modal -->
+        <div id="register-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-modal">&times;</span>
+                <h2>Register for BYTE CAMP</h2>
+                <form id="modal-form">
+                    <input type="text" placeholder="Your Name" required />
+                    <input type="email" placeholder="Your Email" required />
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+        <!-- Scroll to Top Button -->
+        <button id="scrollTopBtn" title="Go to top">&#8679;</button>
     </section>
 
     <section class="section">
         <h2>Organizers</h2>
         <div class="organizers">
             <div class="organizer">
-                <img src="or_pics\picofme.png" alt="Hassan Faisal" />
+                <img src="or_pics\picofme.png" alt="Hassan Faisal" data-aos="fade-up" />
                 <h3>Hassan Faisal</h3>
                 <p>Lead developer</p>
             </div>
             <div class="organizer">
-                <img src="or_pics\fras.jpg" alt="Fras irfan" />
+                <img src="or_pics\fras.jpg" alt="Fras irfan" data-aos="fade-up" />
                 <h3>Fras irfan</h3>
                 <p>DSC Lead</p>
             </div>
             <div class="organizer">
-                <img src="or_pics\Ahmad.jpg" alt="Ahmad Hassan" />
+                <img src="or_pics\Ahmad.jpg" alt="Ahmad Hassan" data-aos="fade-up" />
                 <h3>Ahmad Hassan</h3>
                 <p>Byte camp lead</p>
             </div>
@@ -84,6 +98,8 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- Toastify JS for notifications -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- AOS library initialization -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
