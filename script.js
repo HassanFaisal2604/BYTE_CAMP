@@ -95,10 +95,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let lumaBtn = null;
     if (registerNowBtn) {
         lumaBtn = document.createElement('a');
-        lumaBtn.href = 'https://lu.ma/event/evt-l95FsFJO2MSJEqV';
+        lumaBtn.href = 'https://lu.ma/event/evt-tQyH6djijkje6Gw';
         lumaBtn.className = 'luma-checkout--button btn';
         lumaBtn.setAttribute('data-luma-action', 'checkout');
-        lumaBtn.setAttribute('data-luma-event-id', 'evt-l95FsFJO2MSJEqV');
+        lumaBtn.setAttribute('data-luma-event-id', 'evt-tQyH6djijkje6Gw');
         lumaBtn.textContent = 'Register for Event';
         registerNowBtn.parentNode.replaceChild(lumaBtn, registerNowBtn);
     }
@@ -106,10 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerBtn = document.querySelector('.header-btn');
     if (headerBtn) {
         const lumaBtn2 = document.createElement('a');
-        lumaBtn2.href = 'https://lu.ma/event/evt-l95FsFJO2MSJEqV';
+        lumaBtn2.href = 'https://lu.ma/event/evt-tQyH6djijkje6Gw';
         lumaBtn2.className = 'luma-checkout--button btn header-btn';
         lumaBtn2.setAttribute('data-luma-action', 'checkout');
-        lumaBtn2.setAttribute('data-luma-event-id', 'evt-l95FsFJO2MSJEqV');
+        lumaBtn2.setAttribute('data-luma-event-id', 'evt-tQyH6djijkje6Gw');
         lumaBtn2.textContent = 'Register for Event';
         headerBtn.parentNode.replaceChild(lumaBtn2, headerBtn);
     }
