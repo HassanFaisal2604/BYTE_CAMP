@@ -54,6 +54,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modified animation for register button to ensure it always appears
     gsap.fromTo('#register-btn', { opacity: 0.5, y: 20 }, { opacity: 1, y: 0, duration: 1, delay: 0.6 });
 
+    // Animate 'What is BYTE CAMP' section
+    gsap.from('.what-is-byte-camp h2', {
+        opacity: 0,
+        y: 40,
+        duration: 1,
+        scrollTrigger: {
+            trigger: '.what-is-byte-camp',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        }
+    });
+    gsap.from('.bytecamp-info li', {
+        opacity: 0,
+        x: -40,
+        duration: 0.7,
+        stagger: 0.2,
+        scrollTrigger: {
+            trigger: '.what-is-byte-camp',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        }
+    });
+
+    // Animate sponsors
+    gsap.from('.sponsor', {
+        opacity: 0,
+        scale: 0.7,
+        duration: 0.7,
+        stagger: 0.15,
+        scrollTrigger: {
+            trigger: '.sponsors-list',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        }
+    });
+
     // Register button functionality
     registerBtn.addEventListener('click', function() {
         // Display a simple registration form alert
