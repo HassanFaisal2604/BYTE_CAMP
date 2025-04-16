@@ -90,41 +90,65 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Register button functionality
-    registerBtn.addEventListener('click', function() {
-        // Display a simple registration form alert
-        alert('Registration will open soon! Check back later.');
+    // Replace Register Now button with Luma checkout button
+    const registerNowBtn = document.getElementById('register-btn');
+    let lumaBtn = null;
+    if (registerNowBtn) {
+        lumaBtn = document.createElement('a');
+        lumaBtn.href = 'https://lu.ma/event/evt-l95FsFJO2MSJEqV';
+        lumaBtn.className = 'luma-checkout--button btn';
+        lumaBtn.setAttribute('data-luma-action', 'checkout');
+        lumaBtn.setAttribute('data-luma-event-id', 'evt-l95FsFJO2MSJEqV');
+        lumaBtn.textContent = 'Register for Event';
+        registerNowBtn.parentNode.replaceChild(lumaBtn, registerNowBtn);
+    }
+    // Replace header Register Yourself button with Luma checkout button
+    const headerBtn = document.querySelector('.header-btn');
+    if (headerBtn) {
+        const lumaBtn2 = document.createElement('a');
+        lumaBtn2.href = 'https://lu.ma/event/evt-l95FsFJO2MSJEqV';
+        lumaBtn2.className = 'luma-checkout--button btn header-btn';
+        lumaBtn2.setAttribute('data-luma-action', 'checkout');
+        lumaBtn2.setAttribute('data-luma-event-id', 'evt-l95FsFJO2MSJEqV');
+        lumaBtn2.textContent = 'Register for Event';
+        headerBtn.parentNode.replaceChild(lumaBtn2, headerBtn);
+    }
+    // Inject Luma script if not already present
+    if (!document.getElementById('luma-checkout')) {
+        const lumaScript = document.createElement('script');
+        lumaScript.id = 'luma-checkout';
+        lumaScript.src = 'https://embed.lu.ma/checkout-button.js';
+        document.body.appendChild(lumaScript);
+    }
 
-        // In a real implementation, this would open a modal or redirect to a registration page
-        console.log('Register button clicked');
-    });
-
-    // Modal functionality
+    // Modal functionality (only attach if registerBtn and modal exist and not replaced)
     const modal = document.getElementById('register-modal');
     const closeModal = document.getElementById('close-modal');
     const modalForm = document.getElementById('modal-form');
-    registerBtn.addEventListener('click', function() {
-        modal.style.display = 'block';
-    });
-    closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-    window.onclick = function(event) {
-        if (event.target == modal) {
+    if (registerBtn && modal && closeModal && modalForm) {
+        registerBtn.addEventListener('click', function() {
+            modal.style.display = 'block';
+        });
+        closeModal.addEventListener('click', function() {
             modal.style.display = 'none';
-        }
-    };
-    modalForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        modal.style.display = 'none';
-        Toastify({
-            text: "Thank you for registering!",
-            duration: 3000,
-            gravity: "top",
-            position: "center",
-            backgroundColor: "linear-gradient(90deg, #9bfd21, #baff33)",
-        }).showToast();
-    });
+        });
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
+        modalForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            modal.style.display = 'none';
+            Toastify({
+                text: "Thank you for registering!",
+                duration: 3000,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "linear-gradient(90deg, #9bfd21, #baff33)",
+            }).showToast();
+        });
+    }
 
     // Scroll to Top Button functionality
     const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -169,5 +193,79 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS for organizer images
     if (window.AOS) {
         AOS.init();
+    }
+
+    // Gallery image effects
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach(item => {
+        gsap.from(item, {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
+
+    // Schedule items animation
+    gsap.utils.toArray('.schedule-item').forEach((item, index) => {
+        gsap.from(item, {
+            opacity: 0,
+            x: -50,
+            duration: 0.6,
+            delay: index * 0.1,
+            scrollTrigger: {
+                trigger: '.schedule-container',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    });
+
+    // Speakers animation
+    gsap.utils.toArray('.speaker').forEach((speaker, index) => {
+        gsap.from(speaker, {
+            opacity: 0,
+            y: 50,
+            duration: 0.7,
+            delay: index * 0.15,
+            scrollTrigger: {
+                trigger: '.speakers-container',
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    });
+
+    // Social media icons hover effect
+    const socialIcons = document.querySelectorAll('.social-icon');
+    socialIcons.forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+            gsap.to(icon, {
+                scale: 1.2,
+                duration: 0.3,
+                ease: 'power1.out'
+            });
+        });
+
+        icon.addEventListener('mouseleave', () => {
+            gsap.to(icon, {
+                scale: 1,
+                duration: 0.3,
+                ease: 'power1.out'
+            });
+        });
+    });
+
+    // Add Font Awesome for social icons
+    if (!document.getElementById('font-awesome')) {
+        const fontAwesome = document.createElement('link');
+        fontAwesome.id = 'font-awesome';
+        fontAwesome.rel = 'stylesheet';
+        fontAwesome.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+        document.head.appendChild(fontAwesome);
     }
 });

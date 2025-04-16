@@ -288,3 +288,221 @@ footer {
 #scrollTopBtn:hover {
     background: #baff33;
 }
+
+
+/* Luma Checkout Button Styles */
+
+.luma-checkout--button.btn,
+.luma-checkout--button.btn.header-btn {
+    background-color: var(--secondary-color) !important;
+    color: #000 !important;
+    border: none !important;
+    padding: 0.8rem 2rem !important;
+    font-size: 1rem !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+}
+
+.luma-checkout--button.btn:hover,
+.luma-checkout--button.btn.header-btn:hover {
+    background-color: #baff33 !important;
+    color: #000 !important;
+}
+
+
+/* Schedule Section Styles */
+
+.schedule-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.schedule-item {
+    display: flex;
+    margin-bottom: 2rem;
+    background-color: #111;
+    border-left: 4px solid var(--secondary-color);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.time {
+    min-width: 160px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    padding-right: 1rem;
+    border-right: 1px solid #333;
+}
+
+.event-info {
+    padding-left: 1.5rem;
+}
+
+.event-info h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.event-info p {
+    margin: 0;
+    color: #aaa;
+}
+
+
+/* Speakers Section Styles */
+
+.speakers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.speaker {
+    background-color: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.speaker:hover {
+    transform: translateY(-10px);
+}
+
+.speaker-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 3px solid var(--secondary-color);
+}
+
+.speaker-info {
+    padding: 1.5rem;
+}
+
+.speaker-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.speaker-role {
+    color: var(--secondary-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.speaker-bio {
+    color: #aaa;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
+/* Gallery Section Styles */
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 0.8rem;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+
+/* Social Media Integration Styles */
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.social-media h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #222;
+    color: var(--secondary-color);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--secondary-color);
+    color: #000;
+}
+
+
+/* Media queries for responsive layout */
+
+@media (max-width: 768px) {
+    .schedule-item {
+        flex-direction: column;
+    }
+    .time {
+        border-right: none;
+        border-bottom: 1px solid #333;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .event-info {
+        padding-left: 0;
+    }
+    .speakers-container,
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+}
