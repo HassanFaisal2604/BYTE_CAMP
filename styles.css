@@ -345,6 +345,35 @@ footer {
 }
 
 
+/* ensure the Luma button is visible in the hero */
+
+.hero .luma-checkout--button.btn {
+    display: inline-block !important;
+    position: relative !important;
+    z‑index: 1 !important;
+    background-color: #9bfd21;
+    color: #000000 !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    text-align: center;
+}
+
+
+/* Force Luma button to be visible immediately */
+
+.hero .luma-checkout--button.btn {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 999 !important;
+}
+
+.hero .luma-checkout--button.btn:hover {
+    opacity: 0.9 !important;
+}
+
+
 /* Schedule Section Styles */
 
 .schedule-container {
