@@ -353,6 +353,72 @@ footer {
 }
 
 
+/* Schedule Section Specific Styles - Merged from schedule-fix.css */
+
+.schedule {
+    display: block !important;
+    visibility: visible !important;
+    padding: 50px 0;
+    background-color: #0a0a0a;
+    /* Changed to match your site's dark theme */
+    position: relative;
+    z-index: 1;
+}
+
+.schedule-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.schedule-item {
+    display: flex;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-left: 4px solid var(--secondary-color);
+    background-color: #111;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    border-radius: 0 8px 8px 0;
+}
+
+.schedule-item:hover {
+    transform: translateX(10px);
+}
+
+.time {
+    min-width: 150px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    padding-right: 1rem;
+    border-right: 1px solid #333;
+}
+
+.event-info {
+    padding-left: 1.5rem;
+}
+
+.event-info h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.event-info p {
+    color: #aaa;
+    margin: 0;
+}
+
+
+/* Force opacity for AOS elements that might be stuck */
+
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+
 /* Speakers Section Styles */
 
 .speakers-container {

@@ -1,0 +1,49 @@
+/* Schedule Section Specific Styles */
+
+.schedule {
+    display: block !important;
+    visibility: visible !important;
+    padding: 50px 0;
+    background-color: #f9f9f9;
+    position: relative;
+    z-index: 1;
+}
+
+.schedule-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.schedule-item {
+    display: flex;
+    margin-bottom: 30px;
+    padding: 15px;
+    border-left: 4px solid #9bfd21;
+    background-color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.schedule-item:hover {
+    transform: translateX(10px);
+}
+
+.time {
+    min-width: 150px;
+    font-weight: bold;
+    color: #333;
+}
+
+.event-info h3 {
+    margin-top: 0;
+    color: #222;
+}
+
+
+/* Force opacity for AOS elements that might be stuck */
+
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+}
