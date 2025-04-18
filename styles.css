@@ -12,6 +12,8 @@
     --transition-speed: 0.3s;
     --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     --header-height: 80px;
+    --header-height-collapsed: 60px;
+    /* New variable for collapsed header */
     --font-primary: 'Space Grotesk', sans-serif;
     --font-secondary: 'Inter', sans-serif;
     --border-color-subtle: rgba(163, 255, 46, 0.15);
@@ -321,6 +323,12 @@ p {
     height: var(--header-height);
 }
 
+.site-header.collapsed {
+    height: var(--header-height-collapsed);
+    background-color: rgba(10, 10, 10, 0.95);
+    /* More solid background when collapsed */
+}
+
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -349,6 +357,12 @@ p {
     margin: 35px 0 0 0;
     /* Removed auto centering, aligns left */
     margin-left: -95px;
+}
+
+.collapsed .logo {
+    height: 280px;
+    /* Smaller logo when header is collapsed */
+    margin: 20px 0 0 0;
 }
 
 .main-nav ul {
@@ -1384,6 +1398,8 @@ p {
      :root {
         --header-height: 90px;
         /* Increased from 70px to accommodate larger logo */
+        --header-height-collapsed: 60px;
+        /* Collapsed height for mobile */
     }
     .header-actions {
         display: none;
@@ -1435,6 +1451,13 @@ p {
         padding: 6px 10px;
         margin: 10px 0 0 0;
         margin-left: 0;
+        transition: all var(--transition-speed) ease;
+        /* Ensure smooth transition */
+    }
+    .collapsed .logo {
+        height: 140px;
+        /* Smaller logo height when collapsed on mobile */
+        margin: 0;
     }
     .logo-container {
         justify-content: center;
@@ -1576,6 +1599,11 @@ p {
         max-width: 200px;
         padding: 4px 8px;
         margin: 8px auto 0 auto;
+    }
+    .collapsed .logo {
+        height: 100px;
+        /* Even smaller logo for very small screens */
+        max-width: 140px;
     }
     .footer-logo .logo {
         height: 45px;

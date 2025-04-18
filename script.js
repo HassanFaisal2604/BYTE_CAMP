@@ -27,12 +27,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Header scroll effect
     function handleHeaderScroll() {
-        if (window.scrollY > 50) {
+        const currentScroll = window.scrollY || document.documentElement.scrollTop;
+        const scrollThreshold = 50;
+
+        if (currentScroll > scrollThreshold) {
             header.classList.add('scrolled');
+
+            // Add collapse functionality for mobile
+            if (window.innerWidth <= 768) {
+                header.classList.add('collapsed');
+            }
         } else {
             header.classList.remove('scrolled');
+            header.classList.remove('collapsed');
         }
     }
+
+    // Add window resize handler to manage collapsed state on width change
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            header.classList.remove('collapsed');
+        } else if (window.scrollY > 50) {
+            header.classList.add('collapsed');
+        }
+    });
 
     // Mobile menu toggle
     function toggleMobileMenu() {
