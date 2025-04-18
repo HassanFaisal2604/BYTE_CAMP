@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="speaker-modal-role">${speakerRole}</p>
                 <div class="speaker-modal-bio">
                     <p>${speakerBio}</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                    <p>Additional information about ${speakerName}'s expertise and achievements in the tech industry.</p>
                 </div>
                 <div class="speaker-modal-social">
                     <a href="#" aria-label="${speakerName}'s LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -419,6 +419,21 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAnimations();
     createBackgroundParticles();
 
+    // Add these new function calls
+    createSubtleTexture();
+    addTechMotifs();
+    addButtonHoverEffects();
+    animateWhatIsByteCamp();
+    addOrganizerHoverEffects();
+    animateSponsors();
+    enhanceGallery();
+    enhanceSchedule();
+    enhanceSpeakers();
+    addSocialIconHoverEffects();
+    setupMobileMenu();
+    setupScrollToTop();
+    setupParallaxEffect();
+
     // Add keyboard navigation for modals
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
@@ -651,75 +666,75 @@ function enhanceSchedule() {
     });
 }
 
-// function enhanceSpeakers() {
-//     const speakersContainer = document.querySelector('.speakers-container');
-//     if (!speakersContainer) return;
+function enhanceSpeakers() {
+    const speakersContainer = document.querySelector('.speakers-container');
+    if (!speakersContainer) return;
 
-//     const speakers = speakersContainer.querySelectorAll('.speaker');
-//     if (speakers.length === 0) return;
+    const speakers = speakersContainer.querySelectorAll('.speaker');
+    if (speakers.length === 0) return;
 
-//     speakers.forEach((speaker) => {
-//         const speakerNameEl = speaker.querySelector('.speaker-info h3');
-//         const speakerImg = speaker.querySelector('.speaker-img img');
-//         const speakerRoleEl = speaker.querySelector('.speaker-info .speaker-role');
-//         const speakerBioEl = speaker.querySelector('.speaker-info .speaker-bio');
+    speakers.forEach((speaker) => {
+        const speakerNameEl = speaker.querySelector('.speaker-info h3');
+        const speakerImg = speaker.querySelector('.speaker-img img');
+        const speakerRoleEl = speaker.querySelector('.speaker-info .speaker-role');
+        const speakerBioEl = speaker.querySelector('.speaker-info .speaker-bio');
 
-//         speaker.addEventListener('mouseenter', function() {
-//             gsap.to(this, { y: -10, boxShadow: '0 12px 25px rgba(0,0,0,0.3)', duration: 0.3 });
-//             if (speakerNameEl) gsap.to(speakerNameEl, { color: 'var(--secondary-color)', duration: 0.3 });
-//         });
-//         speaker.addEventListener('mouseleave', function() {
-//             gsap.to(this, { y: 0, boxShadow: '0 5px 15px rgba(0,0,0,0.15)', duration: 0.3 });
-//             if (speakerNameEl) gsap.to(speakerNameEl, { color: '', duration: 0.3 });
-//         });
+        speaker.addEventListener('mouseenter', function() {
+            gsap.to(this, { y: -10, boxShadow: '0 12px 25px rgba(0,0,0,0.3)', duration: 0.3 });
+            if (speakerNameEl) gsap.to(speakerNameEl, { color: 'var(--secondary-color)', duration: 0.3 });
+        });
+        speaker.addEventListener('mouseleave', function() {
+            gsap.to(this, { y: 0, boxShadow: '0 5px 15px rgba(0,0,0,0.15)', duration: 0.3 });
+            if (speakerNameEl) gsap.to(speakerNameEl, { color: '', duration: 0.3 });
+        });
 
-//         speaker.style.cursor = 'pointer';
-//         speaker.addEventListener('click', function() {
-//             const speakerName = speakerNameEl ? .textContent.trim() || 'Speaker Details';
-//             const speakerImgSrc = speakerImg ? .src || '';
-//             const speakerPosition = speakerRoleEl ?.textContent.trim() || '';
-//             const speakerBio = speakerBioEl ?.innerHTML || '<p>More details coming soon.</p>';
+        speaker.style.cursor = 'pointer';
+        speaker.addEventListener('click', function() {
+            const speakerName = speakerNameEl ? speakerNameEl.textContent.trim() : 'Speaker Details';
+            const speakerImgSrc = speakerImg ? speakerImg.src : '';
+            const speakerPosition = speakerRoleEl ? speakerRoleEl.textContent.trim() : '';
+            const speakerBio = speakerBioEl ? speakerBioEl.innerHTML : '<p>More details coming soon.</p>';
 
-//             if (document.querySelector('.speaker-modal')) return;
+            if (document.querySelector('.speaker-modal')) return;
 
-//             const modal = createModalElement();
-//             const content = createModalContentElement();
-//             const closeBtn = createModalCloseButton();
+            const modal = createModalElement();
+            const content = createModalContentElement();
+            const closeBtn = createModalCloseButton();
 
-//             let innerHTML = '';
-//             if (speakerImgSrc) {
-//                 innerHTML += `<img src="${speakerImgSrc}" alt="${speakerName}" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px; display: block; border: 3px solid var(--secondary-color);">`;
-//             }
-//             innerHTML += `<h2 style="text-align: center; color: var(--secondary-color); margin-bottom: 5px;">${speakerName}</h2>`;
-//             if (speakerPosition) {
-//                 innerHTML += `<p style="text-align: center; color: #bbb; margin-bottom: 25px; font-style: italic;">${speakerPosition}</p>`;
-//             }
-//             innerHTML += `<div class="bio-content" style="line-height: 1.7;">${speakerBio}</div>`;
+            let innerHTML = '';
+            if (speakerImgSrc) {
+                innerHTML += `<img src="${speakerImgSrc}" alt="${speakerName}" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px; display: block; border: 3px solid var(--secondary-color);">`;
+            }
+            innerHTML += `<h2 style="text-align: center; color: var(--secondary-color); margin-bottom: 5px;">${speakerName}</h2>`;
+            if (speakerPosition) {
+                innerHTML += `<p style="text-align: center; color: #bbb; margin-bottom: 25px; font-style: italic;">${speakerPosition}</p>`;
+            }
+            innerHTML += `<div class="bio-content" style="line-height: 1.7;">${speakerBio}</div>`;
 
-//             content.innerHTML = innerHTML;
-//             content.appendChild(closeBtn);
-//             modal.appendChild(content);
-//             document.body.appendChild(modal);
-//             document.body.classList.add('no-scroll');
+            content.innerHTML = innerHTML;
+            content.appendChild(closeBtn);
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+            document.body.classList.add('no-scroll');
 
-//             gsap.to(modal, { opacity: 1, duration: 0.3 });
-//             gsap.fromTo(content, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, delay: 0.1, ease: 'back.out(1.7)' });
+            gsap.to(modal, { opacity: 1, duration: 0.3 });
+            gsap.fromTo(content, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, delay: 0.1, ease: 'back.out(1.7)' });
 
-//             const closeModal = () => {
-//                 document.body.classList.remove('no-scroll');
-//                 gsap.to(content, { scale: 0.9, opacity: 0, duration: 0.3, ease: 'power1.in' });
-//                 gsap.to(modal, {
-//                     opacity: 0,
-//                     duration: 0.3,
-//                     delay: 0.1,
-//                     onComplete: () => modal.remove()
-//                 });
-//             };
-//             closeBtn.addEventListener('click', closeModal);
-//             modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-//         });
-//     });
-// }
+            const closeModal = () => {
+                document.body.classList.remove('no-scroll');
+                gsap.to(content, { scale: 0.9, opacity: 0, duration: 0.3, ease: 'power1.in' });
+                gsap.to(modal, {
+                    opacity: 0,
+                    duration: 0.3,
+                    delay: 0.1,
+                    onComplete: () => modal.remove()
+                });
+            };
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        });
+    });
+}
 
 // --- Helper functions for Speaker Modal Creation ---
 function createModalElement() {
@@ -965,3 +980,33 @@ function injectDynamicStyles() {
     }
 }
 injectDynamicStyles();
+
+// Add parallax scrolling effect for a more dynamic feel
+function setupParallaxEffect() {
+    const parallaxElements = [
+        { element: '.tech-sphere', speed: 0.2 },
+        { element: '.hero h1', speed: 0.1 },
+        { element: '.bg-particles', speed: 0.05 },
+        { element: '.hero-visual', speed: 0.15 }
+    ];
+
+    function updateParallaxPositions() {
+        const scrollPosition = window.pageYOffset;
+
+        parallaxElements.forEach(item => {
+            const elements = document.querySelectorAll(item.element);
+            elements.forEach(element => {
+                const displacement = scrollPosition * item.speed;
+                const transform = `translateY(${displacement}px)`;
+                element.style.transform = transform;
+            });
+        });
+    }
+
+    // Only set up parallax on desktop devices
+    if (window.innerWidth > 768) {
+        window.addEventListener('scroll', updateParallaxPositions);
+        // Initial position update
+        updateParallaxPositions();
+    }
+}

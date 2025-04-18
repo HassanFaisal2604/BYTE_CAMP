@@ -15,14 +15,10 @@
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <meta name="theme-color" content="#0a0a0a">
-    <!-- Include AOS library -->
+    <!-- AOS library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <!-- Include GSAP libraries -->
-    <!-- Font Awesome for icons -->
-    <meta name="theme-color" content="#0a0a0a" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <meta name="theme-color" content="#0a0a0a">
 </head>
 
 <body>
@@ -41,6 +37,10 @@
         <div class="container header-container">
             <div class="logo-container">
                 <img src="/logo.png" alt="BYTE CAMP Logo" class="logo">
+            </div>
+
+            <div class="event-date header-event-date">
+                <i class="far fa-calendar-alt"></i> May 8, 2025
             </div>
 
             <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
@@ -77,6 +77,7 @@
                     <p>
                         Byte Camp 2025: Join us for an electrifying experience filled with interactive workshops, insightful sessions, tech showcases, and collaborative activities. Let's shape the future, one byte at a time!
                     </p>
+
                     <a href="https://lu.ma/event/evt-tQyH6djijkje6Gw" class="luma-checkout--button primary-btn register-btn" data-luma-action="checkout" data-luma-event-id="evt-tQyH6djijkje6Gw">
                         Register Now
                     </a>
@@ -520,7 +521,6 @@
     <script src="script.js"></script>
     <!-- Toastify JS for notifications -->
     <!-- AOS library initialization -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
         if (window.AOS) {
             AOS.init();
