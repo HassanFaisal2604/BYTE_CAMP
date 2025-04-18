@@ -1366,10 +1366,11 @@ p {
         /* Ensure border is applied here too */
     }
     .logo {
-        height: 90px;
-        max-width: 180px;
+        height: 160px;
+        max-width: 300px;
         padding: 8px 12px;
         margin: 16px 0 0 0;
+        margin-left: 0;
     }
     .footer-logo .logo {
         height: 60px;
@@ -1381,7 +1382,8 @@ p {
 
 @media (max-width: 768px) {
      :root {
-        --header-height: 70px;
+        --header-height: 150px;
+        /* Increased from 70px to accommodate larger logo */
     }
     .header-actions {
         display: none;
@@ -1426,6 +1428,16 @@ p {
     .footer-bottom {
         flex-direction: column;
         text-align: center;
+    }
+    .logo {
+        height: 200px;
+        max-width: 260px;
+        padding: 6px 10px;
+        margin: 10px 0 0 0;
+        margin-left: 0;
+    }
+    .logo-container {
+        justify-content: center;
     }
 }
 
@@ -1560,15 +1572,15 @@ p {
         justify-content: center;
     }
     .logo {
-        height: 48px;
-        max-width: 90px;
-        padding: 2px 4px;
-        margin: 8px 0 0 0;
+        height: 150px;
+        max-width: 200px;
+        padding: 4px 8px;
+        margin: 8px auto 0 auto;
     }
     .footer-logo .logo {
-        height: 32px;
-        max-width: 60px;
-        padding: 1px 2px;
+        height: 45px;
+        max-width: 90px;
+        padding: 2px 4px;
         margin: 8px auto 0 auto;
     }
 }
