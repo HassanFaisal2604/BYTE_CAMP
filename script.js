@@ -41,6 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
             header.classList.remove('collapsed');
         }
+
+        // Ensure date visibility is properly set based on new header state
+        ensureHeaderDateVisibility();
     }
 
     // Add window resize handler to manage collapsed state on width change
@@ -50,7 +53,62 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (window.scrollY > 50) {
             header.classList.add('collapsed');
         }
+
+        // Make sure header date is visible on mobile
+        ensureHeaderDateVisibility();
     });
+
+    // Function to ensure the header date is visible on mobile
+    function ensureHeaderDateVisibility() {
+        const headerEventDate = document.querySelector('.header-event-date');
+        if (!headerEventDate) return;
+
+        if (window.innerWidth <= 768) {
+            headerEventDate.style.display = 'block';
+            headerEventDate.style.opacity = '1';
+
+            // If header is collapsed, adjust the date position if needed
+            if (header.classList.contains('collapsed')) {
+                headerEventDate.style.top = '50%';
+            }
+        } else {
+            headerEventDate.style.display = 'none';
+        }
+    }
+
+    // Run this on page load
+    ensureHeaderDateVisibility();
+
+    // Add click handler for the date link in mobile view
+    function setupDateLinkClick() {
+        const headerEventDate = document.querySelector('.header-event-date');
+        if (!headerEventDate) return;
+
+        headerEventDate.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                // Close mobile menu if open
+                if (mainNav && mainNav.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+
+                const headerOffset = header.offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
+
+    // Set up the date link click handler
+    setupDateLinkClick();
 
     // Mobile menu toggle
     function toggleMobileMenu() {
@@ -433,6 +491,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupMobileMenu();
     setupScrollToTop();
     setupParallaxEffect();
+    setupDateLinkClick();
 
     // Add keyboard navigation for modals
     document.addEventListener('keydown', function(e) {

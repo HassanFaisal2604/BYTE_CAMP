@@ -580,6 +580,37 @@ p {
     }
 }
 
+
+/* Professional highlight title effect */
+
+.highlight-title {
+    position: relative;
+    display: inline-block;
+    color: var(--primary-color);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    background: linear-gradient(120deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 4s ease infinite;
+    text-shadow: 0 0 20px rgba(163, 255, 46, 0.3);
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .scroll-indicator {
     position: absolute;
     bottom: 2rem;
@@ -2083,9 +2114,25 @@ input:focus-visible {
         transform: translate(-50%, -50%);
         text-align: center;
         font-weight: 600;
-        color: var(--secondary-color);
-        font-size: 0.9rem;
+        color: var(--primary-color);
+        font-size: 1rem;
         white-space: nowrap;
+        z-index: 1002;
+        padding: 6px 12px;
+        background-color: rgba(163, 255, 46, 0.1);
+        border-radius: var(--border-radius);
+        border: 1px solid rgba(163, 255, 46, 0.2);
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .header-event-date:hover,
+    .header-event-date:active {
+        background-color: rgba(163, 255, 46, 0.2);
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+    .header-event-date i {
+        margin-right: 5px;
     }
     .header-actions .event-date {
         display: none;
