@@ -2,40 +2,53 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYTE CAMP - Tech Conference</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Google Font: Space Grotesk -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <meta name="theme-color" content="#0a0a0a">
     <!-- Include AOS library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <!-- Include GSAP libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <header role="banner">
-        <div class="header-container">
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress-indicator"></div>
+
+    <!-- Background Elements -->
+    <div class="bg-particles"></div>
+    <div class="bg-gradient"></div>
+    <!-- Loading Spinner -->
+    <div id="loading-spinner">
+        <div class="spinner" aria-label="Loading"></div>
+    </div>
+
+    <header class="site-header" id="site-header">
+        <div class="container header-container">
             <div class="logo-container">
-                <img src="logo.png" alt="BYTE CAMP Logo" class="logo">
+                <img src="/logo.png" alt="BYTE CAMP Logo" class="logo">
             </div>
 
-            <!-- Mobile menu button -->
             <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
 
-            <!-- Clear, persistent navigation menu -->
             <nav class="main-nav" id="main-nav">
                 <ul>
                     <li><a href="#whatIsByteCamp">About</a></li>
@@ -45,333 +58,510 @@
                 </ul>
             </nav>
 
-            <div class="date-container">
-                <span class="event-date"><i class="far fa-calendar-alt"></i> April 14, 2025</span>
-            </div>
-            <div class="register-container">
-                <button class="btn header-btn" id="header-register-btn">Register Yourself</button>
+            <div class="header-actions">
+                <div class="event-date">
+                    <i class="far fa-calendar-alt"></i> April 14, 2025
+                </div>
+                <a href="https://lu.ma/event/evt-tQyH6djijkje6Gw" class="luma-checkout--button header-btn register-btn" data-luma-action="checkout" data-luma-event-id="evt-tQyH6djijkje6Gw">
+                    Register Now
+                </a>
             </div>
         </div>
     </header>
+
     <main id="main-content">
         <section class="hero">
-            <h1>We Explore Emerging Technologies</h1>
-            <p>
-                At BYTE CAMP, you'll gain insights into cutting-edge innovations, learn from inspiring Technical Talks, and participate in dynamic activities for the tech community.
-            </p>
-            <button class="btn" id="register-btn">Register Now</button>
-            <!-- Registration Modal -->
-            <div id="register-modal" class="modal">
-                <div class="modal-content">
-                    <span class="close" id="close-modal">&times;</span>
-                    <h2>Register for BYTE CAMP</h2>
-                    <form id="modal-form">
-                        <input type="text" placeholder="Your Name" required />
-                        <input type="email" placeholder="Your Email" required />
-                        <button type="submit" class="btn">Submit</button>
-                    </form>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="glitch-text" data-text="We Explore Emerging Technologies">We Explore Emerging Technologies</h1>
+                    <p>
+                        At BYTE CAMP, you'll gain insights into cutting-edge innovations, learn from inspiring Technical Talks, and participate in dynamic activities for the tech community.
+                    </p>
+                    <a href="https://lu.ma/event/evt-tQyH6djijkje6Gw" class="luma-checkout--button primary-btn register-btn" data-luma-action="checkout" data-luma-event-id="evt-tQyH6djijkje6Gw">
+                        Register Now
+                    </a>
+                </div>
+                <div class="hero-visual">
+                    <div class="tech-sphere">
+                        <div class="sphere-element"></div>
+                        <div class="sphere-element"></div>
+                        <div class="sphere-element"></div>
+                    </div>
                 </div>
             </div>
-            <!-- Scroll to Top Button -->
-            <button id="scrollTopBtn" title="Go to top">&#8679;</button>
+            <div class="scroll-indicator">
+                <span>Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
         </section>
 
-        <!-- What is BYTE CAMP Section -->
         <section class="section what-is-byte-camp" id="whatIsByteCamp">
-            <h2>What is BYTE CAMP?</h2>
-            <div class="bytecamp-intro">
-                <p class="bytecamp-tagline">The premier tech conference where innovation meets community.</p>
-                <p class="bytecamp-description">BYTE CAMP brings together tech enthusiasts, industry professionals, and curious minds to explore cutting-edge technologies, share knowledge, and build lasting connections. Whether you're a seasoned developer, a tech entrepreneur, or just
-                    starting your journey in technology, BYTE CAMP offers something valuable for everyone.</p>
-            </div>
-
-            <div class="bytecamp-features">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>Hackathons</h3>
-                    <p>Challenge yourself in our 24-hour coding competitions where teams collaborate to solve real-world problems. Win exciting prizes, gain recognition, and build portfolio-worthy projects that demonstrate your technical prowess.</p>
+            <div class="container">
+                <h2 class="section-title">What is BYTE CAMP?</h2>
+                <div class="section-intro">
+                    <p class="tagline">The premier tech conference where innovation meets community.</p>
+                    <p class="description">BYTE CAMP brings together tech enthusiasts, industry professionals, and curious minds to explore cutting-edge technologies, share knowledge, and build lasting connections. Whether you're a seasoned developer, a tech entrepreneur, or
+                        just starting your journey in technology, BYTE CAMP offers something valuable for everyone.</p>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                    <h3>Workshops</h3>
-                    <p>Immerse yourself in hands-on learning experiences led by industry experts. From AI and machine learning to Web3 technologies and cloud computing, our workshops provide practical skills you can immediately apply in your projects.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Hackathons</h3>
+                        <p>Challenge yourself in our 24-hour coding competitions where teams collaborate to solve real-world problems. Win exciting prizes, gain recognition, and build portfolio-worthy projects.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3>Workshops</h3>
+                        <p>Immerse yourself in hands-on learning experiences led by industry experts. From AI and machine learning to Web3 technologies and cloud computing.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-microphone"></i></div>
+                        <h3>Tech Talks</h3>
+                        <p>Gain insights from thought leaders and innovators who are shaping the future of technology. Our curated talks cover emerging trends and career development strategies.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <h3>Networking</h3>
+                        <p>Connect with like-minded individuals, potential collaborators, mentors, and employers. BYTE CAMP creates the perfect environment for meaningful conversations.</p>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-microphone"></i></div>
-                    <h3>Tech Talks</h3>
-                    <p>Gain insights from thought leaders and innovators who are shaping the future of technology. Our curated talks cover emerging trends, career development strategies, and deep dives into specialized technical domains.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-users"></i></div>
-                    <h3>Networking</h3>
-                    <p>Connect with like-minded individuals, potential collaborators, mentors, and employers. BYTE CAMP creates the perfect environment for meaningful conversations that can lead to new opportunities and partnerships.</p>
-                </div>
-            </div>
-
-            <div class="bytecamp-highlight">
-                <h3>Why Attend BYTE CAMP?</h3>
-                <ul class="highlight-list">
-                    <li><strong>Learn</strong> - Access cutting-edge knowledge directly from industry experts</li>
-                    <li><strong>Build</strong> - Develop new skills through practical, hands-on activities</li>
-                    <li><strong>Connect</strong> - Network with professionals and peers in your field</li>
-                    <li><strong>Grow</strong> - Challenge yourself and expand your technical horizons</li>
-                </ul>
-                <div class="bytecamp-cta">
-                    <p>Don't miss this opportunity to be part of the future of technology!</p>
+                <div class="highlight-box">
+                    <h3>Why Attend BYTE CAMP?</h3>
+                    <ul class="highlight-list">
+                        <li><strong>Learn</strong> - Access cutting-edge knowledge directly from industry experts</li>
+                        <li><strong>Build</strong> - Develop new skills through practical, hands-on activities</li>
+                        <li><strong>Connect</strong> - Network with professionals and peers in your field</li>
+                        <li><strong>Grow</strong> - Challenge yourself and expand your technical horizons</li>
+                    </ul>
+                    <div class="cta-message">
+                        <p>Don't miss this opportunity to be part of the future of technology!</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Event Schedule Section -->
         <section class="section schedule" id="schedule">
-            <h2>Event Schedule</h2>
-            <div class="schedule-container">
-                <div class="schedule-item" data-aos="fade-right">
-                    <div class="time">9:00 AM - 10:00 AM</div>
-                    <div class="event-info">
-                        <h3>Registration & Welcome</h3>
-                        <p>Check-in, welcome kit collection, and opening remarks</p>
+            <div class="container">
+                <h2 class="section-title">Event Schedule</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="time-block">
+                            <span class="time">9:00 AM - 10:00 AM</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Registration & Welcome</h3>
+                            <p>Check-in, welcome kit collection, and opening remarks</p>
+                        </div>
                     </div>
-                </div>
-                <div class="schedule-item" data-aos="fade-right">
-                    <div class="time">10:00 AM - 11:30 AM</div>
-                    <div class="event-info">
-                        <h3>Keynote: Future of Technology</h3>
-                        <p>An inspiring talk about emerging tech trends and future possibilities</p>
+
+                    <div class="timeline-item">
+                        <div class="time-block">
+                            <span class="time">10:00 AM - 11:30 AM</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Keynote: Future of Technology</h3>
+                            <p>An inspiring talk about emerging tech trends and future possibilities</p>
+                        </div>
                     </div>
-                </div>
-                <div class="schedule-item" data-aos="fade-right">
-                    <div class="time">11:45 AM - 1:00 PM</div>
-                    <div class="event-info">
-                        <h3>Workshop: AI Applications</h3>
-                        <p>Hands-on session on implementing AI in practical projects</p>
+
+                    <div class="timeline-item">
+                        <div class="time-block">
+                            <span class="time">11:45 AM - 1:00 PM</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Workshop: AI Applications</h3>
+                            <p>Hands-on session on implementing AI in practical projects</p>
+                        </div>
                     </div>
-                </div>
-                <div class="schedule-item" data-aos="fade-right">
-                    <div class="time">1:00 PM - 2:00 PM</div>
-                    <div class="event-info">
-                        <h3>Lunch Break</h3>
-                        <p>Networking lunch with fellow attendees and speakers</p>
+
+                    <div class="timeline-item">
+                        <div class="time-block">
+                            <span class="time">1:00 PM - 2:00 PM</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Lunch Break</h3>
+                            <p>Networking lunch with fellow attendees and speakers</p>
+                        </div>
                     </div>
-                </div>
-                <div class="schedule-item" data-aos="fade-right">
-                    <div class="time">2:00 PM - 3:30 PM</div>
-                    <div class="event-info">
-                        <h3>Hackathon Kickoff</h3>
-                        <p>Challenge announcement and team formation</p>
+
+                    <div class="timeline-item">
+                        <div class="time-block">
+                            <span class="time">2:00 PM - 3:30 PM</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Hackathon Kickoff</h3>
+                            <p>Challenge announcement and team formation</p>
+                        </div>
                     </div>
-                </div>
-                <div class="schedule-item" data-aos="fade-right">
-                    <div class="time">3:45 PM - 5:00 PM</div>
-                    <div class="event-info">
-                        <h3>Panel Discussion: Tech Industry Insights</h3>
-                        <p>Q&A with industry experts about career opportunities</p>
+
+                    <div class="timeline-item">
+                        <div class="time-block">
+                            <span class="time">3:45 PM - 5:00 PM</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Panel Discussion: Tech Industry Insights</h3>
+                            <p>Q&A with industry experts about career opportunities</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Speakers Section -->
         <section class="section speakers" id="speakers">
-            <h2>Featured Speakers</h2>
-            <div class="speakers-container">
-                <div class="speaker" data-aos="fade-up">
-                    <div class="speaker-img">
-                        <img src="https://via.placeholder.com/300x300" alt="Jane Smith">
+            <div class="container">
+                <h2 class="section-title">Featured Speakers</h2>
+                <div class="speakers-grid">
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="https://via.placeholder.com/300x300" alt="Jane Smith" loading="lazy">
+                            <div class="speaker-overlay"></div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3>Jane Smith</h3>
+                            <p class="speaker-role">AI Research Lead, TechCorp</p>
+                            <p class="speaker-bio">Expert in machine learning with 10+ years of experience developing innovative AI solutions for enterprise applications.</p>
+                            <button class="speaker-more" aria-label="Learn more about Jane Smith">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="speaker-info">
-                        <h3>Jane Smith</h3>
-                        <p class="speaker-role">AI Research Lead, TechCorp</p>
-                        <p class="speaker-bio">Expert in machine learning with 10+ years of experience developing innovative AI solutions for enterprise applications.</p>
+
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="or_pics/Ahmad.webp" alt="Michael Chen" loading="lazy">
+                            <div class="speaker-overlay"></div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3>Michael Chen</h3>
+                            <p class="speaker-role">CTO, StartupX</p>
+                            <p class="speaker-bio">Serial entrepreneur and blockchain specialist who has founded three successful tech startups.</p>
+                            <button class="speaker-more" aria-label="Learn more about Michael Chen">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="speaker" data-aos="fade-up">
-                    <div class="speaker-img">
-                        <img src="https://via.placeholder.com/300x300" alt="Michael Chen">
+
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="or_pics/fras.webp" alt="Priya Patel" loading="lazy">
+                            <div class="speaker-overlay"></div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3>Priya Patel</h3>
+                            <p class="speaker-role">Cloud Architect, GlobalTech</p>
+                            <p class="speaker-bio">Leading expert in cloud infrastructure who has helped dozens of enterprises migrate to scalable cloud solutions.</p>
+                            <button class="speaker-more" aria-label="Learn more about Priya Patel">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="speaker-info">
-                        <h3>Michael Chen</h3>
-                        <p class="speaker-role">CTO, StartupX</p>
-                        <p class="speaker-bio">Serial entrepreneur and blockchain specialist who has founded three successful tech startups.</p>
-                    </div>
-                </div>
-                <div class="speaker" data-aos="fade-up">
-                    <div class="speaker-img">
-                        <img src="https://via.placeholder.com/300x300" alt="Priya Patel">
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Priya Patel</h3>
-                        <p class="speaker-role">Cloud Architect, GlobalTech</p>
-                        <p class="speaker-bio">Leading expert in cloud infrastructure who has helped dozens of enterprises migrate to scalable cloud solutions.</p>
-                    </div>
-                </div>
-                <div class="speaker" data-aos="fade-up">
-                    <div class="speaker-img">
-                        <img src="https://via.placeholder.com/300x300" alt="Alex Rodriguez">
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Alex Rodriguez</h3>
-                        <p class="speaker-role">Cybersecurity Expert</p>
-                        <p class="speaker-bio">Security specialist with expertise in threat detection and ethical hacking methodologies.</p>
+
+                    <div class="speaker-card">
+                        <div class="speaker-image">
+                            <img src="or_pics/picofme.webp" alt="Alex Rodriguez" loading="lazy">
+                            <div class="speaker-overlay"></div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3>Alex Rodriguez</h3>
+                            <p class="speaker-role">Cybersecurity Expert</p>
+                            <p class="speaker-bio">Security specialist with expertise in threat detection and ethical hacking methodologies.</p>
+                            <button class="speaker-more" aria-label="Learn more about Alex Rodriguez">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <h2>Organizers</h2>
-            <div class="organizers">
-                <div class="organizer">
-                    <img src="or_pics\picofme.png" alt="Hassan Faisal" data-aos="fade-up" />
-                    <h3>Hassan Faisal</h3>
-                    <p>Lead developer</p>
-                </div>
-                <div class="organizer">
-                    <img src="or_pics\fras.jpg" alt="Fras irfan" data-aos="fade-up" />
-                    <h3>Fras irfan</h3>
-                    <p>DSC Lead</p>
-                </div>
-                <div class="organizer">
-                    <img src="or_pics\Ahmad.jpg" alt="Ahmad Hassan" data-aos="fade-up" />
-                    <h3>Ahmad Hassan</h3>
-                    <p>Byte camp lead</p>
+        <section class="section organizers">
+            <div class="container">
+                <h2 class="section-title">Organizers</h2>
+                <div class="organizers-grid">
+                    <div class="organizer-card">
+                        <div class="organizer-image">
+                            <img src="or_pics/picofme.webp" alt="Hassan Faisal" loading="lazy">
+                        </div>
+                        <div class="organizer-info">
+                            <h3>Hassan Faisal</h3>
+                            <p>Lead Developer</p>
+                            <div class="organizer-social">
+                                <a href="#" aria-label="Hassan's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Hassan's Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="organizer-card">
+                        <div class="organizer-image">
+                            <img src="or_pics/fras.webp" alt="Fras Irfan" loading="lazy">
+                        </div>
+                        <div class="organizer-info">
+                            <h3>Fras Irfan</h3>
+                            <p>DSC Lead</p>
+                            <div class="organizer-social">
+                                <a href="#" aria-label="Fras's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Fras's Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="organizer-card">
+                        <div class="organizer-image">
+                            <img src="or_pics/Ahmad.webp" alt="Ahmad Hassan" loading="lazy">
+                        </div>
+                        <div class="organizer-info">
+                            <h3>Ahmad Hassan</h3>
+                            <p>Byte Camp Lead</p>
+                            <div class="organizer-social">
+                                <a href="#" aria-label="Ahmad's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" aria-label="Ahmad's Twitter"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="section event-details">
-            <h2>Event Details</h2>
-            <div class="event-icons">
-                📅 May 12, 2025<br /> 🕘 9:00 AM – 5:00 PM
+            <div class="container">
+                <h2 class="section-title">Event Details</h2>
+                <div class="details-cards">
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="far fa-calendar-alt"></i>
+                        </div>
+                        <h3>Date</h3>
+                        <p>April 14, 2025</p>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <h3>Time</h3>
+                        <p>9:00 AM – 5:00 PM</p>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Location</h3>
+                        <p>Tech Hub Conference Center</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Photo Gallery Section -->
         <section class="section gallery" id="gallery">
-            <h2>Event Gallery</h2>
-            <div class="gallery-container">
-                <div class="gallery-item" data-aos="fade-up">
-                    <div class="gallery-img-container">
-                        <div class="gallery-img-overlay"></div>
-                        <img src="Eventpics/pic1.webp" alt="BYTE CAMP Opening Ceremony" class="gallery-img" loading="lazy">
+            <div class="container">
+                <h2 class="section-title">Event Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="Eventpics/pic1.webp" alt="BYTE CAMP Opening Ceremony" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
+                                    <h3>Opening Ceremony 2024</h3>
+                                    <p>Lahore, April 2024</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-caption-container">
-                        <h3 class="gallery-title">Opening Ceremony 2024</h3>
-                        <p class="gallery-description">Inaugurating BYTE CAMP with tech leaders and emerging developers.</p>
-                        <div class="gallery-date">April 2024 - Lahore</div>
-                    </div>
-                </div>
 
-                <div class="gallery-item" data-aos="fade-up">
-                    <div class="gallery-img-container">
-                        <div class="gallery-img-overlay"></div>
-                        <img src="Eventpics/pic2.webp" alt="AI Workshop Session" class="gallery-img" loading="lazy">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="Eventpics/pic2.webp" alt="AI Workshop Session" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
+                                    <h3>AI Applications Workshop</h3>
+                                    <p>Karachi, March 2024</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-caption-container">
-                        <h3 class="gallery-title">AI Applications Workshop</h3>
-                        <p class="gallery-description">Hands-on learning with machine learning models and neural networks.</p>
-                        <div class="gallery-date">March 2024 - Karachi</div>
-                    </div>
-                </div>
 
-                <div class="gallery-item" data-aos="fade-up">
-                    <div class="gallery-img-container">
-                        <div class="gallery-img-overlay"></div>
-                        <img src="Eventpics/pic3.webp" alt="Web Development Workshop" class="gallery-img" loading="lazy">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="Eventpics/pic3.webp" alt="Web Development Workshop" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
+                                    <h3>Web3 Development Workshop</h3>
+                                    <p>Islamabad, February 2024</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-caption-container">
-                        <h3 class="gallery-title">Web3 Development Workshop</h3>
-                        <p class="gallery-description">Building decentralized applications on blockchain technology.</p>
-                        <div class="gallery-date">February 2024 - Islamabad</div>
-                    </div>
-                </div>
 
-                <div class="gallery-item" data-aos="fade-up">
-                    <div class="gallery-img-container">
-                        <div class="gallery-img-overlay"></div>
-                        <img src="Eventpics/pic4.webp" alt="Panel Discussion" class="gallery-img" loading="lazy">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="Eventpics/pic4.webp" alt="Panel Discussion" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
+                                    <h3>Industry Leader Panel</h3>
+                                    <p>Virtual, January 2024</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-caption-container">
-                        <h3 class="gallery-title">Industry Leader Panel</h3>
-                        <p class="gallery-description">Discussion on future tech trends and career opportunities.</p>
-                        <div class="gallery-date">January 2024 - Virtual</div>
-                    </div>
-                </div>
 
-                <div class="gallery-item" data-aos="fade-up">
-                    <div class="gallery-img-container">
-                        <div class="gallery-img-overlay"></div>
-                        <img src="Eventpics/pic5.webp" alt="Networking Session" class="gallery-img" loading="lazy">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="Eventpics/pic5.webp" alt="Networking Session" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
+                                    <h3>Tech Networking Mixer</h3>
+                                    <p>Lahore, December 2023</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="gallery-caption-container">
-                        <h3 class="gallery-title">Tech Networking Mixer</h3>
-                        <p class="gallery-description">Connecting developers, designers, and tech enthusiasts.</p>
-                        <div class="gallery-date">December 2023 - Lahore</div>
-                    </div>
-                </div>
 
-                <div class="gallery-item" data-aos="fade-up">
-                    <div class="gallery-img-container">
-                        <div class="gallery-img-overlay"></div>
-                        <img src="Eventpics/pic6.webp" alt="Award Ceremony" class="gallery-img" loading="lazy">
-                    </div>
-                    <div class="gallery-caption-container">
-                        <h3 class="gallery-title">Hackathon Award Ceremony</h3>
-                        <p class="gallery-description">Celebrating innovation and technical excellence.</p>
-                        <div class="gallery-date">November 2023 - Faisalabad</div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="Eventpics/pic6.webp" alt="Award Ceremony" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
+                                    <h3>Hackathon Award Ceremony</h3>
+                                    <p>Faisalabad, November 2023</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="section sponsors">
-            <h2>Sponsors</h2>
-            <div class="sponsors-list">
-                <div class="sponsor" data-aos="zoom-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="sponsor-logo">
-                </div>
-                <div class="sponsor" data-aos="zoom-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Google_2015_logo.svg" alt="Google" class="sponsor-logo">
-                </div>
-                <div class="sponsor" data-aos="zoom-in">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="sponsor-logo">
-                </div>
-                <div class="sponsor" data-aos="zoom-in">
-                    <span class="sponsor-text">TechNova</span>
+            <div class="container">
+                <h2 class="section-title">Sponsors</h2>
+                <div class="sponsors-grid">
+                    <div class="sponsor-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="sponsor-logo" loading="lazy">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Google_2015_logo.svg" alt="Google" class="sponsor-logo" loading="lazy">
+                    </div>
+                    <div class="sponsor-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" class="sponsor-logo" loading="lazy">
+                    </div>
+                    <div class="sponsor-item">
+                        <span class="sponsor-text">TechNova</span>
+                    </div>
                 </div>
             </div>
-            <p class="sponsors-box">SPONSORS</p>
         </section>
     </main>
-    <footer>
-        <div class="footer-content">
-            <div class="social-media">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fa fa-facebook"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fa fa-twitter"></i></a>
-                    <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fa fa-instagram"></i></a>
-                    <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fa fa-linkedin"></i></a>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-contact">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com" target="_blank" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://youtube.com" target="_blank" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="copyright" id="footer-copyright">
-                &copy; 2025 BYTE CAMP. All rights reserved.
+            <div class="footer-bottom">
+                <div class="copyright" id="footer-copyright">
+                    &copy; 2025 BYTE CAMP. All rights reserved.
+                </div>
             </div>
         </div>
     </footer>
 
-    <script src="script.js" defer></script>
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Modal for Speaker Details -->
+    <div id="speaker-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal" aria-label="Close modal">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-register-modal" aria-label="Close modal">&times;</button>
+            <h2>Register for BYTE CAMP</h2>
+            <form id="registration-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="organization">Organization</label>
+                    <input type="text" id="organization" placeholder="Your Company/University">
+                </div>
+                <button type="submit" class="btn primary-btn">Register Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
     <!-- Toastify JS for notifications -->
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
     <!-- AOS library initialization -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
         if (window.AOS) {
             AOS.init();
         }
+    </script>
+    <!-- Luma Checkout Script -->
+    <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+    <!-- Ensure Luma buttons styling persists -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial style fix
+            applyLumaStyles();
+
+            // Reapply styles after a delay to ensure they persist
+            setTimeout(applyLumaStyles, 1000);
+
+            function applyLumaStyles() {
+                document.querySelectorAll('.luma-checkout--button').forEach(function(btn) {
+                    btn.style.color = '#000';
+                    btn.style.background = 'var(--secondary-color)';
+
+                    // Ensure the button maintains its styling
+                    const originalBg = btn.style.background;
+                    const originalColor = btn.style.color;
+
+                    // Preserve styling on hover
+                    btn.addEventListener('mouseenter', function() {
+                        if (this.style.color !== originalColor) {
+                            this.style.color = originalColor;
+                        }
+                        if (this.style.background !== originalBg) {
+                            this.style.background = originalBg;
+                        }
+                    });
+                });
+            }
+        });
     </script>
 </body>
 

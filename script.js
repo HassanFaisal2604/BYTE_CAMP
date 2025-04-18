@@ -1,152 +1,453 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize GSAP ScrollTrigger
+    if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+        gsap.registerPlugin(ScrollTrigger);
+    }
 
-    // --- Fallback: Ensure register-btn exists ---
-    let originalRegisterBtn = document.getElementById('register-btn');
-    if (!originalRegisterBtn) {
-        // Try to insert into .hero section as a fallback
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            originalRegisterBtn = document.createElement('button');
-            originalRegisterBtn.id = 'register-btn';
-            originalRegisterBtn.className = 'btn';
-            originalRegisterBtn.textContent = 'Register Now';
-            hero.appendChild(originalRegisterBtn);
+    // DOM Elements
+    const header = document.getElementById('site-header');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    const registerBtns = document.querySelectorAll('.register-btn');
+    const registerModal = document.getElementById('register-modal');
+    const closeRegisterModal = document.getElementById('close-register-modal');
+    const registrationForm = document.getElementById('registration-form');
+    const speakerModal = document.getElementById('speaker-modal');
+    const closeModal = document.getElementById('close-modal');
+    const modalBody = document.getElementById('modal-body');
+    const speakerMoreBtns = document.querySelectorAll('.speaker-more');
+
+    // Show spinner immediately on DOMContentLoaded (for slow connections)
+    var spinner = document.getElementById('loading-spinner');
+    if (spinner) {
+        spinner.classList.add('active');
+        spinner.style.display = 'flex';
+    }
+
+    // Header scroll effect
+    function handleHeaderScroll() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
     }
-    // --- End fallback ---
 
-    const originalHeaderBtn = document.getElementById('header-register-btn');
-
-    // --- Luma Integration ---
-    // Replace main Register Now button
-    if (originalRegisterBtn && originalRegisterBtn.parentNode) {
-        const lumaBtn = document.createElement('a');
-        lumaBtn.href = 'https://lu.ma/event/evt-tQyH6djijkje6Gw';
-        lumaBtn.className = 'luma-checkout--button btn';
-        lumaBtn.setAttribute('data-luma-action', 'checkout');
-        lumaBtn.setAttribute('data-luma-event-id', 'evt-tQyH6djijkje6Gw');
-        lumaBtn.textContent = 'Register for Event';
-        originalRegisterBtn.parentNode.replaceChild(lumaBtn, originalRegisterBtn);
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+        mobileMenuToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
     }
 
-    // Replace header Register Yourself button
-    if (originalHeaderBtn && originalHeaderBtn.parentNode) {
-        const lumaBtn2 = document.createElement('a');
-        lumaBtn2.href = 'https://lu.ma/event/evt-tQyH6djijkje6Gw';
-        lumaBtn2.className = 'luma-checkout--button btn header-btn';
-        lumaBtn2.setAttribute('data-luma-action', 'checkout');
-        lumaBtn2.setAttribute('data-luma-event-id', 'evt-tQyH6djijkje6Gw');
-        lumaBtn2.textContent = 'Register for Event';
-        originalHeaderBtn.parentNode.replaceChild(lumaBtn2, originalHeaderBtn);
-    }
-
-    // Inject Luma script if not already present
-    if (!document.getElementById('luma-checkout')) {
-        const lumaScript = document.createElement('script');
-        lumaScript.id = 'luma-checkout';
-        lumaScript.src = 'https://embed.lu.ma/checkout-button.js';
-        lumaScript.async = true;
-        document.body.appendChild(lumaScript);
-    }
-    // --- End Luma Integration ---
-
-    // --- Color Palette & Background ---
-    document.documentElement.style.setProperty('--dark-bg', '#1a1a1a');
-    document.documentElement.style.setProperty('--secondary-accent', '#4361ee');
-    createSubtleTexture();
-    addTechMotifs();
-    // --- End Color Palette & Background ---
-
-    // --- GSAP Setup ---
-    gsap.registerPlugin(ScrollTrigger);
-    // --- End GSAP Setup ---
-
-
-    // --- Animations ---
-
-    // Enhanced section animations (overall sections)
-    gsap.utils.toArray('.section').forEach((section, index) => {
-        const direction = index % 2 === 0 ? 50 : -50;
-        gsap.from(section, {
-            opacity: 0,
-            y: direction,
-            duration: 1,
-            scrollTrigger: {
-                trigger: section,
-                start: "top 85%",
-                toggleActions: "play none none reverse"
-            }
+    // Scroll to top functionality
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
+    }
+
+    // Show/hide scroll to top button
+    function toggleScrollTopBtn() {
+        if (window.scrollY > 300) {
+            scrollTopBtn.style.display = 'block';
+        } else {
+            scrollTopBtn.style.display = 'none';
+        }
+    }
+
+    // Open registration modal for any register button
+    function openRegisterModal(e) {
+        if (e) e.preventDefault();
+        registerModal.style.display = 'block';
+        document.body.classList.add('no-scroll');
+
+        // Focus on first input for accessibility
+        setTimeout(() => {
+            const firstInput = registerModal.querySelector('input');
+            if (firstInput) firstInput.focus();
+        }, 100);
+    }
+
+    // Close registration modal
+    function closeRegisterModalFunc() {
+        registerModal.style.display = 'none';
+        document.body.classList.remove('no-scroll');
+    }
+
+    // Handle registration form submission
+    function handleRegistrationSubmit(e) {
+        e.preventDefault();
+
+        // Get form data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const organization = document.getElementById('organization').value;
+
+        // Here you would typically send this data to your server
+        console.log('Registration submitted:', { name, email, organization });
+
+        // Show success message
+        alert(`Thank you for registering, ${name}! We'll send confirmation to ${email}.`);
+
+        // Close modal
+        closeRegisterModalFunc();
+
+        // Reset form
+        registrationForm.reset();
+    }
+
+    // Open speaker modal
+    function openSpeakerModal(e) {
+        const speakerCard = e.currentTarget.closest('.speaker-card');
+        const speakerName = speakerCard.querySelector('h3').textContent;
+        const speakerRole = speakerCard.querySelector('.speaker-role').textContent;
+        const speakerBio = speakerCard.querySelector('.speaker-bio').textContent;
+        const speakerImg = speakerCard.querySelector('img').src;
+
+        // Populate modal content
+        modalBody.innerHTML = `
+            <div class="speaker-modal-content">
+                <div class="speaker-modal-image">
+                    <img src="${speakerImg}" alt="${speakerName}">
+                </div>
+                <h2>${speakerName}</h2>
+                <p class="speaker-modal-role">${speakerRole}</p>
+                <div class="speaker-modal-bio">
+                    <p>${speakerBio}</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                </div>
+                <div class="speaker-modal-social">
+                    <a href="#" aria-label="${speakerName}'s LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="${speakerName}'s Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        `;
+
+        // Show modal
+        speakerModal.style.display = 'block';
+        document.body.classList.add('no-scroll');
+    }
+
+    // Close speaker modal
+    function closeSpeakerModal() {
+        speakerModal.style.display = 'none';
+        document.body.classList.remove('no-scroll');
+    }
+
+    // Close modal when clicking outside
+    function closeModalOnOutsideClick(e) {
+        if (e.target === registerModal) {
+            closeRegisterModalFunc();
+        } else if (e.target === speakerModal) {
+            closeSpeakerModal();
+        }
+    }
+
+    // Smooth scroll for navigation links
+    function setupSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Close mobile menu if open
+                if (mainNav.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = header.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+
+    // Update copyright year
+    function updateCopyrightYear() {
+        const copyrightEl = document.getElementById('footer-copyright');
+        if (copyrightEl) {
+            const currentYear = new Date().getFullYear();
+            copyrightEl.innerHTML = `&copy; ${currentYear} BYTE CAMP. All rights reserved.`;
+        }
+    }
+
+    // Setup animations
+    function setupAnimations() {
+        // Only run if GSAP is available
+        if (typeof gsap === 'undefined') return;
+
+        // Hero section animations
+        gsap.from('.hero-content h1', {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.2
+        });
+
+        gsap.from('.hero-content p', {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            delay: 0.5
+        });
+
+        gsap.from('.hero-content .btn', {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            delay: 0.8
+        });
+
+        gsap.from('.tech-sphere', {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1.5,
+            delay: 0.5
+        });
+
+        // Section animations
+        gsap.utils.toArray('.section').forEach(section => {
+            gsap.from(section.querySelector('.section-title'), {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            gsap.from(section.querySelector('.section-intro'), {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                delay: 0.2,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Feature cards animations
+        gsap.utils.toArray('.feature-card').forEach((card, index) => {
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                duration: 0.6,
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Timeline items animations
+        gsap.utils.toArray('.timeline-item').forEach((item, index) => {
+            gsap.from(item, {
+                opacity: 0,
+                x: -50,
+                duration: 0.6,
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Speaker cards animations
+        gsap.utils.toArray('.speaker-card').forEach((card, index) => {
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                duration: 0.6,
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Gallery items animations
+        gsap.utils.toArray('.gallery-item').forEach((item, index) => {
+            gsap.from(item, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.6,
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+    }
+
+    // Create background particles
+    function createBackgroundParticles() {
+        const particlesContainer = document.querySelector('.bg-particles');
+        if (!particlesContainer) return;
+
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+
+            // Random position
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+
+            // Random size
+            const size = Math.random() * 3 + 1;
+
+            // Random opacity
+            const opacity = Math.random() * 0.5 + 0.1;
+
+            // Random animation duration
+            const duration = Math.random() * 20 + 10;
+
+            // Set styles
+            particle.style.cssText = `
+                position: absolute;
+                top: ${posY}%;
+                left: ${posX}%;
+                width: ${size}px;
+                height: ${size}px;
+                background-color: var(--secondary-color);
+                border-radius: 50%;
+                opacity: ${opacity};
+                animation: float ${duration}s infinite ease-in-out;
+                animation-delay: ${Math.random() * 5}s;
+            `;
+
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Event Listeners
+    window.addEventListener('scroll', handleHeaderScroll);
+    window.addEventListener('scroll', toggleScrollTopBtn);
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
+
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', scrollToTop);
+    }
+
+    // Add event listeners to all register buttons
+    if (registerBtns.length > 0) {
+        registerBtns.forEach(btn => {
+            btn.addEventListener('click', openRegisterModal);
+        });
+    }
+
+    if (closeRegisterModal) {
+        closeRegisterModal.addEventListener('click', closeRegisterModalFunc);
+    }
+
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', handleRegistrationSubmit);
+    }
+
+    if (closeModal) {
+        closeModal.addEventListener('click', closeSpeakerModal);
+    }
+
+    speakerMoreBtns.forEach(btn => {
+        btn.addEventListener('click', openSpeakerModal);
     });
 
-    // Animate the hero section elements
-    gsap.from('.hero h1', { opacity: 0, y: -30, duration: 1, delay: 0.2 });
-    gsap.from('.hero p', { opacity: 0, y: -20, duration: 1, delay: 0.4 });
+    window.addEventListener('click', closeModalOnOutsideClick);
 
-    // Animate Luma button in hero section
-    const heroLumaButton = document.querySelector('.hero .luma-checkout--button.btn');
-    if (heroLumaButton) {
-        gsap.from(heroLumaButton, { opacity: 0, y: 20, scale: 0.95, duration: 1, delay: 0.6 });
-    }
-
-    // Animate 'What is BYTE CAMP' list items with icons
-    animateWhatIsByteCamp();
-
-    // Enhanced animation for organizer images (hover effects)
-    addOrganizerHoverEffects();
-
-    // --- End Animations ---
-
-
-    // --- Interactive Elements ---
-
-    // Add GSAP hover effect to buttons (including Luma)
-    addButtonHoverEffects();
-
-    // Animate sponsors logos (hover effects)
-    animateSponsors();
-
-    // Enhance gallery images (hover effects)
-    enhanceGallery();
-
-    // Enhance schedule items (basic setup)
-    enhanceSchedule();
-
-    // Enhance speakers cards (hover effects & modal)
-    enhanceSpeakers();
-
-    // Add hover effect to social media icons
-    addSocialIconHoverEffects();
-
-    // Setup mobile menu toggle functionality
-    setupMobileMenu();
-
-    // Scroll to Top Button functionality
-    setupScrollToTop();
-
-    // --- End Interactive Elements ---
-
-
-    // --- Utility Functions ---
-
-    // Update copyright year automatically
+    // Initialize functions
+    handleHeaderScroll();
+    toggleScrollTopBtn();
+    setupSmoothScroll();
     updateCopyrightYear();
+    setupAnimations();
+    createBackgroundParticles();
 
-    // Initialize AOS (since it's linked in HTML and used via data-aos)
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 100
-        });
-    } else {
-        console.warn("AOS library not found. Scroll animations relying on data-aos will not work.");
-    }
+    // Add keyboard navigation for modals
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (registerModal.style.display === 'block') {
+                closeRegisterModalFunc();
+            }
+            if (speakerModal.style.display === 'block') {
+                closeSpeakerModal();
+            }
+        }
+    });
 
-    // --- End Utility Functions ---
-
+    // Add CSS animation for particles
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+            50% {
+                transform: translateY(0) translateX(20px);
+            }
+            75% {
+                transform: translateY(20px) translateX(10px);
+            }
+        }
+    `;
+    document.head.appendChild(styleSheet);
 }); // END DOMContentLoaded
+
+// Show loading spinner on page load and hide when ready
+window.addEventListener('load', function() {
+    var spinner = document.getElementById('loading-spinner');
+    if (spinner) {
+        spinner.classList.remove('active');
+        spinner.style.display = 'none';
+    }
+});
+
+// Enhance scroll-to-top button animation
+(function enhanceScrollTopBtn() {
+    var btn = document.getElementById('scrollTopBtn');
+    if (!btn) return;
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            btn.classList.add('show');
+            btn.classList.remove('hide');
+        } else {
+            btn.classList.remove('show');
+            btn.classList.add('hide');
+        }
+    });
+})();
 
 // ==================================
 // FUNCTION DEFINITIONS
