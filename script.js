@@ -362,7 +362,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listeners to all register buttons
     if (registerBtns.length > 0) {
         registerBtns.forEach(btn => {
-            btn.addEventListener('click', openRegisterModal);
+            // Skip adding the modal trigger for Luma checkout buttons
+            if (btn.classList.contains('luma-checkout--button') ||
+                btn.hasAttribute('data-luma-action') ||
+                btn.hasAttribute('data-luma-event-id')) {
+                // Don't add the modal event listener for Luma buttons
+                // This allows the Luma checkout process to work directly
+            } else {
+                // Only add event listener to non-Luma buttons
+                btn.addEventListener('click', openRegisterModal);
+            }
         });
     }
 
