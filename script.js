@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
             headerEventDate.style.display = 'none';
         }
     }
-
     // Run this on page load
     ensureHeaderDateVisibility();
 
