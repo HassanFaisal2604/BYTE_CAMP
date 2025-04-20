@@ -489,6 +489,10 @@ p {
     /* Background removed as it's now in .bg-gradient */
 }
 
+.hero-note {
+    padding-top: 20px;
+}
+
 
 /* Update hero particles to match the global bg particles */
 
