@@ -753,6 +753,7 @@ p {
     height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .feature-card:hover,
@@ -1940,6 +1941,55 @@ p {
         padding: 3px 6px;
         /* Smaller padding */
     }
+    /* Fixed highlight title size for mobile */
+    .highlight-title {
+        font-size: clamp(4rem, 12vw, 7rem) !important;
+        letter-spacing: 0.02em !important;
+    }
+    h1 {
+        font-size: clamp(2.8rem, 10vw, 3.8rem);
+        /* Match "Conquer" with "Code. Create." */
+        margin-top: 0.3rem;
+    }
+}
+
+
+/* Fixed highlight title – sharp text only */
+
+.highlight-title {
+    position: relative;
+    display: inline-block;
+    font-size: clamp(3.2rem, 7vw, 5.5rem);
+    /* Base font size */
+    font-weight: 700;
+    background: linear-gradient(120deg, #A9FF00, #FFFFFF, #A9FF00);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 16px rgba(169, 255, 0, 0.3);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+
+/* Update responsive styles for the highlight title and hero section text */
+
+@media (max-width: 768px) {
+    .highlight-title {
+        font-size: clamp(3.2rem, 10vw, 5rem) !important;
+        letter-spacing: 0.03em;
+    }
+    h1 {
+        font-size: clamp(3rem, 9vw, 4rem);
+        /* Larger "Conquer" text */
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+        /* Larger paragraph text */
+        line-height: 1.6;
+    }
 }
 
 
@@ -2333,8 +2383,7 @@ input:focus-visible {
 
 @media (max-width: 768px) {
     .highlight-title {
-        font-size: clamp(3rem, 10vw, 5rem);
-        /* Significantly larger on tablets */
+        font-size: clamp(3.2rem, 10vw, 5rem) !important;
         letter-spacing: 0.03em;
     }
     h1 {
@@ -2350,8 +2399,8 @@ input:focus-visible {
 
 @media (max-width: 480px) {
     .highlight-title {
-        font-size: clamp(2.8rem, 11vw, 4rem);
-        /* Even larger on mobile */
+        font-size: clamp(4rem, 12vw, 7rem) !important;
+        letter-spacing: 0.02em !important;
     }
     h1 {
         font-size: clamp(2.8rem, 10vw, 3.8rem);
@@ -2370,4 +2419,42 @@ input:focus-visible {
         padding: 15px 30px !important;
         /* Larger button */
     }
+}
+
+
+/* Code of Conduct Section */
+
+.code-of-conduct {
+    padding: 4rem 0;
+}
+
+.code-of-conduct .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.code-of-conduct .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.code-of-conduct .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.code-of-conduct .card h3 {
+    margin-bottom: 0.75rem;
+    color: var(--primary-color);
+}
+
+.code-of-conduct .card p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
 }
