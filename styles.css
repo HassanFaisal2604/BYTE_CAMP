@@ -244,7 +244,9 @@ p {
     background: var(--secondary-color);
     color: #000 !important;
     /* Dark text */
-    /* font-weight: 600;
+
+
+/* font-weight: 600;
     padding: 14px 28px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(155, 253, 33, 0.25);
@@ -259,6 +261,7 @@ p {
     font-size: 1rem;
     letter-spacing: 0.5px;
 } */
+
 
 /* .luma-checkout--button.btn:hover,
 .luma-checkout--button.btn:focus {
@@ -275,6 +278,7 @@ p {
 
 /* Add a subtle background shine effect on hover */
 
+
 /* .luma-checkout--button.btn::before {
     content: '';
     position: absolute;
@@ -290,13 +294,14 @@ p {
 .luma-checkout--button.btn:hover::before {
     left: 100%;
 }  */
-.lumabtn-main{
-    background: linear-gradient(90deg, var(--primary-color), #959595 );
+
+.lumabtn-main {
+    background: linear-gradient(90deg, var(--primary-color), #959595);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    color: #000 !important; /* Dark text */
+    color: #000 !important;
+    /* Dark text */
     font-weight: 600;
     padding: 14px 28px;
     border-radius: 24px;
@@ -313,19 +318,21 @@ p {
     font-weight: bolder;
     letter-spacing: 0.5px;
 }
-.lumabtn-main:hover{
+
+.lumabtn-main:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(155, 253, 33, 0.35);
     color: #000 !important;
-    background: linear-gradient(90deg,#959595 , var(--primary-color));
+    background: linear-gradient(90deg, #959595, var(--primary-color));
 }
-.lumabtn-content{
-    background: linear-gradient(90deg, var(--primary-color), #959595 );
+
+.lumabtn-content {
+    background: linear-gradient(90deg, var(--primary-color), #959595);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    color: #000 !important; /* Dark text */
+    color: #000 !important;
+    /* Dark text */
     font-weight: 600;
     padding: 14px 28px;
     border-radius: 24px;
@@ -342,12 +349,15 @@ p {
     font-weight: bolder;
     letter-spacing: 0.5px;
 }
-.lumabtn-content:hover{
+
+.lumabtn-content:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(155, 253, 33, 0.35);
     color: #000 !important;
-    background: linear-gradient(90deg,#959595 , var(--primary-color));
+    background: linear-gradient(90deg, #959595, var(--primary-color));
 }
+
+
 /* Header button specific styling */
 
 .header-btn.luma-checkout--button {
@@ -364,6 +374,7 @@ p {
         /* min-width: 120px;  */
     }
 }
+
 @media (max-width: 840px) {
     .lumabtn-main {
         padding: 8px 16px;
@@ -371,6 +382,7 @@ p {
         /* min-width: 100px; */
     }
 }
+
 @media (max-width: 780px) {
     .lumabtn-main {
         padding: 6px 12px;
@@ -378,7 +390,6 @@ p {
         /* min-width: 90px; */
     }
 }
-
 
 
 /* Header */
@@ -457,20 +468,20 @@ p {
     width: 0;
     height: 2px;
     background-color: var(--primary-color);
-    
     transition: width var(--transition-speed) ease;
 }
+
 .main-nav a:hover::after {
     width: 100%;
-   background-color: #A3FF2E;
-   
+    background-color: #A3FF2E;
+}
 
-}
 .main-nav a:focus {
-    outline: none; /* Removes the dotted border */
-    
+    outline: none;
+    /* Removes the dotted border */
 }
-.main-nav a:hover{
+
+.main-nav a:hover {
     color: #A3FF2E !important;
 }
 
@@ -1706,9 +1717,6 @@ p {
     .header-actions {
         display: none;
     }
-    .mobile-menu-toggle {
-        display: flex;
-    }
     .main-nav {
         position: fixed;
         top: 0;
@@ -1733,6 +1741,15 @@ p {
         font-size: 1.2rem;
         display: block;
         padding: 0.5rem 0;
+        position: relative;
+        z-index: 1003;
+        /* Ensure links are clickable in mobile menu */
+    }
+    .mobile-menu-toggle {
+        display: flex;
+        position: relative;
+        z-index: 1002;
+        /* Ensure toggle is above the menu */
     }
     .mobile-menu-toggle.active .bar:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
@@ -1747,22 +1764,97 @@ p {
         flex-direction: column;
         text-align: center;
     }
-    .logo {
-        height: 200px;
-        max-width: 260px;
-        padding: 6px 10px;
-        margin: 10px 0 0 0;
-        margin-left: 0;
-        transition: all var(--transition-speed) ease;
-        /* Ensure smooth transition */
-    }
-    .collapsed .logo {
-        height: 140px;
-        /* Smaller logo height when collapsed on mobile */
-        margin: 0;
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
+        z-index: 999;
+        /* Below the mobile menu toggle but above other content */
     }
     .logo-container {
-        justify-content: center;
+        order: 1;
+        flex: 0 0 auto;
+        pointer-events: auto;
+        /* Ensure logo remains clickable */
+        z-index: 998;
+        /* Keep logo below menu toggle but above other content */
+        width: auto;
+        /* Let the logo container size naturally */
+        max-width: 50%;
+        /* Prevent logo from taking too much space */
+    }
+    .header-event-date {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 60px;
+        /* Position to the right of the menu toggle */
+        left: auto;
+        /* Override left positioning */
+        transform: translateY(-50%);
+        /* Center vertically only */
+        text-align: center;
+        font-weight: 600;
+        color: var(--primary-color);
+        font-size: 0.9rem;
+        /* Slightly smaller */
+        white-space: nowrap;
+        z-index: 997;
+        /* Keep below logo and toggle */
+        padding: 4px 8px;
+        /* Smaller padding */
+        background-color: rgba(163, 255, 46, 0.1);
+        border-radius: var(--border-radius);
+        border: 1px solid rgba(163, 255, 46, 0.2);
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .header-event-date:hover,
+    .header-event-date:active {
+        background-color: rgba(163, 255, 46, 0.2);
+        transform: translateY(-50%) scale(1.05);
+    }
+    .header-event-date i {
+        margin-right: 3px;
+        /* Reduced from 5px */
+    }
+    .header-actions .event-date {
+        display: none;
+        /* Hide duplicate date in mobile view */
+    }
+    .header-actions {
+        order: 3;
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 10px;
+    }
+    .logo {
+        height: 180px;
+        /* Slightly reduced from 200px */
+        max-width: 240px;
+        /* Slightly reduced from 260px */
+        padding: 6px 10px;
+        margin: 5px 0 0 0;
+        /* Reduced top margin from 10px to 5px */
+        margin-left: -40px;
+        /* Increased negative margin to shift logo further left */
+        transition: all var(--transition-speed) ease;
+    }
+    .collapsed .logo {
+        height: 120px;
+        /* Reduced from 140px */
+        margin-left: -35px;
+        /* Also adjust when collapsed */
+    }
+    /* Fix for mobile menu links */
+    .main-nav.active {
+        pointer-events: auto;
+        /* Ensure links are clickable when menu is open */
+    }
+    .main-nav ul {
+        pointer-events: auto;
+        /* Ensure links in menu are clickable */
     }
 }
 
@@ -1912,6 +2004,30 @@ p {
         max-width: 90px;
         padding: 2px 4px;
         margin: 8px auto 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 150px;
+        /* Further reduced for very small screens */
+        max-width: 200px;
+        margin-left: -30px;
+        /* Adjusted for very small screens */
+    }
+    .collapsed .logo {
+        height: 100px;
+        max-width: 140px;
+        margin-left: -25px;
+        /* Adjusted for very small screens when collapsed */
+    }
+    .header-event-date {
+        font-size: 0.8rem;
+        /* Even smaller text */
+        right: 50px;
+        /* Closer to menu toggle */
+        padding: 3px 6px;
+        /* Smaller padding */
     }
 }
 
