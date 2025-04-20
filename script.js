@@ -1042,10 +1042,9 @@ injectDynamicStyles();
 // Add parallax scrolling effect for a more dynamic feel
 function setupParallaxEffect() {
     const parallaxElements = [
-        { element: '.tech-sphere', speed: 0.2 },
-        { element: '.hero h1', speed: 0.1 },
+        // Removed '.tech-sphere' and '.hero h1' from this array
         { element: '.bg-particles', speed: 0.05 },
-        { element: '.hero-visual', speed: 0.15 }
+        // Other elements that should still have parallax effects can remain
     ];
 
     function updateParallaxPositions() {

@@ -400,7 +400,6 @@ p {
     left: 0;
     width: 100%;
     z-index: 1000;
-    /* background-color: rgba(10, 10, 10, 0.9); */
     backdrop-filter: blur(10px);
     transition: all var(--transition-speed) ease;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -433,56 +432,26 @@ p {
     max-width: 350px;
     background: transparent;
     padding: 20px 24px;
-    /* border-radius: 18px; */
-    /* box-shadow: 0 4px 32px 0 rgba(163, 255, 46, 0.18), 0 2px 8px rgba(67, 97, 238, 0.10); */
-    /* filter: drop-shadow(0 2px 12px rgba(163, 255, 46, 0.18)) drop-shadow(0 0 1px #fff); */
     transition: height 0.3s, max-width 0.3s, box-shadow 0.3s;
     display: block;
     margin: 35px 0 0 0;
-    /* Removed auto centering, aligns left */
     margin-left: -95px;
 }
 
 .collapsed .logo {
     height: 250px;
-    /* Smaller logo when header is collapsed */
     margin: 20px 0 0 0;
 }
 
-.main-nav ul {
-    display: flex;
-    gap: 2rem;
+
+/* Hide the main navigation completely */
+
+.main-nav {
+    display: none;
 }
 
-.main-nav a {
-    position: relative;
-    font-weight: 500;
-    padding: 0.5rem 0;
-}
-
-.main-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width var(--transition-speed) ease;
-}
-
-.main-nav a:hover::after {
-    width: 100%;
-    background-color: #A3FF2E;
-}
-
-.main-nav a:focus {
-    outline: none;
-    /* Removes the dotted border */
-}
-
-.main-nav a:hover {
-    color: #A3FF2E !important;
+.mobile-menu-toggle {
+    display: none;
 }
 
 .header-actions {
@@ -506,71 +475,6 @@ p {
 
 .event-date i {
     font-size: 1.1rem;
-}
-
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
-}
-
-.mobile-menu-toggle .bar {
-    height: 3px;
-    width: 100%;
-    background-color: var(--secondary-color);
-    border-radius: 10px;
-    transition: all var(--transition-speed) ease;
-}
-
-
-/* Skip Link */
-
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--secondary-color);
-    color: #000;
-    padding: 8px 16px;
-    z-index: 1001;
-    transition: top var(--transition-speed) ease;
-}
-
-.skip-link:focus {
-    top: 0;
-}
-
-
-/* Fixed highlight title – sharp text only */
-
-.highlight-title {
-    position: relative;
-    display: inline-block;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    background: linear-gradient(120deg, #A9FF00, #FFFFFF, #A9FF00);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 16px rgba(169, 255, 0, 0.3);
-}
-
-.highlight-title p {
-    margin-bottom: 0;
-    background: linear-gradient(120deg, #A9FF00, #FFFFFF);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
 }
 
 
@@ -642,19 +546,21 @@ p {
     position: relative;
     width: 300px;
     height: 300px;
+    filter: drop-shadow(0 0 15px var(--primary-color));
 }
 
 .sphere-element {
     position: absolute;
     border-radius: 50%;
-    border: 2px solid rgba(155, 253, 33, 0.3);
+    border: 3px solid var(--primary-color);
     animation: rotate 20s linear infinite;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .sphere-element:nth-child(1) {
     width: 100%;
     height: 100%;
-    border-color: rgba(155, 253, 33, 0.2);
+    border-color: var(--primary-color);
     animation-duration: 30s;
 }
 
@@ -663,7 +569,7 @@ p {
     height: 70%;
     top: 15%;
     left: 15%;
-    border-color: rgba(67, 97, 238, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
     animation-duration: 20s;
     animation-direction: reverse;
 }
@@ -673,8 +579,29 @@ p {
     height: 40%;
     top: 30%;
     left: 30%;
-    border-color: rgba(155, 253, 33, 0.4);
+    border-color: rgba(255, 255, 255, 0.8);
     animation-duration: 15s;
+}
+
+
+/* Responsive adjustments for mobile */
+
+@media (max-width: 768px) {
+    .tech-sphere {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+    }
+    .sphere-element {
+        border-width: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-sphere {
+        width: 200px;
+        height: 200px;
+    }
 }
 
 @keyframes rotate {
@@ -894,7 +821,7 @@ p {
 }
 
 .highlight-list li strong {
-    color: var(--secondary-color);
+    color: var (--secondary-color);
     font-weight: 700;
     margin-right: 0.5rem;
 }
@@ -1741,9 +1668,6 @@ p {
         font-size: 1.2rem;
         display: block;
         padding: 0.5rem 0;
-        position: relative;
-        z-index: 1003;
-        /* Ensure links are clickable in mobile menu */
     }
     .mobile-menu-toggle {
         display: flex;
@@ -1837,24 +1761,13 @@ p {
         padding: 6px 10px;
         margin: 5px 0 0 0;
         /* Reduced top margin from 10px to 5px */
-        margin-left: -40px;
-        /* Increased negative margin to shift logo further left */
+        margin-left: -20px;
+        /* Pull logo slightly left to prevent crowding */
         transition: all var(--transition-speed) ease;
     }
     .collapsed .logo {
         height: 120px;
         /* Reduced from 140px */
-        margin-left: -35px;
-        /* Also adjust when collapsed */
-    }
-    /* Fix for mobile menu links */
-    .main-nav.active {
-        pointer-events: auto;
-        /* Ensure links are clickable when menu is open */
-    }
-    .main-nav ul {
-        pointer-events: auto;
-        /* Ensure links in menu are clickable */
     }
 }
 
@@ -2012,14 +1925,12 @@ p {
         height: 150px;
         /* Further reduced for very small screens */
         max-width: 200px;
-        margin-left: -30px;
-        /* Adjusted for very small screens */
+        margin-left: -10px;
+        /* Less negative margin on very small screens */
     }
     .collapsed .logo {
         height: 100px;
         max-width: 140px;
-        margin-left: -25px;
-        /* Adjusted for very small screens when collapsed */
     }
     .header-event-date {
         font-size: 0.8rem;
@@ -2354,62 +2265,109 @@ input:focus-visible {
 
 @media (max-width: 768px) {
     .header-container {
-        flex-wrap: wrap;
-        justify-content: space-between;
+        flex-wrap: nowrap;
         position: relative;
     }
     .logo-container {
-        order: 1;
         flex: 0 0 auto;
     }
+    /* Remove all mobile menu toggle related styles */
     .mobile-menu-toggle {
-        order: 2;
-        flex: 0 0 auto;
+        display: none;
     }
+    /* Remove header date positioning styles, as we're showing in header-actions */
     .header-event-date {
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        font-weight: 600;
-        color: var(--primary-color);
-        font-size: 1rem;
-        white-space: nowrap;
-        z-index: 1002;
-        padding: 6px 12px;
-        background-color: rgba(163, 255, 46, 0.1);
-        border-radius: var(--border-radius);
-        border: 1px solid rgba(163, 255, 46, 0.2);
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-    .header-event-date:hover,
-    .header-event-date:active {
-        background-color: rgba(163, 255, 46, 0.2);
-        transform: translate(-50%, -50%) scale(1.05);
-    }
-    .header-event-date i {
-        margin-right: 5px;
+        display: none;
     }
     .header-actions .event-date {
-        display: none;
-        /* Hide duplicate date in mobile view */
+        display: flex;
     }
     .header-actions {
-        order: 3;
-        width: 100%;
+        flex: 1;
         justify-content: flex-end;
-        margin-top: 10px;
+        margin-top: 0;
     }
 }
 
 
-/* Header Event Date */
+/* Header Event Date - make sure it's not visible */
 
 .header-event-date {
     display: none;
-    /* Hide by default (desktop view) */
+}
+
+
+/* Fixed highlight title – sharp text only */
+
+.highlight-title {
+    position: relative;
+    display: inline-block;
+    font-size: clamp(3.2rem, 7vw, 5.5rem);
+    /* Further increased base font size */
+    font-weight: 700;
+    background: linear-gradient(120deg, #A9FF00, #FFFFFF, #A9FF00);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 16px rgba(169, 255, 0, 0.3);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.highlight-title p {
+    margin-bottom: 0;
+    background: linear-gradient(120deg, #A9FF00, #FFFFFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+    font-size: inherit;
+    /* Ensure text inherits the parent font size */
+}
+
+
+/* Update responsive styles for the highlight title and hero section text */
+
+@media (max-width: 768px) {
+    .highlight-title {
+        font-size: clamp(3rem, 10vw, 5rem);
+        /* Significantly larger on tablets */
+        letter-spacing: 0.03em;
+    }
+    h1 {
+        font-size: clamp(3rem, 9vw, 4rem);
+        /* Larger "Conquer" text */
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+        /* Larger paragraph text */
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 480px) {
+    .highlight-title {
+        font-size: clamp(2.8rem, 11vw, 4rem);
+        /* Even larger on mobile */
+    }
+    h1 {
+        font-size: clamp(2.8rem, 10vw, 3.8rem);
+        /* Match "Conquer" with "Code. Create." */
+        margin-top: 0.3rem;
+    }
+    .hero-content p {
+        font-size: 1.15rem;
+        /* Keep paragraph text readable */
+        line-height: 1.7;
+        margin-top: 1rem;
+    }
+    .lumabtn-content {
+        font-size: 1.1rem !important;
+        /* Larger button text */
+        padding: 15px 30px !important;
+        /* Larger button */
+    }
 }
