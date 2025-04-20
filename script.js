@@ -78,31 +78,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run this on page load
     ensureHeaderDateVisibility();
 
-    // Add click handler for the date link in mobile view
+    // Add click handler for the date links in header (both mobile and desktop)
     function setupDateLinkClick() {
-        const headerEventDate = document.querySelector('.header-event-date');
-        if (!headerEventDate) return;
+        // Target both the mobile and desktop date elements
+        const dateElements = document.querySelectorAll('.header-event-date, .event-date');
 
-        headerEventDate.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
+        dateElements.forEach(element => {
+            element.style.cursor = 'pointer'; // Make it look clickable
 
-            if (targetElement) {
-                // Close mobile menu if open
-                if (mainNav && mainNav.classList.contains('active')) {
-                    toggleMobileMenu();
+            element.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Get the target from href, or default to #event-details
+                const targetId = this.getAttribute('href') || '#event-details';
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (mainNav && mainNav.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+
+                    // Get header height for offset
+                    const headerOffset = header.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - headerOffset - 20; // Added extra 20px padding
+
+                    // Smooth scroll to the target
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Visual feedback
+                    targetElement.classList.add('highlight-section');
+                    setTimeout(() => {
+                        targetElement.classList.remove('highlight-section');
+                    }, 1500);
                 }
-
-                const headerOffset = header.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = targetPosition - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
+            });
         });
     }
 

@@ -1897,10 +1897,11 @@ p {
     }
     .footer-content {
         gap: 2rem;
+        align-self: center;
         /* Increase gap between footer sections */
     }
     .section {
-        padding: 3rem 0;
+        padding: 10rem 0;
     }
     .section-title {
         margin-bottom: 2rem;
