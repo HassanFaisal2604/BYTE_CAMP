@@ -1017,15 +1017,26 @@ p {
 /* Organizers Section */
 
 .organizers-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 3rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .organizer-card {
     text-align: center;
-    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.organizer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .organizer-image {
@@ -1081,6 +1092,26 @@ p {
     background-color: var(--secondary-color);
     color: #000;
     transform: translateY(-3px);
+}
+
+
+/* Responsive adjustments for organizers grid */
+
+@media (max-width: 992px) {
+    .organizers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .organizers-grid {
+        grid-template-columns: 1fr;
+    }
+    .organizer-card {
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 
@@ -1945,15 +1976,27 @@ p {
         padding: 3px 6px;
         /* Smaller padding */
     }
-    /* Fixed highlight title size for mobile */
+    /* Increased highlight title size for mobile */
     .highlight-title {
-        font-size: clamp(4rem, 12vw, 7rem) !important;
-        letter-spacing: 0.02em !important;
+        font-size: clamp(5rem, 15vw, 8rem) !important;
+        letter-spacing: 0.01em !important;
     }
     h1 {
         font-size: clamp(2.8rem, 10vw, 3.8rem);
         /* Match "Conquer" with "Code. Create." */
         margin-top: 0.3rem;
+    }
+    .hero-content p {
+        font-size: 1.15rem;
+        /* Keep paragraph text readable */
+        line-height: 1.7;
+        margin-top: 1rem;
+    }
+    .lumabtn-content {
+        font-size: 1.1rem !important;
+        /* Larger button text */
+        padding: 15px 30px !important;
+        /* Larger button */
     }
 }
 
