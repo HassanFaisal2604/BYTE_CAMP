@@ -5,18 +5,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYTE CAMP 2025 - Code. Create. Conquer.</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Inline critical CSS for above-the-fold content (header, hero, minimal layout) -->
+    <style>
+        body {
+            background: #0a0a0a;
+            color: #f0f0f0;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+        }
+        
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            height: 80px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .logo {
+            height: 60px;
+            max-width: 180px;
+        }
+        
+        .header-actions .lumabtn-main {
+            background: linear-gradient(90deg, #A3FF2E, #959595);
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0 2rem;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .highlight-title p {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #A9FF00, #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .tech-sphere {
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+        
+        .sphere-element {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid #A3FF2E;
+        }
+        
+        .sphere-element:nth-child(1) {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .sphere-element:nth-child(2) {
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-color: #fff;
+        }
+        
+        .sphere-element:nth-child(3) {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            border-color: #fff;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+        
+        @media(max-width:768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            .logo {
+                height: 40px;
+                max-width: 120px;
+            }
+            .hero {
+                padding-top: 70px;
+            }
+        }
+    </style>
+    <!-- Preload main stylesheet, then load non-blocking -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <!-- AOS library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <meta name="theme-color" content="#0a0a0a">
 
@@ -586,7 +715,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <!-- Toastify JS for notifications -->
     <!-- AOS library initialization -->
     <script>
