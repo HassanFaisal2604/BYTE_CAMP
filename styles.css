@@ -4,8 +4,8 @@
     --secondary-color: #ffffff;
     /* White */
     --accent-color: #A3FF2E;
-    --background-color: transparent;
-    /* Changed from #0a0a0a to transparent */
+    --background-color: #0a0a0a;
+    /* was transparent */
     --card-bg: #111111;
     --text-color: #f0f0f0;
     --text-secondary: #b0b0b0;
@@ -404,6 +404,8 @@ p {
     transition: all var(--transition-speed) ease;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     height: var(--header-height);
+    background-color: rgba(10, 10, 10, 0.8);
+    /* enforce dark header bg */
 }
 
 .site-header.collapsed {
