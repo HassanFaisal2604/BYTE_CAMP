@@ -436,6 +436,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Progressive/lazy loading for gallery images
+    function progressiveGalleryImages() {
+        const galleryImgs = document.querySelectorAll('.gallery-grid img[data-src]');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        obs.unobserve(img);
+                    }
+                });
+            }, { rootMargin: '200px' });
+            galleryImgs.forEach(img => observer.observe(img));
+        } else {
+            // Fallback: load all images
+            galleryImgs.forEach(img => {
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+            });
+        }
+    }
+
     // Event Listeners
     window.addEventListener('scroll', handleHeaderScroll);
     window.addEventListener('scroll', toggleScrollTopBtn);
@@ -505,6 +533,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setupScrollToTop();
     setupParallaxEffect();
     setupDateLinkClick();
+
+    // Progressive gallery image loading
+    progressiveGalleryImages();
 
     // Add keyboard navigation for modals
     document.addEventListener('keydown', function(e) {
