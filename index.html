@@ -121,11 +121,15 @@
         
         @media(max-width:768px) {
             .header-container {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: flex-start;
+                /* Align items to the left */
             }
             .logo {
                 height: 40px;
                 max-width: 120px;
+                margin-right: auto;
+                /* Push other elements to the right */
             }
             .hero {
                 padding-top: 70px;
