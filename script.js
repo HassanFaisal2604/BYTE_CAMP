@@ -465,8 +465,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Event Listeners
-    window.addEventListener('scroll', handleHeaderScroll);
-    window.addEventListener('scroll', toggleScrollTopBtn);
+    window.addEventListener('scroll', function() {
+        handleHeaderScroll();
+        toggleScrollTopBtn();
+        // Update parallax if on desktop
+        if (window.innerWidth > 768) updateParallaxPositions();
+    }, { passive: true });
 
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', toggleMobileMenu);
@@ -1087,28 +1091,18 @@ injectDynamicStyles();
 // Add parallax scrolling effect for a more dynamic feel
 function setupParallaxEffect() {
     const parallaxElements = [
-        // Removed '.tech-sphere' and '.hero h1' from this array
         { element: '.bg-particles', speed: 0.05 },
-        // Other elements that should still have parallax effects can remain
     ];
 
     function updateParallaxPositions() {
         const scrollPosition = window.pageYOffset;
-
         parallaxElements.forEach(item => {
-            const elements = document.querySelectorAll(item.element);
-            elements.forEach(element => {
-                const displacement = scrollPosition * item.speed;
-                const transform = `translateY(${displacement}px)`;
-                element.style.transform = transform;
+            document.querySelectorAll(item.element).forEach(element => {
+                element.style.transform = `translateY(${scrollPosition * item.speed}px)`;
             });
         });
     }
 
-    // Only set up parallax on desktop devices
-    if (window.innerWidth > 768) {
-        window.addEventListener('scroll', updateParallaxPositions);
-        // Initial position update
-        updateParallaxPositions();
-    }
+    // Initial parallax position
+    if (window.innerWidth > 768) updateParallaxPositions();
 }

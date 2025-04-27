@@ -2076,12 +2076,6 @@ input:focus-visible {
 
 /* Dark Mode Support */
 
-@media (prefers-color-scheme: dark) {
-     :root {
-        /* Colors already set for dark mode */
-    }
-}
-
 
 /* Print Styles */
 
