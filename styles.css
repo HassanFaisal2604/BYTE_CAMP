@@ -5,7 +5,6 @@
     /* White */
     --accent-color: #A3FF2E;
     --background-color: #0a0a0a;
-    /* was transparent */
     --card-bg: #111111;
     --text-color: #f0f0f0;
     --text-secondary: #b0b0b0;
@@ -14,13 +13,10 @@
     --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     --header-height: 80px;
     --header-height-collapsed: 60px;
-    /* New variable for collapsed header */
     --font-primary: 'Space Grotesk', sans-serif;
     --font-secondary: 'Inter', sans-serif;
     --border-color-subtle: rgba(163, 255, 46, 0.15);
-    /* Use a slightly more visible border */
     --accent-blue-muted: #4361ee;
-    /* Example blue */
 }
 
 
@@ -189,6 +185,8 @@ p {
     font-family: var(--font-primary);
     text-align: center;
     gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .primary-btn {
@@ -219,120 +217,18 @@ p {
 }
 
 
-/* Checkout buttons */
+/* Removed commented out checkout button styles */
 
 
-/* .luma-checkout--button,
-.zmurl-checkout--button {
-    background-color: #ffffff;
-    border: none;
-    border-radius: 100px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: .5rem 1rem;
-    text-decoration: none;
-    transition: all .3s cubic-bezier(.4, 0, .2, 1);
-} */
+/* Luma Button Styles */
 
-
-/* .luma-checkout--button.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--secondary-color);
-    color: #000 !important;
-    /* Dark text */
-
-
-/* font-weight: 600;
-    padding: 14px 28px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(155, 253, 33, 0.25);
-    border: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    text-decoration: none;
-    cursor: pointer;
-    min-width: 160px;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-} */
-
-
-/* .luma-checkout--button.btn:hover,
-.luma-checkout--button.btn:focus {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(155, 253, 33, 0.35);
-    color: #000 !important;
-}
-
-.luma-checkout--button.btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 10px rgba(155, 253, 33, 0.2);
-}
-
-
-/* Add a subtle background shine effect on hover */
-
-
-/* .luma-checkout--button.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient( 90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.7s ease;
-    z-index: -1;
-}
-
-.luma-checkout--button.btn:hover::before {
-    left: 100%;
-}  */
-
-.lumabtn-main {
-    background: linear-gradient(90deg, var(--primary-color), #959595);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #000 !important;
-    /* Dark text */
-    font-weight: 600;
-    padding: 14px 28px;
-    border-radius: 24px;
-    box-shadow: 0 4px 15px rgba(155, 253, 33, 0.25);
-    border: none;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    text-decoration: none;
-    cursor: pointer;
-    min-width: 160px;
-    font-size: 1rem;
-    font-weight: bolder;
-    letter-spacing: 0.5px;
-}
-
-.lumabtn-main:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(155, 253, 33, 0.35);
-    color: #000 !important;
-    background: linear-gradient(90deg, #959595, var(--primary-color));
-}
-
+.lumabtn-main,
 .lumabtn-content {
     background: linear-gradient(90deg, var(--primary-color), #959595);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color: #000 !important;
-    /* Dark text */
     font-weight: 600;
     padding: 14px 28px;
     border-radius: 24px;
@@ -350,6 +246,7 @@ p {
     letter-spacing: 0.5px;
 }
 
+.lumabtn-main:hover,
 .lumabtn-content:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(155, 253, 33, 0.35);
@@ -358,36 +255,29 @@ p {
 }
 
 
-/* Header button specific styling */
-
-.header-btn.luma-checkout--button {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    min-width: 140px;
-}
+/* Responsive button sizing */
 
 @media (max-width: 990px) {
-    .lumabtn-main {
+    .lumabtn-main,
+    .lumabtn-content {
         padding: 10px 20px;
         font-size: 0.9rem;
-        /* min-width: 120px;  */
     }
 }
 
 @media (max-width: 840px) {
-    .lumabtn-main {
+    .lumabtn-main,
+    .lumabtn-content {
         padding: 8px 16px;
         font-size: 0.85rem;
-        /* min-width: 100px; */
     }
 }
 
 @media (max-width: 780px) {
-    .lumabtn-main {
+    .lumabtn-main,
+    .lumabtn-content {
         padding: 6px 12px;
         font-size: 0.8rem;
-        /* min-width: 90px; */
     }
 }
 
@@ -548,6 +438,9 @@ p {
     align-items: center;
 }
 
+
+/* Tech Sphere Animation */
+
 .tech-sphere {
     position: relative;
     width: 300px;
@@ -590,25 +483,7 @@ p {
 }
 
 
-/* Responsive adjustments for mobile */
-
-@media (max-width: 768px) {
-    .tech-sphere {
-        width: 250px;
-        height: 250px;
-        margin: 0 auto;
-    }
-    .sphere-element {
-        border-width: 2px;
-    }
-}
-
-@media (max-width: 480px) {
-    .tech-sphere {
-        width: 200px;
-        height: 200px;
-    }
-}
+/* Unified animations */
 
 @keyframes rotate {
     0% {
@@ -619,33 +494,42 @@ p {
     }
 }
 
-.glitch-text {
-    position: relative;
-    display: inline-block;
-    color: var(--primary-color);
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(155, 253, 33, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(155, 253, 33, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(155, 253, 33, 0);
+    }
 }
 
-.glitch-text::before,
-.glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.8;
+@keyframes fadeInOut {
+    0% {
+        opacity: 0.4;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(8px);
+    }
+    100% {
+        opacity: 0.4;
+        transform: translateY(0);
+    }
 }
 
-.glitch-text::before {
-    color: var(--secondary-color);
-    z-index: -1;
-    animation: glitch-effect 3s infinite;
-}
-
-.glitch-text::after {
-    color: var(--accent-color);
-    z-index: -2;
-    animation: glitch-effect 2s infinite reverse;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes glitch-effect {
@@ -669,6 +553,18 @@ p {
     }
 }
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Scroll indicator */
+
 .scroll-indicator {
     position: absolute;
     bottom: 2rem;
@@ -683,7 +579,6 @@ p {
     cursor: pointer;
     z-index: 10;
     transition: opacity 0.3s ease;
-    /* Removed animation: bounce 2s infinite; */
 }
 
 .scroll-indicator:hover {
@@ -692,41 +587,6 @@ p {
 
 .scroll-indicator i {
     font-size: 1.5rem;
-    /* Removed animation: fadeInOut 2s infinite ease-in-out; */
-}
-
-
-/* Keeping these keyframes in case they're used elsewhere, but they're not used for scroll indicator anymore */
-
-@keyframes bounce {
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0) translateX(-50%);
-    }
-    40% {
-        transform: translateY(-10px) translateX(-50%);
-    }
-    60% {
-        transform: translateY(-5px) translateX(-50%);
-    }
-}
-
-@keyframes fadeInOut {
-    0% {
-        opacity: 0.4;
-        transform: translateY(0);
-    }
-    50% {
-        opacity: 1;
-        transform: translateY(8px);
-    }
-    100% {
-        opacity: 0.4;
-        transform: translateY(0);
-    }
 }
 
 
@@ -1675,9 +1535,7 @@ p {
 @media (max-width: 768px) {
      :root {
         --header-height: 90px;
-        /* Increased from 70px to accommodate larger logo */
         --header-height-collapsed: 60px;
-        /* Collapsed height for mobile */
     }
     .header-actions {
         display: none;
@@ -1810,6 +1668,213 @@ p {
 }
 
 @media (max-width: 576px) {
+    p {
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.75rem;
+    }
+    h3 {
+        font-size: 1.4rem;
+    }
+    /* Fixed conflicting section padding */
+    .section {
+        padding: 3rem 0;
+    }
+    .features-grid,
+    .speakers-grid,
+    .gallery-grid {
+        gap: 1.5rem;
+        /* Ensure sufficient gap between items */
+    }
+    .timeline-item {
+        margin-bottom: 2rem;
+        /* Space out timeline items */
+    }
+    .feature-card,
+    .timeline-content,
+    .speaker-info,
+    .detail-card {
+        padding: 1.5rem;
+        /* Adjust padding inside cards for mobile */
+    }
+    .feature-icon {
+        margin-bottom: 1rem;
+        /* Space between icon and title */
+    }
+    .feature-card h3 {
+        margin-bottom: 0.75rem;
+        /* Space between title and text */
+    }
+    .organizers-grid {
+        flex-direction: column;
+        /* Stack vertically */
+        align-items: center;
+        /* Center items */
+        gap: 2.5rem;
+        /* Increase gap for vertical stacking */
+    }
+    .organizer-card {
+        width: 100%;
+        /* Allow card to take more width */
+        max-width: 300px;
+        /* But constrain it */
+    }
+    .btn.primary-btn,
+    .luma-checkout--button.btn {
+        padding: 0.9rem 1.8rem;
+        /* Slightly larger padding */
+        font-size: 1.1rem;
+        /* Slightly larger text */
+        width: 100%;
+        /* Make main CTA full width for easy tapping */
+        max-width: 350px;
+        /* Optional: constrain width */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-content .btn {
+        /* Target specifically the hero button */
+        margin-top: 1.5rem;
+        /* Ensure space above */
+    }
+    .footer-links a {
+        padding: 0.5rem;
+        /* Add padding for easier tapping */
+        font-size: 0.95rem;
+    }
+    .social-icon {
+        width: 44px;
+        /* Ensure minimum tap size */
+        height: 44px;
+    }
+    .footer-content {
+        gap: 2rem;
+        align-self: center;
+        /* Increase gap between footer sections */
+    }
+    .section {
+        padding: 10rem 0;
+    }
+    .section-title {
+        margin-bottom: 2rem;
+    }
+    .features-grid,
+    .speakers-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .details-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .detail-card {
+        width: 100%;
+        max-width: 300px;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-logo {
+        align-items: center;
+    }
+    .footer-nav h3::after,
+    .footer-contact h3::after,
+    .social-media h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-contact p {
+        justify-content: center;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .logo {
+        height: 150px;
+        max-width: 200px;
+        padding: 4px 8px;
+        margin: 8px auto 0 auto;
+    }
+    .collapsed .logo {
+        height: 100px;
+        max-width: 140px;
+    }
+    .footer-logo .logo {
+        height: 45px;
+        max-width: 90px;
+        padding: 2px 4px;
+        margin: 8px auto 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 150px;
+        max-width: 200px;
+        margin-left: -10px;
+    }
+    .collapsed .logo {
+        height: 100px;
+        max-width: 140px;
+    }
+    .header-event-date {
+        font-size: 0.8rem;
+        right: 50px;
+        padding: 3px 6px;
+    }
+    /* Increased highlight title size for mobile */
+    .highlight-title {
+        font-size: clamp(5rem, 15vw, 8rem) !important;
+        letter-spacing: 0.01em !important;
+    }
+    h1 {
+        font-size: clamp(2.8rem, 10vw, 3.8rem);
+        /* Match "Conquer" with "Code. Create." */
+        margin-top: 0.3rem;
+    }
+    .hero-content p {
+        font-size: 1.15rem;
+        /* Keep paragraph text readable */
+        line-height: 1.7;
+        margin-top: 1rem;
+    }
+    .lumabtn-content {
+        font-size: 1.1rem !important;
+        /* Larger button text */
+        padding: 15px 30px !important;
+        /* Larger button */
+    }
+}
+
+
+/* Modern Registration Button Styles - Consolidated duplicated styles */
+
+.register-btn,
+.luma-checkout--button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--secondary-color) !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+    padding: 14px 28px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 15px rgba(155, 253, 33, 0.25) !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 1 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    min-width: 160px !important;
+    font-size: 1rem !important;
     p {
         font-size: 0.95rem;
         /* Adjust if needed, but 1rem (16px) is often good */
