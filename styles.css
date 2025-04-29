@@ -1140,43 +1140,85 @@ p {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 2rem;
     margin-bottom: 3rem;
+    width: 100%;
 }
 
 .sponsor-item {
-    height: 60px;
+    height: auto;
+    min-height: 120px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform var(--transition-speed) ease;
-    filter: grayscale(100%) brightness(1.5);
-}
-
-.sponsor-item:hover {
-    transform: scale(1.1);
-    filter: grayscale(0%) brightness(1);
 }
 
 .sponsor-logo {
-    max-height: 100%;
-    max-width: 150px;
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .sponsor-text {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 600;
     color: var(--secondary-color);
-}
-
-.become-sponsor {
     text-align: center;
-    margin-top: 2rem;
+    padding: 10px;
 }
 
-.become-sponsor p {
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
+
+/* Responsive styles for sponsors */
+
+@media (max-width: 768px) {
+    .sponsors-grid {
+        gap: 1.5rem;
+    }
+    .sponsor-item {
+        min-height: 100px;
+        padding: 12px;
+        width: 100%;
+        max-width: 300px;
+    }
+    .sponsor-logo {
+        max-width: 180px;
+    }
+    .sponsor-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .sponsors-grid {
+        gap: 1rem;
+    }
+    .sponsor-item {
+        min-height: 80px;
+        padding: 10px;
+        max-width: 250px;
+    }
+    .sponsor-logo {
+        max-width: 150px;
+    }
+    .sponsor-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .sponsor-item {
+        min-height: 60px;
+        padding: 8px;
+        max-width: 200px;
+    }
+    .sponsor-logo {
+        max-width: 120px;
+    }
 }
 
 
@@ -2013,56 +2055,6 @@ p {
     }
     .header-actions {
         flex: 1;
-        justify-content: flex-end;
-        margin-top: 0;
-    }
-}
-
-
-/* Header Event Date - make sure it's not visible */
-
-.header-event-date {
-    display: none;
-}
-
-
-/* Fixed highlight title – sharp text only */
-
-.highlight-title {
-    position: relative;
-    display: inline-block;
-    font-size: clamp(3.2rem, 7vw, 5.5rem);
-    /* Further increased base font size */
-    font-weight: 700;
-    background: linear-gradient(120deg, #A9FF00, #FFFFFF, #A9FF00);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 16px rgba(169, 255, 0, 0.3);
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.05em;
-}
-
-.highlight-title p {
-    margin-bottom: 0;
-    background: linear-gradient(120deg, #A9FF00, #FFFFFF);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.2;
-    font-size: inherit;
-    /* Ensure text inherits the parent font size */
-}
-
-
-/* Update responsive styles for the highlight title and hero section text */
-
-@media (max-width: 768px) {
-    .highlight-title {
-        font-size: clamp(3.2rem, 10vw, 5rem) !important;
         letter-spacing: 0.03em;
     }
     h1 {
@@ -2074,6 +2066,7 @@ p {
         /* Added !important to ensure this takes precedence */
         /* Larger paragraph text */
         line-height: 1.6;
+        /* text-align: left; */
     }
     .hero-content p {
         font-size: 1.1rem;
