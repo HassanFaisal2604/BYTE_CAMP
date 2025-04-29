@@ -721,7 +721,7 @@ function animateWhatIsByteCamp() {
 }
 
 function addOrganizerHoverEffects() {
-    const organizerImages = document.querySelectorAll('.organizer img');
+    const organizerImages = document.querySelectorAll('.organizer-card .organizer-image img');
     organizerImages.forEach(img => {
         img.addEventListener('mouseenter', function() {
             gsap.to(this, { scale: 1.1, boxShadow: "0 10px 20px rgba(0,0,0,0.3)", duration: 0.3 });
@@ -733,7 +733,7 @@ function addOrganizerHoverEffects() {
 }
 
 function animateSponsors() {
-    const sponsors = document.querySelectorAll('.sponsors-list .sponsor img, .sponsors-list .sponsor span');
+    const sponsors = document.querySelectorAll('.sponsors-grid .sponsor-item img, .sponsors-grid .sponsor-item span');
     sponsors.forEach((sponsor) => {
         sponsor.addEventListener('mouseenter', function() {
             gsap.to(this, { scale: 1.1, filter: 'brightness(1.2)', duration: 0.3 });
@@ -914,7 +914,7 @@ function addSocialIconHoverEffects() {
             if (iTag) gsap.to(iTag, { color: '#000', duration: 0.3 });
         });
         icon.addEventListener('mouseleave', () => {
-            gsap.to(icon, { y: 0, scale: 1, backgroundColor: '#222', duration: 0.3, ease: 'power1.out' });
+            gsap.to(icon, { y: 0, scale: 1, backgroundColor: 'rgba(255,255,255,0.05)', duration: 0.3, ease: 'power1.out' });
             if (iTag) gsap.to(iTag, { color: 'var(--secondary-color)', duration: 0.3 });
         });
     });
@@ -1014,10 +1014,10 @@ function setupScrollToTop() {
 }
 
 function updateCopyrightYear() {
-    const copyrightDiv = document.getElementById('footer-copyright');
-    if (copyrightDiv) {
+    const copyrightEl = document.getElementById('footer-copyright');
+    if (copyrightEl) {
         const currentYear = new Date().getFullYear();
-        copyrightDiv.innerHTML = `© ${currentYear} BYTE CAMP. All rights reserved.`;
+        copyrightEl.innerHTML = `&copy; ${currentYear} BYTE CAMP. All rights reserved.`;
     }
 }
 
