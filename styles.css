@@ -2136,3 +2136,27 @@ p {
     line-height: 1.5;
     margin: 0;
 }
+
+.highlight-title h1 {
+    font-size: 5rem;
+    font-weight: 720;
+    line-height: 1.2;
+    background: linear-gradient(120deg, #A9FF00, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+/* Make sure there are no conflicts with existing styles */
+
+.highlight-title p {
+    /* Styles kept for backward compatibility */
+    font-size: 5rem;
+    font-weight: 720;
+    line-height: 1.2;
+    background: linear-gradient(120deg, #A9FF00, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
