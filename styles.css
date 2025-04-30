@@ -791,24 +791,29 @@ p {
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--box-shadow);
-    transition: transform var(--transition-speed) ease;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     border: 1px solid var(--border-color-subtle);
-    /* Use the defined border color */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .speaker-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(163, 255, 46, 0.15), 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-color);
 }
 
 .speaker-image {
     position: relative;
     overflow: hidden;
     height: 280px;
+    background-color: #0a0a0a;
 }
 
 .speaker-image img {
     width: 100%;
-    height: 135%;
+    height: 160%;
     object-fit: cover;
     transition: transform var(--transition-speed) ease;
 }
@@ -829,6 +834,9 @@ p {
 .speaker-info {
     padding: 1.5rem;
     position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .speaker-info h3 {
@@ -848,31 +856,9 @@ p {
     font-size: 0.9rem;
     line-height: 1.5;
     display: -webkit-box;
-    /* -webkit-line-clamp: 3; */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-
-.speaker-more {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: var(--secondary-color);
-    color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    transition: all var(--transition-speed) ease;
-}
-
-.speaker-more:hover {
-    transform: scale(1.1);
-    background-color: #b8ff4d;
 }
 
 
@@ -2102,61 +2088,75 @@ p {
 
 /* Code of Conduct Section */
 
-.code-of-conduct {
-    padding: 4rem 0;
-}
-
 .code-of-conduct .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
     margin-top: 2rem;
 }
 
 .code-of-conduct .card {
     background-color: var(--card-bg);
-    border: 1px solid var(--border-color-subtle);
     border-radius: var(--border-radius);
-    padding: 1.5rem;
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color-subtle);
     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .code-of-conduct .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-color);
 }
 
 .code-of-conduct .card h3 {
-    margin-bottom: 0.75rem;
     color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.code-of-conduct .card h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
 }
 
 .code-of-conduct .card p {
     color: var(--text-secondary);
-    line-height: 1.5;
-    margin: 0;
-}
-
-.highlight-title h1 {
-    font-size: 5rem;
-    font-weight: 720;
-    line-height: 1.2;
-    background: linear-gradient(120deg, #A9FF00, #fff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    flex-grow: 1;
 }
 
 
-/* Make sure there are no conflicts with existing styles */
+/* Responsive adjustments for code of conduct */
 
-.highlight-title p {
-    /* Styles kept for backward compatibility */
-    font-size: 5rem;
-    font-weight: 720;
-    line-height: 1.2;
-    background: linear-gradient(120deg, #A9FF00, #fff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+@media (max-width: 768px) {
+    .code-of-conduct .cards {
+        gap: 1.5rem;
+    }
+    .code-of-conduct .card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .code-of-conduct .cards {
+        grid-template-columns: 1fr;
+    }
+    .code-of-conduct .card {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
