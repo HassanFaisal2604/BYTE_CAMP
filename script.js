@@ -1106,3 +1106,360 @@ function setupParallaxEffect() {
     // Initial parallax position
     if (window.innerWidth > 768) updateParallaxPositions();
 }
+
+// Gallery view functionality
+function setupGalleryView() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    if (!galleryItems.length) return;
+
+    // Create modal container if it doesn't exist
+    let galleryModal = document.querySelector('.gallery-modal');
+    if (!galleryModal) {
+        galleryModal = document.createElement('div');
+        galleryModal.className = 'gallery-modal';
+        galleryModal.setAttribute('role', 'dialog');
+        galleryModal.setAttribute('aria-modal', 'true');
+        galleryModal.setAttribute('aria-label', 'Image gallery');
+
+        galleryModal.innerHTML = `
+            <div class="gallery-modal-content">
+                <img src="" alt="" class="gallery-modal-image">
+                <div class="gallery-modal-caption"></div>
+                <button class="gallery-modal-close" aria-label="Close gallery">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="gallery-controls">
+                    <button class="gallery-control gallery-prev" aria-label="Previous image">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-control gallery-next" aria-label="Next image">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(galleryModal);
+    }
+
+    // Add fullscreen view button to each gallery item
+    galleryItems.forEach((item, index) => {
+        // Make gallery items focusable with keyboard
+        item.setAttribute('tabindex', '0');
+
+        // Add fullscreen button if it doesn't exist
+        if (!item.querySelector('.gallery-view-fullscreen')) {
+            const viewButton = document.createElement('button');
+            viewButton.className = 'gallery-view-fullscreen';
+            viewButton.setAttribute('aria-label', 'View full image');
+            viewButton.innerHTML = '<i class="fas fa-expand-alt"></i>';
+            item.appendChild(viewButton);
+        }
+
+        // Make entire item clickable
+        item.addEventListener('click', (e) => {
+            openGalleryModal(index);
+        });
+
+        // Support keyboard users
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openGalleryModal(index);
+            }
+        });
+    });
+
+    // Setup modal functionality
+    const modalImage = galleryModal.querySelector('.gallery-modal-image');
+    const modalCaption = galleryModal.querySelector('.gallery-modal-caption');
+    const closeButton = galleryModal.querySelector('.gallery-modal-close');
+    const prevButton = galleryModal.querySelector('.gallery-prev');
+    const nextButton = galleryModal.querySelector('.gallery-next');
+
+    let currentIndex = 0;
+
+    function openGalleryModal(index) {
+        currentIndex = index;
+        updateModalContent();
+        galleryModal.classList.add('active');
+        document.body.classList.add('no-scroll');
+
+        // Focus on close button for keyboard users
+        setTimeout(() => {
+            closeButton.focus();
+        }, 100);
+    }
+
+    function closeGalleryModal() {
+        galleryModal.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+
+        // Return focus to the item that was clicked
+        setTimeout(() => {
+            galleryItems[currentIndex].focus();
+        }, 100);
+    }
+
+    function updateModalContent() {
+        const currentItem = galleryItems[currentIndex];
+        const img = currentItem.querySelector('img');
+        const caption = currentItem.querySelector('.gallery-caption');
+
+        // Update modal content
+        modalImage.src = img.src;
+        modalImage.alt = img.alt;
+
+        //     if (caption) {
+        //         const captionTitle = caption.querySelector('h3') ? .textContent || '';
+        //         const captionText = caption.querySelector('p') ? .textContent || '';
+        //         modalCaption.innerHTML = `<h3>${captionTitle}</h3><p>${captionText}</p>`;
+        //     } else {
+        //         modalCaption.innerHTML = '';
+        //     }
+        // }
+
+        function navigateGallery(direction) {
+            currentIndex = (currentIndex + direction + galleryItems.length) % galleryItems.length;
+            updateModalContent();
+        }
+
+        // Event listeners for modal controls
+        closeButton.addEventListener('click', closeGalleryModal);
+        prevButton.addEventListener('click', () => navigateGallery(-1));
+        nextButton.addEventListener('click', () => navigateGallery(1));
+
+        // Close when clicking outside content area
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) {
+                closeGalleryModal();
+            }
+        });
+
+        // Keyboard navigation
+        galleryModal.addEventListener('keydown', (e) => {
+            switch (e.key) {
+                case 'Escape':
+                    closeGalleryModal();
+                    break;
+                case 'ArrowLeft':
+                    navigateGallery(-1);
+                    break;
+                case 'ArrowRight':
+                    navigateGallery(1);
+                    break;
+            }
+        });
+    }
+
+    // Enhance hover effects for better interactive feedback
+    function enhanceInteractiveElements() {
+        // Add hover effects to buttons
+        document.querySelectorAll('.btn, button:not([disabled]), .social-icon, .venue-link, .view-all-speakers, .view-all-gallery').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(element, { scale: 1.05, duration: 0.3, ease: 'power1.out' });
+                } else {
+                    element.style.transform = 'scale(1.05)';
+                }
+            });
+
+            element.addEventListener('mouseleave', () => {
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(element, { scale: 1, duration: 0.3, ease: 'power1.out' });
+                } else {
+                    element.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // Make sure organizer cards with links have proper interactive states
+        document.querySelectorAll('.organizer-card').forEach(card => {
+            const link = card.querySelector('a');
+            if (link) {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'A' && e.target.parentElement.tagName !== 'A') {
+                        link.click();
+                    }
+                });
+
+                card.addEventListener('keydown', (e) => {
+                    if ((e.key === 'Enter' || e.key === ' ') && e.target === card) {
+                        e.preventDefault();
+                        link.click();
+                    }
+                });
+            }
+        });
+    }
+
+    // Implement speaker modal functionality
+    function setupSpeakerModals() {
+        const speakerCards = document.querySelectorAll('.speaker-card');
+        if (!speakerCards.length) return;
+
+        // Create modal container if needed
+        let speakerModal = document.getElementById('speaker-modal');
+        let modalBody = document.getElementById('modal-body');
+
+        speakerCards.forEach(card => {
+            // Make cards focusable
+            card.setAttribute('tabindex', '0');
+
+            // Find or create the button
+            let moreBtn = card.querySelector('.speaker-more-btn');
+            if (!moreBtn) {
+                moreBtn = document.createElement('button');
+                moreBtn.className = 'speaker-more-btn';
+                moreBtn.innerHTML = '<span>Learn more</span><i class="fas fa-arrow-right"></i>';
+                moreBtn.setAttribute('aria-label', `Learn more about ${card.querySelector('h3')?.textContent || 'this speaker'}`);
+                card.querySelector('.speaker-info').appendChild(moreBtn);
+            }
+
+            // Handle click events
+            card.addEventListener('click', (e) => {
+                // Only trigger if not clicking on a specific element like social links
+                const isLink = e.target.tagName === 'A' || e.target.parentElement.tagName === 'A';
+                if (!isLink && e.target !== moreBtn && !moreBtn.contains(e.target)) {
+                    openSpeakerModal(card);
+                }
+            });
+
+            moreBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openSpeakerModal(card);
+            });
+
+            // Keyboard support
+            card.addEventListener('keydown', (e) => {
+                if ((e.key === 'Enter' || e.key === ' ') && e.target === card) {
+                    e.preventDefault();
+                    openSpeakerModal(card);
+                }
+            });
+        });
+
+        function openSpeakerModal(card) {
+            if (!speakerModal) return;
+
+            const speakerName = card.querySelector('h3').textContent;
+            const speakerRole = card.querySelector('.speaker-role').textContent;
+            const speakerBio = card.querySelector('.speaker-bio').textContent;
+            const speakerImg = card.querySelector('img').src;
+
+            // Create full bio content
+            const fullBio = speakerBio + (speakerBio.length < 150 ?
+                ` ${speakerName} is a valued contributor to the tech community, bringing insights and expertise to BYTE CAMP.` : '');
+
+            // Populate modal
+            modalBody.innerHTML = `
+            <div class="speaker-modal-content">
+                <div class="speaker-modal-image">
+                    <img src="${speakerImg}" alt="${speakerName}" />
+                </div>
+                <h2>${speakerName}</h2>
+                <p class="speaker-modal-role">${speakerRole}</p>
+                <div class="speaker-modal-bio">
+                    <p>${fullBio}</p>
+                </div>
+                <div class="speaker-modal-social">
+                    <a href="#" aria-label="${speakerName}'s LinkedIn" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" aria-label="${speakerName}'s Twitter" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        `;
+
+            // Show modal
+            speakerModal.style.display = 'block';
+            document.body.classList.add('no-scroll');
+
+            // Focus on the close button for accessibility
+            setTimeout(() => {
+                document.getElementById('close-modal').focus();
+            }, 100);
+        }
+    }
+
+    // Improved scroll to top button
+    function improveScrollToTopButton() {
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        if (!scrollBtn) return;
+
+        // Make sure it has an aria-label
+        if (!scrollBtn.hasAttribute('aria-label')) {
+            scrollBtn.setAttribute('aria-label', 'Scroll to top');
+        }
+
+        // Enhance visibility logic
+        window.addEventListener('scroll', function() {
+            if (document.documentElement.scrollTop > 300) {
+                if (!scrollBtn.classList.contains('show')) {
+                    scrollBtn.classList.add('show');
+                    scrollBtn.classList.remove('hide');
+                }
+            } else {
+                if (scrollBtn.classList.contains('show')) {
+                    scrollBtn.classList.remove('show');
+                    scrollBtn.classList.add('hide');
+                }
+            }
+        });
+
+        // Smooth scroll with focus management
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // After scroll completes, set focus to the first focusable element in the header
+            setTimeout(() => {
+                const firstFocusable = document.querySelector('.site-header a, .site-header button');
+                if (firstFocusable) {
+                    firstFocusable.focus();
+                }
+            }, 1000);
+        });
+    }
+
+    // Make focus outlines visible only when using keyboard
+    function setupKeyboardFocusStyles() {
+        // Add class to body on tab use
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-user');
+            }
+        });
+
+        // Remove class on mouse use
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-user');
+        });
+
+        // Add CSS for keyboard focus styles
+        if (!document.getElementById('keyboard-focus-styles')) {
+            const style = document.createElement('style');
+            style.id = 'keyboard-focus-styles';
+            style.textContent = `
+            body:not(.keyboard-user) *:focus {
+                outline: none !important;
+            }
+            .keyboard-user *:focus {
+                outline: 2px solid var(--focus-outline-color) !important;
+                outline-offset: 3px !important;
+            }
+        `;
+            document.head.appendChild(style);
+        }
+    }
+
+    // Initialize the enhancements when document is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add these to your existing DOMContentLoaded handler
+        setupGalleryView();
+        enhanceInteractiveElements();
+        setupSpeakerModals();
+        improveScrollToTopButton();
+        setupKeyboardFocusStyles();
+    });
