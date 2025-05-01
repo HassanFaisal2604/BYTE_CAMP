@@ -460,14 +460,14 @@ p {
 }
 
 .logo {
-    height: 350px;
-    max-width: 350px;
+    height: 270px;
+    max-width: 390px;
     background: transparent;
     padding: 20px 24px;
     transition: height 0.3s, max-width 0.3s, box-shadow 0.3s;
     display: block;
-    margin: 35px 0 0 0;
-    margin-left: -95px;
+    margin: 14px 0px 1px 1px;
+    margin-left: -78px;
 }
 
 .collapsed .logo {
