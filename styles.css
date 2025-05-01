@@ -2197,11 +2197,11 @@ p {
     .logo {
         height: 120px !important;
         max-width: 120px !important;
-        margin: 0 !important;
+        margin: -29px !important;
         padding: 5px !important;
     }
     .header-container {
-        gap: 8px;
+        gap: 0px;
     }
     .event-date {
         white-space: nowrap;
