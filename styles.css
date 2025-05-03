@@ -1009,12 +1009,10 @@ p {
     color: var(--text-medium-contrast);
     font-size: 0.9rem;
     line-height: 1.6;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: auto;
+    margin-bottom: 1rem;
+    /* Remove the line clamp to show full text */
+    display: block;
+    overflow: visible;
 }
 
 .speaker-more-btn {
