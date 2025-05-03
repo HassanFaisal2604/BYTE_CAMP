@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BYTE CAMP 2025 - Code. Create. Conquer.</title>
     <!-- Inline critical CSS for above-the-fold content (header, hero, minimal layout) -->
+    <!-- 1) Create the global `va` function to queue events -->
+    <script>
+        window.va = window.va || function() {
+            (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+
+    <!-- 2) Load Vercel’s analytics runtime -->
+    <script defer src="/_vercel/insights/script.js"></script>
+
     <style>
         body {
             background: #0a0a0a;
