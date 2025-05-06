@@ -194,6 +194,16 @@
         <div class="spinner" aria-label="Loading"></div>
     </div>
 
+    <!-- Announcement Overlay -->
+    <div id="announcement-overlay" class="announcement-overlay">
+        <div class="announcement-container">
+            <img src="announcment.jpg" alt="BYTE CAMP Special Announcement" class="announcement-image">
+            <button id="announcement-close" class="announcement-close" aria-label="Close announcement">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
     <header class="site-header" id="site-header">
         <div class="container header-container">
             <div class="logo-container">
@@ -828,6 +838,49 @@
                         }
                     });
                 });
+            }
+        });
+    </script>
+    <script>
+        // Immediately show the announcement when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            var announcementOverlay = document.getElementById('announcement-overlay');
+            var closeAnnouncementBtn = document.getElementById('announcement-close');
+
+            if (announcementOverlay) {
+                // Force the overlay to be visible
+                announcementOverlay.style.opacity = '1';
+                announcementOverlay.style.visibility = 'visible';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+                // Handle close button click
+                if (closeAnnouncementBtn) {
+                    closeAnnouncementBtn.addEventListener('click', function() {
+                        closeAnnouncement();
+                    });
+                }
+
+                // Close when clicking on the overlay background
+                announcementOverlay.addEventListener('click', function(e) {
+                    if (e.target === announcementOverlay) {
+                        closeAnnouncement();
+                    }
+                });
+
+                // Close on ESC key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        closeAnnouncement();
+                    }
+                });
+            }
+
+            function closeAnnouncement() {
+                announcementOverlay.style.opacity = '0';
+                setTimeout(function() {
+                    announcementOverlay.style.visibility = 'hidden';
+                    document.body.style.overflow = ''; // Restore scrolling
+                }, 300); // Match the transition duration
             }
         });
     </script>

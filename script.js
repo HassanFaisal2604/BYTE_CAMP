@@ -18,6 +18,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalBody = document.getElementById('modal-body');
     const speakerMoreBtns = document.querySelectorAll('.speaker-more');
 
+    // Announcement Overlay Elements
+    const announcementOverlay = document.getElementById('announcement-overlay');
+    const closeAnnouncementBtn = document.getElementById('announcement-close');
+
+    // Announcement Overlay functionality
+    if (announcementOverlay) {
+        // Make sure announcement is initially hidden correctly
+        announcementOverlay.style.opacity = '0';
+        announcementOverlay.style.visibility = 'hidden';
+
+        // Use window.onload to ensure the announcement displays after everything is ready
+        window.addEventListener('load', function() {
+            // Show the announcement after a brief delay
+            setTimeout(function() {
+                announcementOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }, 800);
+        });
+
+        // Close announcement when the close button is clicked
+        if (closeAnnouncementBtn) {
+            closeAnnouncementBtn.addEventListener('click', function() {
+                announcementOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+        }
+
+        // Also close when clicking outside the image (on the dark overlay)
+        announcementOverlay.addEventListener('click', function(e) {
+            if (e.target === announcementOverlay) {
+                announcementOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        });
+
+        // Close on ESC key press
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && announcementOverlay.classList.contains('active')) {
+                announcementOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        });
+    }
+
     // Show spinner immediately on DOMContentLoaded (for slow connections)
     var spinner = document.getElementById('loading-spinner');
     if (spinner) {
