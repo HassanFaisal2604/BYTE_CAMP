@@ -168,6 +168,20 @@ h6 {
     /* Use white for headings */
 }
 
+
+/* Add highlight-title styles */
+
+.highlight-title p,
+.highlight-title h1 {
+    font-size: 5rem;
+    font-weight: 720;
+    line-height: 1.2;
+    color: transparent;
+    background: linear-gradient(120deg, rgb(169, 255, 0), rgb(255, 255, 255));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
 h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
 }
@@ -2112,139 +2126,6 @@ p {
         width: 35px;
         height: 35px;
         font-size: 1rem;
-    }
-}
-
-
-/* Ensure .logo styles from inline are merged or added if distinct */
-
-
-/* Existing .logo in styles.css is very different (height: 270px), 
-   so this might be for a different context or an override.
-   For now, adding as a new rule to avoid breaking existing .logo,
-   but this should be reviewed. If it's for the main logo, merge with
-   .logo-container .logo or similar specific selector if needed.
-*/
-
-.logo-inline-variant {
-    /* Renamed to avoid direct conflict, for review */
-    height: 60px;
-    max-width: 180px;
-}
-
-
-/* Styles for .site-header box-shadow was also in the original inline block */
-
-.site-header {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    /* Added from inline */
-}
-
-.header-actions .lumabtn-main {
-    background: linear-gradient(90deg, #A3FF2E, #959595);
-    color: #000;
-    padding: 10px 24px;
-    border-radius: 24px;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.hero-content {
-    /* Merging with existing or ensuring it applies correctly */
-    max-width: 600px;
-    /* From inline */
-}
-
-.highlight-title p,
-.highlight-title h1 {
-    /* Combined as they were identical */
-    font-size: 5rem;
-    font-weight: 720;
-    line-height: 1.2;
-    background: linear-gradient(120deg, #A9FF00, #fff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.hero-visual {
-    /* Ensure this doesn't conflict if .hero-visual already styled */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-/* .tech-sphere from inline, existing .tech-sphere in styles.css has different dimensions.
-   This suggests the inline one might have been an override or for a specific instance.
-   Appending and developer should review if this is intended to override or be a variant.
-*/
-
-.tech-sphere-inline-variant {
-    /* Renamed to avoid direct conflict, for review */
-    width: 120px;
-    height: 120px;
-    position: relative;
-}
-
-.sphere-element {
-    position: absolute;
-    border-radius: 50%;
-    border: 2px solid #A3FF2E;
-}
-
-.sphere-element:nth-child(1) {
-    width: 100%;
-    height: 100%;
-}
-
-.sphere-element:nth-child(2) {
-    width: 70%;
-    height: 70%;
-    top: 15%;
-    left: 15%;
-    border-color: #fff;
-}
-
-.sphere-element:nth-child(3) {
-    width: 40%;
-    height: 40%;
-    top: 30%;
-    left: 30%;
-    border-color: #fff;
-}
-
-.scroll-indicator {
-    /* Merging or ensuring this applies correctly */
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #b0b0b0;
-    /* This was text-secondary, but inline had direct value */
-    font-size: 0.9rem;
-    z-index: 10;
-    /* Ensure z-index is appropriate */
-}
-
-
-/* Media query styles from original inline block */
-
-@media(max-width:768px) {
-    .header-container {
-        flex-direction: row;
-        justify-content: flex-start;
-    }
-    /* .logo inside media query from inline */
-    .logo-inline-variant-mobile {
-        /* Renamed for clarity, for review */
-        height: 40px;
-        max-width: 120px;
-        margin-right: auto;
-    }
-    .hero {
-        /* .hero inside media query from inline */
-        padding-top: 70px;
     }
 }
 

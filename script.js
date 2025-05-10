@@ -1129,73 +1129,6 @@ function updateCopyrightYear() {
     }
 }
 
-// Inject necessary styles dynamically (optional - better in CSS file)
-function injectDynamicStyles() {
-    const necessaryStyles = `
-        .no-scroll { overflow: hidden !important; }
-
-        .btn {
-             display: inline-flex;
-             align-items: center;
-             justify-content: center;
-             text-decoration: none;
-        }
-        .section-heading {
-             position: relative;
-             display: inline-block;
-             padding-bottom: 15px;
-         }
-        .section-heading::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary-color), var(--secondary-accent));
-            border-radius: 2px;
-        }
-         .menu-overlay {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             background-color: rgba(0, 0, 0, 0.7);
-             z-index: 8;
-             opacity: 0;
-             visibility: hidden;
-             transition: opacity 0.3s ease, visibility 0.3s ease;
-         }
-         .speaker-modal { }
-         .speaker-modal-content { }
-         .speaker-modal-content .bio-content p { margin-bottom: 1em; }
-         .speaker-modal-content .bio-content strong { color: var(--secondary-color); }
-
-        /* Make the Luma checkout button stand out on dark bg */
-        .luma-checkout--button.btn {
-            display: inline-block;
-            background-color: var(--secondary-accent);
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .luma-checkout--button.btn:hover {
-            opacity: 0.9;
-        }
-    `;
-    if (!document.getElementById('bytecamp-dynamic-styles')) {
-        const styleSheet = document.createElement("style");
-        styleSheet.id = 'bytecamp-dynamic-styles';
-        styleSheet.type = "text/css";
-        styleSheet.innerText = necessaryStyles;
-        document.head.appendChild(styleSheet);
-    }
-}
-injectDynamicStyles();
-
 // Add parallax scrolling effect for a more dynamic feel
 function setupParallaxEffect() {
     const parallaxElements = [
@@ -1568,20 +1501,6 @@ function setupGalleryView() {
     if (window.AOS) {
         AOS.init();
     }
-
-    // Ensure Luma buttons styling persists
-    /*
-    function applyLumaStyles() {
-        document.querySelectorAll('.luma-checkout--button').forEach(function(btn) {
-            // Luma styling code
-        });
-    }
-
-    // Initial style fix for Luma
-    applyLumaStyles();
-    // Reapply styles after a delay to ensure they persist for Luma
-    setTimeout(applyLumaStyles, 1000);
-    */
 
     // Announcement Overlay Logic (consolidated)
     var announcementOverlay = document.getElementById('announcement-overlay');
