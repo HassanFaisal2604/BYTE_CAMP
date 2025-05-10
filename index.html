@@ -13,16 +13,22 @@
         };
     </script>
 
-    <!-- 2) Load Vercel’s analytics runtime -->
+    <!-- 2) Load Vercel's analytics runtime -->
     <script defer src="/_vercel/insights/script.js"></script>
 
     <style>
+        /* CRITICAL CSS - MINIMAL FOR ABOVE-THE-FOLD */
+        
         body {
             background: #0a0a0a;
+            /* Basic background */
             color: #f0f0f0;
+            /* Basic text color */
             font-family: 'Space Grotesk', sans-serif;
+            /* Ensure font is available early */
             margin: 0;
         }
+        /* Basic header visibility and stacking context */
         
         .site-header {
             position: fixed;
@@ -31,130 +37,19 @@
             width: 100%;
             z-index: 1000;
             background: rgba(10, 10, 10, 0.8);
+            /* Temporary background */
             height: 80px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            /* Approximate height */
         }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .logo {
-            height: 60px;
-            max-width: 180px;
-        }
-        
-        .header-actions .lumabtn-main {
-            background: linear-gradient(90deg, #A3FF2E, #959595);
-            color: #000;
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-weight: 700;
-            text-decoration: none;
-        }
+        /* Basic hero section to prevent layout shift */
         
         .hero {
             min-height: 100vh;
+            /* Full viewport height */
             display: flex;
-            align-items: center;
-            position: relative;
-            padding: 100px 0 2rem;
-        }
-        
-        .hero-content {
-            max-width: 600px;
-        }
-        
-        .highlight-title p {
-            font-size: 5rem;
-            font-weight: 720;
-            line-height: 1.2;
-            background: linear-gradient(120deg, #A9FF00, #fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .highlight-title h1 {
-            font-size: 5rem;
-            font-weight: 720;
-            line-height: 1.2;
-            background: linear-gradient(120deg, #A9FF00, #fff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .tech-sphere {
-            width: 120px;
-            height: 120px;
-            position: relative;
-        }
-        
-        .sphere-element {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid #A3FF2E;
-        }
-        
-        .sphere-element:nth-child(1) {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .sphere-element:nth-child(2) {
-            width: 70%;
-            height: 70%;
-            top: 15%;
-            left: 15%;
-            border-color: #fff;
-        }
-        
-        .sphere-element:nth-child(3) {
-            width: 40%;
-            height: 40%;
-            top: 30%;
-            left: 30%;
-            border-color: #fff;
-        }
-        
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #b0b0b0;
-            font-size: 0.9rem;
-            z-index: 10;
-        }
-        
-        @media(max-width:768px) {
-            .header-container {
-                flex-direction: row;
-                justify-content: flex-start;
-                /* Align items to the left */
-            }
-            .logo {
-                height: 40px;
-                max-width: 120px;
-                margin-right: auto;
-                /* Push other elements to the right */
-            }
-            .hero {
-                padding-top: 70px;
-            }
+            /* Basic layout */
+            padding-top: 80px;
+            /* Account for fixed header */
         }
     </style>
     <!-- Preload main stylesheet, then load non-blocking -->
@@ -169,9 +64,6 @@
     <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
-    <!-- AOS library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <meta name="theme-color" content="#0a0a0a">
 
     <!-- Favicon -->
@@ -194,16 +86,6 @@
         <div class="spinner" aria-label="Loading"></div>
     </div>
 
-    <!-- Announcement Overlay -->
-    <div id="announcement-overlay" class="announcement-overlay">
-        <div class="announcement-container">
-            <img src="announcment.jpg" alt="BYTE CAMP Special Announcement" class="announcement-image">
-            <button id="announcement-close" class="announcement-close" aria-label="Close announcement">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
     <header class="site-header" id="site-header">
         <div class="container header-container">
             <div class="logo-container">
@@ -215,8 +97,13 @@
                     <i class="far fa-calendar-alt"></i> TBA
                 </a>
 
+                <!-- Commented out Luma registration
                 <a href="https://lu.ma/event/evt-tQyH6djijkje6Gw" class="lumabtn-main" data-luma-action="checkout" data-luma-event-id="evt-tQyH6djijkje6Gw">
                     Register Now
+                </a>
+                -->
+                <a href="#" class="lumabtn-main">
+                    TBA
                 </a>
             </div>
 
@@ -252,10 +139,14 @@
                         Join us for an electrifying experience filled with interactive workshops, insightful sessions, tech showcases, and collaborative activities At Bytecamp. Let's shape the future, one byte at a time!
                     </p>
 
-                    <a href="https://lu.ma/event/evt-tQyH6djijkje6Gw" class="lumabtn-content" data-luma-action="checkout" data-luma-event-id="evt-tQyH6djijkje6Gw">
-                        Register Now
+                    <!-- Remove the event-date button from hero section -->
+                    <!-- <a href="#event-details" class="event-date header-event-date">
+                        <i class="far fa-calendar-alt"></i> TBA
+                    </a> -->
+                    <a href="#" class="lumabtn-content">
+                        TBA
                     </a>
-                    <p class="hero-note">Register now to book your spot – limited seats only</p>
+                    <p class="hero-note">Register now to book your spot – limited seats only</p>
                 </div>
                 <div class="hero-visual">
                     <div class="tech-sphere">
@@ -535,7 +426,7 @@
                             <h3>Freeha Qayyum</h3>
                             <p>Co-lead</p>
                             <div class="organizer-social">
-                                <a href="#" aria-label="afeera.webp's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="javascript:void(0);" aria-label="afeera.webp's LinkedIn"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -547,7 +438,7 @@
                             <h3>Shahbaz Ali</h3>
                             <p>Management Lead</p>
                             <div class="organizer-social">
-                                <a href="#" aria-label="Shahbaz's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="javascript:void(0);" aria-label="Shahbaz's LinkedIn"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -559,7 +450,7 @@
                             <h3>Muhammad Uzair</h3>
                             <p>PR Lead</p>
                             <div class="organizer-social">
-                                <a href="#" aria-label="Uzair's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="javascript:void(0);" aria-label="Uzair's LinkedIn"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -569,9 +460,9 @@
                         </div>
                         <div class="organizer-info">
                             <h3>Seerat Fatima</h3>
-                            <p>Graphic Lead</p>
+                            <p>Graphic Lead</p>
                             <div class="organizer-social">
-                                <a href="#" aria-label="seerat.webp's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="javascript:void(0);" aria-label="seerat.webp's LinkedIn"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -583,7 +474,7 @@
                             <h3>Khadija Zahid</h3>
                             <p>Content lead</p>
                             <div class="organizer-social">
-                                <a href="#" aria-label="Khadija.webp's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="javascript:void(0);" aria-label="Khadija.webp's LinkedIn"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -607,7 +498,7 @@
                             <h3>Talha</h3>
                             <p>Videography Lead</p>
                             <div class="organizer-social">
-                                <a href="#" aria-label="Talha's LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="javascript:void(0);" aria-label="Talha's LinkedIn"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -633,9 +524,9 @@
                 <div class="gallery-grid">
                     <div class="gallery-item">
                         <div class="gallery-image">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/picc_ffuyiu.webp" alt="NCBAE CARRER FAIR Opening Ceremony" loading="lazy" width="400" height="300">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic4_grjeg9.webp" alt=" NCBAE CARRER FAIR Opening Ceremony " loading="lazy " width="400 " height="300 ">
+                            <div class="gallery-overlay ">
+                                <div class="gallery-caption ">
                                     <h3>NCBAE CARRER FAIR Opening Ceremony</h3>
                                     <p>Lahore, April 2024</p>
                                 </div>
@@ -643,11 +534,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item">
-                        <div class="gallery-image">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img0162cmp1_notmza.webp" alt="carrer fair" loading="lazy" width="400" height="300">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">
+                    <div class="gallery-item ">
+                        <div class="gallery-image ">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic1_yrydwl.webp" alt="carrer fair " loading="lazy " width="400 " height="300 ">
+                            <div class="gallery-overlay ">
+                                <div class="gallery-caption ">
                                     <h3>carrer fair</h3>
                                     <p>Lahore</p>
                                 </div>
@@ -655,11 +546,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item">
-                        <div class="gallery-image">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_0150cmp1_ak0cwy.webp" alt="carrer fair" loading="lazy" width="400" height="300">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">
+                    <div class="gallery-item ">
+                        <div class="gallery-image ">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic3_sy2cbi.webp" alt="carrer fair " loading="lazy " width="400 " height="300 ">
+                            <div class="gallery-overlay ">
+                                <div class="gallery-caption ">
                                     <h3>carrer fair</h3>
                                     <p>lahore</p>
                                 </div>
@@ -667,11 +558,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item">
-                        <div class="gallery-image">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_0896cmp1_ewwx3n.webp" alt="Panel Discussion" loading="lazy" width="400" height="300">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">
+                    <div class="gallery-item ">
+                        <div class="gallery-image ">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic2_klfo93.webp " alt="Panel Discussion " loading="lazy " width="400 " height="300 ">
+                            <div class="gallery-overlay ">
+                                <div class="gallery-caption ">
                                     <h3>Dev jirga</h3>
                                     <p>Islmaabad January 2024</p>
                                 </div>
@@ -679,11 +570,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item">
-                        <div class="gallery-image">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_1457cmp1_l2hp0a.webp" alt="Dev jirga" loading="lazy" width="400" height="300">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">
+                    <div class="gallery-item ">
+                        <div class="gallery-image ">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_1457cmp1_l2hp0a.webp " alt="Dev jirga " loading="lazy " width="400 " height="300 ">
+                            <div class="gallery-overlay ">
+                                <div class="gallery-caption ">
                                     <h3>Dev jirga</h3>
                                     <p>Islamabad</p>
                                 </div>
@@ -691,11 +582,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item">
-                        <div class="gallery-image">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_4712cmp1_tsyzdk.webp" alt="react for the future" loading="lazy" width="400" height="300">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">
+                    <div class="gallery-item ">
+                        <div class="gallery-image ">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_0896cmp1_ewwx3n.webp" alt="react for the future " loading="lazy " width="400 " height="300 ">
+                            <div class="gallery-overlay ">
+                                <div class="gallery-caption ">
                                     <h3>React for future</h3>
                                     <p>lahore ncbae</p>
                                 </div>
@@ -706,56 +597,27 @@
             </div>
         </section>
 
-        <section class="section sponsors">
-            <div class="container">
-                <h2 class="section-title">Sponsors</h2>
-                <div class="sponsors-grid">
-                    <div class="sponsor-item">
-                        <a href="https://www.youtube.com/@thecodecruise" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-                            <img src="sponsers/image.png" alt="Sponsor" loading="lazy" class="sponsor-logo">
-                            <span class="sponsor-name" style="display: block; margin-top: 10px; color: var(--text-color, #f0f0f0); font-weight: 500; transition: color 0.3s ease;">the Code Cruise</span>
-                        </a>
-                    </div>
-
-                    <div class="sponsor-item">
-                        <a href="https://defang.io/" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-                            <img src="sponsers/defang-white-colour.af814d05.png" alt="Defang" loading="lazy" class="sponsor-logo">
-                            <span class="sponsor-name" style="display: block; margin-top: 10px; color: var(--text-color, #f0f0f0); font-weight: 500; transition: color 0.3s ease;">Defang</span>
-                        </a>
-                    </div>
-
-                    <div class="sponsor-item">
-                        <a href="https://www.instagram.com/organic_heritage.pk/" target="_blank" style="text-decoration: none; display: flex; flex-direction: column; align-items: center;">
-                            <img src="sponsers/organic.webp" alt="Organic Heritage" loading="lazy" class="sponsor-logo">
-                            <span class="sponsor-name" style="display: block; margin-top: 10px; color: var(--text-color, #f0f0f0); font-weight: 500; transition: color 0.3s ease;">Organic Heritage</span>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section class="section code-of-conduct" id="code-of-conduct">
-            <div class="container">
-                <h2 class="section-title">Code of Conduct</h2>
-                <div class="cards">
-                    <div class="card">
+        <section class="section code-of-conduct " id="code-of-conduct ">
+            <div class="container ">
+                <h2 class="section-title ">Code of Conduct</h2>
+                <div class="cards ">
+                    <div class="card ">
                         <h3>Bytecamp Commitment</h3>
                         <p>Bytecamp is committed to fostering an inclusive, respectful, and harassment-free environment for all participants.</p>
                     </div>
-                    <div class="card">
+                    <div class="card ">
                         <h3>Mutual Respect and Diversity</h3>
                         <p>Value and honor every participant by acknowledging their diverse backgrounds, including race, gender identity, disability, age, religion, and other individual characteristics.</p>
                     </div>
-                    <div class="card">
+                    <div class="card ">
                         <h3>Encouraging Inclusive Dialogue</h3>
                         <p>Foster a welcoming atmosphere where everyone feels empowered to contribute, knowing their ideas and voices will be respected and valued.</p>
                     </div>
-                    <div class="card">
+                    <div class="card ">
                         <h3>Promoting Collaboration</h3>
                         <p>Support a collaborative spirit by actively sharing insights, ideas, and experiences, while giving credit to others' work and respecting intellectual property rights.</p>
                     </div>
-                    <div class="card">
+                    <div class="card ">
                         <h3>Positive Event Experience</h3>
                         <p>Uphold a harassment-free environment by avoiding offensive comments, threats, or any form of unwelcome behavior. Be considerate of others' boundaries and perspectives.</p>
                     </div>
@@ -764,23 +626,23 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
+    <footer class="site-footer ">
+        <div class="container ">
+            <div class="footer-content footer-content-centered ">
                 <!-- Contact Section -->
-                <div class="footer-contact" style="width: 100%; max-width: 600px; margin: 0 auto;">
+                <div class="footer-contact footer-contact-layout ">
                     <h3>Connect With Us</h3>
-                    <div class="footer-social" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
-                        <a href="https://www.instagram.com/tnxpakistan/" target="_blank" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/tech-nexus-community/?viewAsMember=true" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://chat.whatsapp.com/IqNFsikFTn89SdZTs7BOc9" target="_blank" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <div class="footer-social footer-social-layout ">
+                        <a href="https://www.instagram.com/tnxpakistan/ " target="_blank " class="social-icon " aria-label="Instagram "><i class="fab fa-instagram "></i></a>
+                        <a href="https://www.linkedin.com/company/tech-nexus-community/?viewAsMember=true " target="_blank " class="social-icon " aria-label="LinkedIn "><i class="fab fa-linkedin-in "></i></a>
+                        <a href="https://chat.whatsapp.com/IqNFsikFTn89SdZTs7BOc9 " target="_blank " class="social-icon " aria-label="WhatsApp "><i class="fab fa-whatsapp "></i></a>
                     </div>
-                    <div class="footer-credits" style="margin-top: 10px;">
-                        <div class="copyright" id="footer-copyright">
+                    <div class="footer-credits " style="margin-top: 10px; ">
+                        <div class="copyright " id="footer-copyright ">
                             &copy; 2025 BYTE CAMP. All rights reserved.
                         </div>
-                        <div class="developer-credit" style="margin-top: 5px;">
-                            Developed by <a href="https://www.linkedin.com/in/hassanfaisalse26" target="_blank">Hassan Faisal</a>
+                        <div class="developer-credit " style="margin-top: 5px; ">
+                            Developed by <a href="https://www.linkedin.com/in/hassanfaisalse26 " target="_blank ">Hassan Faisal</a>
                         </div>
                     </div>
                 </div>
@@ -789,101 +651,18 @@
     </footer>
 
     <!-- Scroll to Top Button -->
-    <button id="scrollTopBtn" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
+    <button id="scrollTopBtn " aria-label="Scroll to top ">
+        <i class="fas fa-chevron-up "></i>
     </button>
 
     <!-- Modal for Speaker Details -->
-    <div id="speaker-modal" class="modal">
-        <div class="modal-content"></div>
-        <button class="modal-close" id="close-modal" aria-label="Close modal">&times;</button>
-        <div id="modal-body"></div>
+    <div id="speaker-modal " class="modal ">
+        <div class="modal-content "></div>
+        <button class="modal-close " id="close-modal " aria-label="Close modal ">&times;</button>
+        <div id="modal-body "></div>
     </div>
-    </div>
 
-    <script src="script.js" defer></script>
-    <!-- AOS library initialization -->
-    <script>
-        if (window.AOS) {
-            AOS.init();
-        }
-    </script>
-    <!-- Luma Checkout Script -->
-    <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
-    <!-- Ensure Luma buttons styling persists -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initial style fix
-            applyLumaStyles();
-
-            // Reapply styles after a delay to ensure they persist
-            setTimeout(applyLumaStyles, 1000);
-
-            function applyLumaStyles() {
-                document.querySelectorAll('.luma-checkout--button').forEach(function(btn) {
-                    btn.style.color = '#000';
-                    btn.style.background = 'var(--secondary-color)';
-
-                    // Ensure the button maintains its styling
-                    const originalBg = btn.style.background;
-                    const originalColor = btn.style.color;
-
-                    // Preserve styling on hover
-                    btn.addEventListener('mouseenter', function() {
-                        if (this.style.color !== originalColor) {
-                            this.style.color = originalColor;
-                        }
-                        if (this.style.background !== originalBg) {
-                            this.style.background = originalBg;
-                        }
-                    });
-                });
-            }
-        });
-    </script>
-    <script>
-        // Immediately show the announcement when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            var announcementOverlay = document.getElementById('announcement-overlay');
-            var closeAnnouncementBtn = document.getElementById('announcement-close');
-
-            if (announcementOverlay) {
-                // Force the overlay to be visible
-                announcementOverlay.style.opacity = '1';
-                announcementOverlay.style.visibility = 'visible';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-
-                // Handle close button click
-                if (closeAnnouncementBtn) {
-                    closeAnnouncementBtn.addEventListener('click', function() {
-                        closeAnnouncement();
-                    });
-                }
-
-                // Close when clicking on the overlay background
-                announcementOverlay.addEventListener('click', function(e) {
-                    if (e.target === announcementOverlay) {
-                        closeAnnouncement();
-                    }
-                });
-
-                // Close on ESC key
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        closeAnnouncement();
-                    }
-                });
-            }
-
-            function closeAnnouncement() {
-                announcementOverlay.style.opacity = '0';
-                setTimeout(function() {
-                    announcementOverlay.style.visibility = 'hidden';
-                    document.body.style.overflow = ''; // Restore scrolling
-                }, 300); // Match the transition duration
-            }
-        });
-    </script>
+    <script src="script.js " defer></script>
 </body>
 
 </html>

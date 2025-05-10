@@ -528,15 +528,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (registerBtns.length > 0) {
         registerBtns.forEach(btn => {
             // Skip adding the modal trigger for Luma checkout buttons
+            /*
             if (btn.classList.contains('luma-checkout--button') ||
                 btn.hasAttribute('data-luma-action') ||
                 btn.hasAttribute('data-luma-event-id')) {
                 // Don't add the modal event listener for Luma buttons
                 // This allows the Luma checkout process to work directly
-            } else {
-                // Only add event listener to non-Luma buttons
-                btn.addEventListener('click', openRegisterModal);
+                return;
             }
+            */
+            // Only add event listener to non-Luma buttons
+            btn.addEventListener('click', openRegisterModal);
         });
     }
 
@@ -572,7 +574,6 @@ document.addEventListener('DOMContentLoaded', function() {
     addButtonHoverEffects();
     animateWhatIsByteCamp();
     addOrganizerHoverEffects();
-    animateSponsors();
     enhanceGallery();
     enhanceSchedule();
     enhanceSpeakers();
@@ -616,6 +617,81 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(styleSheet);
+
+    setupKeyboardFocusStyles();
+
+    // Initialize the enhancements when document is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add these to your existing DOMContentLoaded handler
+        setupGalleryView();
+        enhanceInteractiveElements();
+        setupSpeakerModals();
+        improveScrollToTopButton();
+        setupKeyboardFocusStyles();
+    });
+
+    // New consolidated listener for scripts previously inline in index.html
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // AOS library initialization (from index.html)
+        if (window.AOS) {
+            AOS.init();
+        }
+
+        // Luma Checkout Button Styling (from index.html)
+        /*
+        function applyLumaStyles() {
+            document.querySelectorAll('.luma-checkout--button').forEach(function(btn) {
+                // Luma styling code
+            });
+        }
+
+        // Initial style fix for Luma
+        applyLumaStyles();
+        // Reapply styles after a delay to ensure they persist for Luma
+        setTimeout(applyLumaStyles, 1000);
+        */
+
+        // Announcement Overlay Logic (from index.html)
+        // This version directly shows the overlay. Ensure this is the desired behavior
+        // versus the window.onload logic earlier in script.js.
+        var announcementOverlay = document.getElementById('announcement-overlay');
+        var closeAnnouncementBtn = document.getElementById('announcement-close');
+
+        if (announcementOverlay) {
+            // Force the overlay to be visible
+            announcementOverlay.style.opacity = '1';
+            announcementOverlay.style.visibility = 'visible';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+
+            function closeInlineAnnouncement() {
+                announcementOverlay.style.opacity = '0';
+                setTimeout(function() {
+                    announcementOverlay.style.visibility = 'hidden';
+                    document.body.style.overflow = ''; // Restore scrolling
+                }, 300); // Match the transition duration
+            }
+
+            if (closeAnnouncementBtn) {
+                closeAnnouncementBtn.addEventListener('click', closeInlineAnnouncement);
+            }
+
+            announcementOverlay.addEventListener('click', function(e) {
+                if (e.target === announcementOverlay) {
+                    closeInlineAnnouncement();
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Check if the overlay is still visible before trying to close
+                    if (announcementOverlay.style.visibility === 'visible') {
+                        closeInlineAnnouncement();
+                    }
+                }
+            });
+        }
+    });
 }); // END DOMContentLoaded
 
 // Show loading spinner on page load and hide when ready
@@ -772,18 +848,6 @@ function addOrganizerHoverEffects() {
         });
         img.addEventListener('mouseleave', function() {
             gsap.to(this, { scale: 1, boxShadow: "none", duration: 0.3 });
-        });
-    });
-}
-
-function animateSponsors() {
-    const sponsors = document.querySelectorAll('.sponsors-grid .sponsor-item img, .sponsors-grid .sponsor-item span');
-    sponsors.forEach((sponsor) => {
-        sponsor.addEventListener('mouseenter', function() {
-            gsap.to(this, { scale: 1.1, filter: 'brightness(1.2)', duration: 0.3 });
-        });
-        sponsor.addEventListener('mouseleave', function() {
-            gsap.to(this, { scale: 1, filter: 'brightness(1)', duration: 0.3 });
         });
     });
 }
@@ -1498,12 +1562,60 @@ function setupGalleryView() {
         }
     }
 
-    // Initialize the enhancements when document is ready
-    document.addEventListener('DOMContentLoaded', function() {
-        // Add these to your existing DOMContentLoaded handler
-        setupGalleryView();
-        enhanceInteractiveElements();
-        setupSpeakerModals();
-        improveScrollToTopButton();
-        setupKeyboardFocusStyles();
+    // Scripts moved from index.html
+
+    // AOS library initialization
+    if (window.AOS) {
+        AOS.init();
+    }
+
+    // Ensure Luma buttons styling persists
+    /*
+    function applyLumaStyles() {
+        document.querySelectorAll('.luma-checkout--button').forEach(function(btn) {
+            // Luma styling code
+        });
+    }
+
+    // Initial style fix for Luma
+    applyLumaStyles();
+    // Reapply styles after a delay to ensure they persist for Luma
+    setTimeout(applyLumaStyles, 1000);
+    */
+
+    // Announcement Overlay Logic (consolidated)
+    var announcementOverlay = document.getElementById('announcement-overlay');
+    var closeAnnouncementBtn = document.getElementById('announcement-close');
+
+    function closePreviouslyAttachedAnnouncement() {
+        if (announcementOverlay && announcementOverlay.style.visibility !== 'hidden') {
+            announcementOverlay.style.opacity = '0';
+            setTimeout(function() {
+                announcementOverlay.style.visibility = 'hidden';
+                if (document.body.classList.contains('announcement-active-no-scroll')) {
+                    document.body.classList.remove('announcement-active-no-scroll');
+                } else {
+                    document.body.style.overflow = ''; // Fallback if class wasn't used
+                }
+            }, 300);
+        }
+    }
+
+    if (announcementOverlay) {
+        if (closeAnnouncementBtn) {
+            if (!closeAnnouncementBtn.hasAttribute('data-inline-listener-attached')) {
+                closeAnnouncementBtn.addEventListener('click', closePreviouslyAttachedAnnouncement);
+                closeAnnouncementBtn.setAttribute('data-inline-listener-attached', 'true');
+            }
+        }
+
+        if (!announcementOverlay.hasAttribute('data-inline-click-listener-attached')) {
+            announcementOverlay.addEventListener('click', function(e) {
+                if (e.target === announcementOverlay) {
+                    closePreviouslyAttachedAnnouncement();
+                }
+            });
+            announcementOverlay.setAttribute('data-inline-click-listener-attached', 'true');
+        }
     });
+});

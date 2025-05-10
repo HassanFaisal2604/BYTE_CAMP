@@ -442,13 +442,9 @@ p {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
 .logo-container {
@@ -1553,249 +1549,6 @@ p {
 }
 
 
-/* Sponsors Section */
-
-.sponsors-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
-    width: 100%;
-}
-
-.gallery-control {
-    transition: all var(--transition-speed) ease;
-    pointer-events: auto;
-}
-
-.gallery-control:hover,
-.gallery-control:focus {
-    background-color: var(--primary-color);
-    color: #000;
-}
-
-.view-all-gallery {
-    display: inline-flex;
-    align-items: center;
-    color: var(--primary-color);
-    font-weight: 600;
-    margin-top: var(--spacing-lg);
-    transition: all var(--transition-speed) ease;
-    gap: var(--spacing-xs);
-}
-
-.view-all-gallery:hover,
-.view-all-gallery:focus {
-    color: var(--secondary-color);
-}
-
-.view-all-gallery i {
-    transition: transform var(--transition-speed) ease;
-}
-
-.view-all-gallery:hover i,
-.view-all-gallery:focus i {
-    transform: translateX(5px);
-}
-
-.sponsor-item {
-    height: auto;
-    min-height: 120px;
-    padding: var(--spacing-md);
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: var(--border-radius);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-speed) ease;
-}
-
-.sponsor-item:hover,
-.sponsor-item:focus-within {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: var(--primary-color);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.sponsor-item a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-.sponsor-item a:focus {
-    outline: none;
-}
-
-.sponsor-item:focus-within {
-    outline: 2px solid var(--focus-outline-color);
-    outline-offset: 3px;
-}
-
-.sponsor-logo {
-    max-width: 200px;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    transition: transform var(--transition-speed) ease, filter var(--transition-speed) ease;
-}
-
-.sponsor-item:hover .sponsor-logo,
-.sponsor-item:focus-within .sponsor-logo {
-    transform: scale(1.05);
-    filter: brightness(1.2);
-}
-
-.sponsor-name {
-    margin-top: var(--spacing-sm);
-    color: var(--text-secondary);
-    font-weight: 500;
-    transition: color var(--transition-speed) ease;
-}
-
-.sponsor-item:hover .sponsor-name,
-.sponsor-item:focus-within .sponsor-name {
-    color: var(--primary-color);
-}
-
-.sponsor-text {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--secondary-color);
-    text-align: center;
-    padding: var(--spacing-md);
-    position: relative;
-}
-
-.sponsor-text::before,
-.sponsor-text::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 50px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-}
-
-.sponsor-text::before {
-    left: -70px;
-}
-
-.sponsor-text::after {
-    right: -70px;
-}
-
-.sponsor-cta {
-    text-align: center;
-    margin-top: var(--spacing-lg);
-}
-
-.sponsor-cta-text {
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-sm);
-}
-
-.become-sponsor-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    color: var(--primary-color);
-    font-weight: 600;
-    background-color: transparent;
-    border: 1px solid var(--primary-color);
-    padding: var(--spacing-xs) var(--spacing-md);
-    border-radius: 20px;
-    transition: all var(--transition-speed) ease;
-    cursor: pointer;
-}
-
-.become-sponsor-btn:hover,
-.become-sponsor-btn:focus {
-    background-color: var(--primary-color);
-    color: #000;
-    transform: translateY(-3px);
-}
-
-.become-sponsor-btn i {
-    transition: transform var(--transition-speed) ease;
-}
-
-.become-sponsor-btn:hover i,
-.become-sponsor-btn:focus i {
-    transform: translateX(3px);
-}
-
-
-/* Responsive styles for sponsors */
-
-@media (max-width: 768px) {
-    .sponsors-grid {
-        gap: var(--spacing-md);
-    }
-    .sponsor-item {
-        min-height: 100px;
-        padding: var(--spacing-sm);
-        width: 100%;
-        max-width: 300px;
-    }
-    .sponsor-logo {
-        max-width: 180px;
-    }
-    .sponsor-text {
-        font-size: 1.1rem;
-    }
-    .sponsor-text::before,
-    .sponsor-text::after {
-        width: 30px;
-    }
-    .sponsor-text::before {
-        left: -40px;
-    }
-    .sponsor-text::after {
-        right: -40px;
-    }
-}
-
-@media (max-width: 576px) {
-    .sponsors-grid {
-        gap: var(--spacing-sm);
-    }
-    .sponsor-item {
-        min-height: 80px;
-        padding: var(--spacing-sm);
-        max-width: 250px;
-    }
-    .sponsor-logo {
-        max-width: 150px;
-    }
-    .sponsor-text {
-        font-size: 1rem;
-    }
-    .sponsor-text::before,
-    .sponsor-text::after {
-        display: none;
-    }
-}
-
-@media (max-width: 360px) {
-    .sponsor-item {
-        min-height: 60px;
-        padding: var(--spacing-xs);
-        max-width: 200px;
-    }
-    .sponsor-logo {
-        max-width: 120px;
-    }
-}
-
-
 /* Footer */
 
 .site-footer {
@@ -2360,4 +2113,231 @@ p {
         height: 35px;
         font-size: 1rem;
     }
+}
+
+
+/* Ensure .logo styles from inline are merged or added if distinct */
+
+
+/* Existing .logo in styles.css is very different (height: 270px), 
+   so this might be for a different context or an override.
+   For now, adding as a new rule to avoid breaking existing .logo,
+   but this should be reviewed. If it's for the main logo, merge with
+   .logo-container .logo or similar specific selector if needed.
+*/
+
+.logo-inline-variant {
+    /* Renamed to avoid direct conflict, for review */
+    height: 60px;
+    max-width: 180px;
+}
+
+
+/* Styles for .site-header box-shadow was also in the original inline block */
+
+.site-header {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Added from inline */
+}
+
+.header-actions .lumabtn-main {
+    background: linear-gradient(90deg, #A3FF2E, #959595);
+    color: #000;
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.hero-content {
+    /* Merging with existing or ensuring it applies correctly */
+    max-width: 600px;
+    /* From inline */
+}
+
+.highlight-title p,
+.highlight-title h1 {
+    /* Combined as they were identical */
+    font-size: 5rem;
+    font-weight: 720;
+    line-height: 1.2;
+    background: linear-gradient(120deg, #A9FF00, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-visual {
+    /* Ensure this doesn't conflict if .hero-visual already styled */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* .tech-sphere from inline, existing .tech-sphere in styles.css has different dimensions.
+   This suggests the inline one might have been an override or for a specific instance.
+   Appending and developer should review if this is intended to override or be a variant.
+*/
+
+.tech-sphere-inline-variant {
+    /* Renamed to avoid direct conflict, for review */
+    width: 120px;
+    height: 120px;
+    position: relative;
+}
+
+.sphere-element {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid #A3FF2E;
+}
+
+.sphere-element:nth-child(1) {
+    width: 100%;
+    height: 100%;
+}
+
+.sphere-element:nth-child(2) {
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    border-color: #fff;
+}
+
+.sphere-element:nth-child(3) {
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+    border-color: #fff;
+}
+
+.scroll-indicator {
+    /* Merging or ensuring this applies correctly */
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #b0b0b0;
+    /* This was text-secondary, but inline had direct value */
+    font-size: 0.9rem;
+    z-index: 10;
+    /* Ensure z-index is appropriate */
+}
+
+
+/* Media query styles from original inline block */
+
+@media(max-width:768px) {
+    .header-container {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    /* .logo inside media query from inline */
+    .logo-inline-variant-mobile {
+        /* Renamed for clarity, for review */
+        height: 40px;
+        max-width: 120px;
+        margin-right: auto;
+    }
+    .hero {
+        /* .hero inside media query from inline */
+        padding-top: 70px;
+    }
+}
+
+
+/* Styles for Sponsors section (previously inline) */
+
+.sponsor-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sponsor-name {
+    /* Applied to the span inside .sponsor-link */
+    display: block;
+    margin-top: 10px;
+    color: var(--text-color, #f0f0f0);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+
+/* Styles for Footer section (previously inline) */
+
+.footer-content-centered {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-contact-layout {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-social-layout {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    /* Consider using var(--spacing-md) if it matches */
+    margin-bottom: 20px;
+    /* Consider using var(--spacing-md) if it matches */
+}
+
+
+/* .footer-credits and .developer-credit already exist, these inline styles are now covered by their existing rules or these new specific ones */
+
+.footer-credits {
+    margin-top: 10px;
+    /* From inline */
+}
+
+.developer-credit {
+    margin-top: 5px;
+    /* From inline */
+}
+
+
+/* Sponsor TBA Styles */
+
+.sponsor-item.tba {
+    background: #111 !important;
+    border: 2px solid #fff !important;
+    /* white for debug, change to var(--primary-color) later */
+    min-width: 260px;
+    min-height: 120px;
+    color: #fff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+.sponsor-item.tba .sponsor-text {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.sponsor-item.tba .sponsor-text h3 {
+    color: #fff !important;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.sponsor-item.tba .sponsor-text p {
+    color: #fff !important;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 0;
 }
