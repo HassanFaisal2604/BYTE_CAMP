@@ -319,121 +319,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Setup animations
     function setupAnimations() {
-        // Only run if GSAP is available
         if (typeof gsap === 'undefined') return;
 
-        // Hero section animations
-        gsap.from('.hero-content h1', {
-            opacity: 0,
-            y: 30,
-            duration: 1,
-            delay: 0.2
-        });
+        // Use will-change for elements that will animate
+        document.querySelectorAll('.hero-content h1, .hero-content p, .hero-content .btn, .tech-sphere')
+            .forEach(el => el.style.willChange = 'transform, opacity');
 
-        gsap.from('.hero-content p', {
-            opacity: 0,
-            y: 20,
-            duration: 1,
-            delay: 0.5
-        });
+        // Batch animations
+        const heroAnimations = gsap.timeline();
+        heroAnimations
+            .from('.hero-content h1', { opacity: 0, y: 30, duration: 0.8 })
+            .from('.hero-content p', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
+            .from('.hero-content .btn', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
+            .from('.tech-sphere', { opacity: 0, scale: 0.8, duration: 1 }, '-=0.6');
 
-        gsap.from('.hero-content .btn', {
-            opacity: 0,
-            y: 20,
-            duration: 1,
-            delay: 0.8
-        });
-
-        gsap.from('.tech-sphere', {
-            opacity: 0,
-            scale: 0.8,
-            duration: 1.5,
-            delay: 0.5
-        });
-
-        // Section animations
+        // Optimize scroll-triggered animations
         gsap.utils.toArray('.section').forEach(section => {
-            gsap.from(section.querySelector('.section-title'), {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            });
-
-            gsap.from(section.querySelector('.section-intro'), {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                delay: 0.2,
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        });
-
-        // Feature cards animations
-        gsap.utils.toArray('.feature-card').forEach((card, index) => {
-            gsap.from(card, {
-                opacity: 0,
-                y: 50,
-                duration: 0.6,
-                delay: index * 0.1,
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        });
-
-        // Timeline items animations
-        gsap.utils.toArray('.timeline-item').forEach((item, index) => {
-            gsap.from(item, {
-                opacity: 0,
-                x: -50,
-                duration: 0.6,
-                delay: index * 0.1,
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        });
-
-        // Speaker cards animations
-        gsap.utils.toArray('.speaker-card').forEach((card, index) => {
-            gsap.from(card, {
-                opacity: 0,
-                y: 50,
-                duration: 0.6,
-                delay: index * 0.1,
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        });
-
-        // Gallery items animations
-        gsap.utils.toArray('.gallery-item').forEach((item, index) => {
-            gsap.from(item, {
-                opacity: 0,
-                scale: 0.9,
-                duration: 0.6,
-                delay: index * 0.1,
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                }
+            const elements = section.querySelectorAll('.section-title, .section-intro');
+            elements.forEach(el => el.style.willChange = 'transform, opacity');
+            
+            ScrollTrigger.batch(elements, {
+                onEnter: batch => gsap.from(batch, {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.6,
+                    stagger: 0.1
+                }),
+                once: true
             });
         });
     }
@@ -443,41 +355,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const particlesContainer = document.querySelector('.bg-particles');
         if (!particlesContainer) return;
 
-        const particleCount = 50;
+        // Reduce particle count on mobile
+        const particleCount = window.innerWidth <= 768 ? 25 : 50;
+        const fragment = document.createDocumentFragment();
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
-
-            // Random position
-            const posX = Math.random() * 100;
-            const posY = Math.random() * 100;
-
-            // Random size
-            const size = Math.random() * 3 + 1;
-
-            // Random opacity
-            const opacity = Math.random() * 0.5 + 0.1;
-
-            // Random animation duration
-            const duration = Math.random() * 20 + 10;
-
-            // Set styles
+            
+            // Use CSS custom properties for better performance
             particle.style.cssText = `
-                position: absolute;
-                top: ${posY}%;
-                left: ${posX}%;
-                width: ${size}px;
-                height: ${size}px;
-                background-color: var(--secondary-color);
-                border-radius: 50%;
-                opacity: ${opacity};
-                animation: float ${duration}s infinite ease-in-out;
-                animation-delay: ${Math.random() * 5}s;
+                --x: ${Math.random() * 100}%;
+                --y: ${Math.random() * 100}%;
+                --size: ${Math.random() * 3 + 1}px;
+                --opacity: ${Math.random() * 0.5 + 0.1};
+                --duration: ${Math.random() * 20 + 10}s;
+                --delay: ${Math.random() * 5}s;
             `;
 
-            particlesContainer.appendChild(particle);
+            fragment.appendChild(particle);
         }
+
+        particlesContainer.appendChild(fragment);
     }
 
     // Progressive/lazy loading for gallery images
@@ -509,11 +408,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Event Listeners
+    let scrollTimeout;
     window.addEventListener('scroll', function() {
-        handleHeaderScroll();
-        toggleScrollTopBtn();
-        // Update parallax if on desktop
-        if (window.innerWidth > 768) updateParallaxPositions();
+        if (!scrollTimeout) {
+            scrollTimeout = requestAnimationFrame(() => {
+                handleHeaderScroll();
+                toggleScrollTopBtn();
+                if (window.innerWidth > 768) updateParallaxPositions();
+                scrollTimeout = null;
+            });
+        }
     }, { passive: true });
 
     if (mobileMenuToggle) {

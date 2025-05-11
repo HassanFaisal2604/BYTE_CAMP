@@ -16,6 +16,9 @@
     <!-- 2) Load Vercel's analytics runtime -->
     <script defer src="/_vercel/insights/script.js"></script>
 
+    <!-- 3) Load Vercel's speed insights runtime -->
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+
     <style>
         /* CRITICAL CSS - MINIMAL FOR ABOVE-THE-FOLD */
         
@@ -55,15 +58,23 @@
     <!-- Preload main stylesheet, then load non-blocking -->
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" as="style">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
+
+    <!-- Font Awesome for icons - load with low priority -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <!-- GSAP for animations -->
+
+    <!-- GSAP for animations - load with low priority -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+
     <meta name="theme-color" content="#0a0a0a">
 
     <!-- Favicon -->
@@ -72,6 +83,25 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Add width and height to logo -->
+    <link rel="preload" as="image" href="/logo.png" fetchpriority="high">
+
+    <!-- Optimize speaker images -->
+    <link rel="preload" as="image" href="Speakers/Awais.webp" fetchpriority="high">
+
+    <!-- Optimize gallery images -->
+    <link rel="preload" as="image" href="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic4_grjeg9.webp" fetchpriority="high">
+
+    <!-- Add resource hints -->
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Add cache control headers -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+    <meta http-equiv="Expires" content="31536000">
 </head>
 
 <body>
@@ -89,7 +119,7 @@
     <header class="site-header" id="site-header">
         <div class="container header-container">
             <div class="logo-container">
-                <img src="/logo.png" alt="BYTE CAMP Logo" class="logo">
+                <img src="/logo.png" alt="BYTE CAMP Logo" class="logo" width="150" height="50">
             </div>
 
             <div class="header-date-register">
@@ -304,7 +334,7 @@
                 <div class="speakers-grid">
                     <div class="speaker-card" tabindex="0">
                         <div class="speaker-image">
-                            <img src="Speakers/Awais.webp" alt="Awais Kamran - Engineering Lead at Conrad Labs" loading="lazy">
+                            <img src="Speakers/Awais.webp" alt="Awais Kamran - Engineering Lead at Conrad Labs" loading="lazy" width="300" height="300">
                             <div class="speaker-overlay"></div>
                         </div>
                         <div class="speaker-info">
@@ -559,9 +589,9 @@
                 <div class="gallery-grid">
                     <div class="gallery-item">
                         <div class="gallery-image">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic4_grjeg9.webp" alt=" Build wit AI" loading="lazy " width="400 " height="300 ">
-                            <div class="gallery-overlay ">
-                                <div class="gallery-caption ">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic4_grjeg9.webp" alt="Build wit AI" loading="lazy" width="400" height="300" fetchpriority="low">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
                                     <h3>Build with Ai LGU</h3>
                                     <p>Lahore, April 2024</p>
                                 </div>
@@ -569,11 +599,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item ">
-                        <div class="gallery-image ">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic1_yrydwl.webp" alt="Build wit AI " loading="lazy " width="400 " height="300 ">
-                            <div class="gallery-overlay ">
-                                <div class="gallery-caption ">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic1_yrydwl.webp" alt="Build wit AI" loading="lazy" width="400" height="300">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
                                     <h3>Build wit AI</h3>
                                     <p>Lahore</p>
                                 </div>
@@ -581,11 +611,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item ">
-                        <div class="gallery-image ">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic3_sy2cbi.webp" alt="Build wit AI" loading="lazy " width="400 " height="300 ">
-                            <div class="gallery-overlay ">
-                                <div class="gallery-caption ">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic3_sy2cbi.webp" alt="Build wit AI" loading="lazy" width="400" height="300">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
                                     <h3>Build wit AIr</h3>
                                     <p>lahore</p>
                                 </div>
@@ -593,11 +623,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item ">
-                        <div class="gallery-image ">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic2_klfo93.webp " alt="Panel Discussion " loading="lazy " width="400 " height="300 ">
-                            <div class="gallery-overlay ">
-                                <div class="gallery-caption ">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1746876038/Eventpic2_klfo93.webp" alt="Panel Discussion" loading="lazy" width="400" height="300">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
                                     <h3>Build wit AI</h3>
                                     <p>Lahore</p>
                                 </div>
@@ -605,11 +635,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item ">
-                        <div class="gallery-image ">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_1457cmp1_l2hp0a.webp " alt="Dev jirga " loading="lazy " width="400 " height="300 ">
-                            <div class="gallery-overlay ">
-                                <div class="gallery-caption ">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_1457cmp1_l2hp0a.webp" alt="Dev jirga" loading="lazy" width="400" height="300">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
                                     <h3>Dev jirga</h3>
                                     <p>Islamabad</p>
                                 </div>
@@ -617,11 +647,11 @@
                         </div>
                     </div>
 
-                    <div class="gallery-item ">
-                        <div class="gallery-image ">
-                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_0896cmp1_ewwx3n.webp" alt="Dev Jirga" loading="lazy " width="400 " height="300 ">
-                            <div class="gallery-overlay ">
-                                <div class="gallery-caption ">
+                    <div class="gallery-item">
+                        <div class="gallery-image">
+                            <img src="https://res.cloudinary.com/da2zy0nw3/image/upload/v1745781145/img_0896cmp1_ewwx3n.webp" alt="Dev Jirga" loading="lazy" width="400" height="300">
+                            <div class="gallery-overlay">
+                                <div class="gallery-caption">
                                     <h3>Dev jirga</h3>
                                     <p>Islamabad</p>
                                 </div>
@@ -722,7 +752,7 @@
         </div>
     </footer>
 
-    <script src="script.js " defer></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
