@@ -2022,3 +2022,110 @@ p {
     line-height: 1.6;
     margin: 0;
 }
+
+
+/* Mobile Styles */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+        width: 100%;
+    }
+    .hero {
+        padding: 60px 0;
+        min-height: 100vh;
+    }
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-content {
+        order: 1;
+        margin-bottom: 2rem;
+    }
+    .hero-visual {
+        order: 2;
+        margin-top: 2rem;
+    }
+    .tech-sphere {
+        width: 250px;
+        height: 250px;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 1rem;
+    }
+    .section {
+        padding: 40px 0;
+    }
+    .section h2 {
+        font-size: 2rem;
+    }
+    .schedule-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .schedule-item {
+        padding: 15px;
+    }
+    .schedule-item h3 {
+        font-size: 1.2rem;
+    }
+    .schedule-item p {
+        font-size: 0.9rem;
+    }
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .gallery-item {
+        height: 200px;
+    }
+    .gallery-item img {
+        height: 100%;
+        object-fit: cover;
+    }
+    .footer {
+        padding: 30px 0;
+    }
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .social-links {
+        justify-content: center;
+    }
+    .social-links a {
+        font-size: 1.2rem;
+    }
+    .copyright {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Small mobile devices */
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .section h2 {
+        font-size: 1.8rem;
+    }
+    .gallery-item {
+        height: 180px;
+    }
+}
