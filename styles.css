@@ -530,7 +530,7 @@ p {
 /* Desktop-only logo size */
 @media (min-width: 1024px) {
     .logo {
-        height: 150px;
+        height: 200px;
         max-width: 280px;
     }
 }
