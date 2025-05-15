@@ -437,6 +437,13 @@ p {
     .header-date-register {
         gap: 0.3rem;
     }
+    .event-date {
+        padding: 5px 10px;
+        font-size: 1rem; /* Adjusted for mobile but still larger than before */
+    }
+    .event-date i {
+        font-size: 1.1rem;
+    }
     .lumabtn-main,
     .lumabtn-content {
         padding: 6px 10px;
@@ -554,10 +561,17 @@ p {
     border-radius: var(--border-radius);
     border: 1px solid rgba(163, 255, 46, 0.2);
     order: 1;
+    font-size: 1.2rem; /* Increased font size */
+    transition: all var(--transition-speed) ease;
+}
+
+.event-date:hover {
+    transform: translateY(-2px);
+    background-color: rgba(163, 255, 46, 0.2);
 }
 
 .event-date i {
-    font-size: 1.1rem;
+    font-size: 1.3rem; /* Increased icon size */
 }
 
 
@@ -1349,15 +1363,20 @@ p {
 .detail-card:first-child {
     border-color: rgba(163, 255, 46, 0.3);
     background-color: rgba(163, 255, 46, 0.05);
+    transform: scale(1.05); /* Slightly larger than other cards */
+    box-shadow: 0 5px 15px rgba(163, 255, 46, 0.15);
+    z-index: 1;
 }
 
 .detail-card:first-child .detail-icon {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
 .detail-card:first-child p {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--primary-color);
+    font-size: 1.4rem; /* Larger font size for the date */
+    letter-spacing: 0.5px;
 }
 
 
