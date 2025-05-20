@@ -2603,3 +2603,308 @@ p {
         opacity: 0.5;
     }
 }
+
+/* Elegant Schedule Card Layout */
+.schedule-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+    margin: 2.5rem 0 3.5rem 0;
+}
+
+.schedule-card {
+    display: flex;
+    align-items: flex-start;
+    background: var(--card-bg);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(163,255,46,0.10);
+    padding: 2rem 2.2rem 1.5rem 1.5rem;
+    gap: 2rem;
+    position: relative;
+    transition: box-shadow 0.2s, background 0.2s;
+    border-left: 6px solid var(--border-color-subtle);
+}
+.schedule-card:not(.energizer):hover {
+    box-shadow: 0 8px 32px rgba(163,255,46,0.18);
+    background: rgba(163,255,46,0.04);
+    border-left: 6px solid var(--primary-color);
+}
+
+.schedule-card .schedule-time {
+    min-width: 120px;
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.15rem;
+    background: rgba(163,255,46,0.08);
+    border-radius: 10px;
+    padding: 0.7em 1.1em;
+    text-align: center;
+    margin-top: 0.2em;
+    margin-right: 0.5em;
+    box-shadow: 0 1px 6px rgba(163,255,46,0.10);
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.schedule-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+}
+
+.schedule-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--secondary-color);
+    margin-bottom: 0.2em;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+}
+
+.schedule-details {
+    font-size: 1.08rem;
+    color: var(--text-secondary);
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+    line-height: 1.5;
+}
+
+.speaker-name {
+    color: var(--primary-color);
+    font-weight: 900;
+    background: linear-gradient(90deg, rgba(163,255,46,0.18) 0%, rgba(163,255,46,0.08) 100%);
+    padding: 0.1em 0.4em;
+    border-radius: 6px;
+    font-size: 1.09em;
+    letter-spacing: 0.01em;
+    box-shadow: 0 1px 6px rgba(163,255,46,0.10);
+    text-shadow: 0 1px 8px rgba(163,255,46,0.10);
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    display: inline-block;
+}
+.speaker-role {
+    color: var(--accent-blue-muted);
+    font-weight: 600;
+    font-size: 0.98em;
+    margin-left: 0.3em;
+}
+
+.schedule-type.badge {
+    display: inline-block;
+    font-size: 0.98rem;
+    font-weight: 700;
+    padding: 0.25em 0.9em;
+    border-radius: 16px;
+    background: rgba(163,255,46,0.13);
+    color: var(--primary-color);
+    margin-bottom: 0.4em;
+    margin-right: 0.7em;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    box-shadow: 0 1px 6px rgba(163,255,46,0.07);
+}
+.schedule-type.keynote { background: var(--primary-color); color: #222; }
+.schedule-type.panel { background: var(--accent-color); color: #fff; }
+.schedule-type.talk { background: rgba(163,255,46,0.18); color: var(--primary-color); }
+.schedule-type.energizer { background: rgba(163,255,46,0.13); color: var(--primary-color); }
+.schedule-type.guest { background: rgba(163,255,46,0.13); color: var(--primary-color); }
+.schedule-type.closing { background: rgba(163,255,46,0.13); color: var(--primary-color); }
+.schedule-type.refreshment { background: rgba(163,255,46,0.08); color: var(--secondary-color); }
+
+.schedule-card.energizer {
+    min-height: 40px;
+    padding: 0.7rem 1.1rem 0.7rem 1.1rem;
+    background: linear-gradient(90deg, rgba(163,255,46,0.07) 0%, rgba(67,97,238,0.03) 100%);
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 1px 4px rgba(163,255,46,0.07);
+    align-items: center;
+    gap: 0.7rem;
+}
+.schedule-card.energizer .schedule-type {
+    color: var(--primary-color);
+    background: rgba(163,255,46,0.18);
+    font-weight: 800;
+    font-size: 0.98rem;
+    padding: 0.18em 0.7em;
+    border-radius: 12px;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+.energizer-icon {
+    font-size: 1.3em;
+    margin-right: 0.2em;
+    vertical-align: middle;
+    opacity: 0.85;
+    color: var(--primary-color);
+}
+
+@media (max-width: 900px) {
+    .schedule-card {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 1.3rem 1.1rem 1.1rem 1.1rem;
+    }
+    .schedule-card .schedule-time {
+        min-width: unset;
+        width: 100%;
+        margin-bottom: 0.7em;
+        font-size: 1.08rem;
+        padding: 0.6em 0.7em;
+    }
+}
+@media (max-width: 600px) {
+    .schedule-cards {
+        gap: 1.2rem;
+    }
+    .schedule-card {
+        padding: 1.1rem 0.7rem 1rem 0.7rem;
+        border-radius: 13px;
+        gap: 0.7rem;
+    }
+    .schedule-title {
+        font-size: 1.08rem;
+    }
+    .schedule-details {
+        font-size: 0.97rem;
+    }
+    .schedule-card .schedule-time {
+        font-size: 0.98rem;
+        padding: 0.5em 0.5em;
+    }
+}
+
+/* Minimalist Schedule Table */
+.schedule-table-minimalist-wrapper {
+    width: 100%;
+    margin: 2.5rem 0 3.5rem 0;
+    background: none;
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+}
+.schedule-table-minimalist {
+    width: 100%;
+    border-collapse: collapse;
+    background: none;
+    color: var(--text-color);
+    font-size: 1.08rem;
+    line-height: 1.7;
+    min-width: 600px;
+}
+.schedule-table-minimalist th, .schedule-table-minimalist td {
+    padding: 1.3rem 1.2rem;
+    border: none;
+    text-align: left;
+    background: none;
+    font-weight: 400;
+    vertical-align: middle;
+}
+.schedule-table-minimalist th {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.12rem;
+    border-bottom: 2px solid var(--border-color-subtle);
+    background: none;
+    letter-spacing: 0.01em;
+}
+.schedule-table-minimalist td {
+    color: var(--text-secondary);
+    font-size: 1.08rem;
+    border-bottom: 1px solid var(--border-color-subtle);
+    background: none;
+    font-weight: 400;
+}
+.schedule-table-minimalist tr:last-child td {
+    border-bottom: none;
+}
+.speaker-name {
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 1.08em;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+}
+.speaker-avatar {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align: middle;
+    margin-right: 0.5em;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.10);
+    background: #222;
+}
+.speaker-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+@media (max-width: 900px) {
+    .schedule-table-minimalist {
+        font-size: 1rem;
+        min-width: 400px;
+    }
+    .schedule-table-minimalist th, .schedule-table-minimalist td {
+        padding: 1rem 0.7rem;
+    }
+}
+@media (max-width: 600px) {
+    .schedule-table-minimalist-wrapper {
+        overflow-x: visible;
+    }
+    .schedule-table-minimalist {
+        min-width: unset;
+        font-size: 1rem;
+        width: 100%;
+        border-collapse: separate;
+    }
+    .schedule-table-minimalist thead {
+        display: none;
+    }
+    .schedule-table-minimalist tr {
+        display: block;
+        margin-bottom: 2rem;
+        border-radius: var(--border-radius);
+        background: none;
+        box-shadow: none;
+        border: none;
+        padding: 1.1rem 0.7rem 1rem 0.7rem;
+    }
+    .schedule-table-minimalist td {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0.7rem 0.5rem;
+        border: none;
+        background: none;
+        font-size: 1.08rem;
+        width: 100%;
+        min-width: 0;
+        word-break: break-word;
+    }
+    .schedule-table-minimalist td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--primary-color);
+        min-width: 120px;
+        display: inline-block;
+        margin-right: 1.2em;
+        flex-shrink: 0;
+    }
+    .schedule-table-minimalist tr:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Add data-labels for mobile accessibility */
+.schedule-table-minimalist td:nth-child(1) { data-label: 'Activity'; }
+.schedule-table-minimalist td:nth-child(2) { data-label: 'Speaker'; }
+.schedule-table-minimalist td:nth-child(3) { data-label: 'Start Time'; }
+.schedule-table-minimalist td:nth-child(4) { data-label: 'End Time'; }
