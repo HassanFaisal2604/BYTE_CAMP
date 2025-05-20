@@ -31,6 +31,27 @@
             /* Ensure font is available early */
             margin: 0;
         }
+
+        /* Hero title styling */
+        .highlight-title h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(45deg, #ffffff, #a8a8a8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-title h1 br {
+            display: block;
+            content: "";
+            margin: 0.2em 0;
+        }
+        
         /* Basic header visibility and stacking context */
         
         .site-header {
@@ -288,56 +309,39 @@
         <section class="section schedule" id="schedule">
             <div class="container">
                 <h2 class="section-title">Event Schedule</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="time-block">
-                            <span class="time">9:00 AM - 10:00 AM</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Registration & Welcome</h3>
-                            <p>Check-in, welcome kit collection, and opening remarks</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="time-block">
-                            <span class="time">10:00 AM - 11:30 AM</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Keynote: Future of Technology</h3>
-                            <p>An inspiring talk about emerging tech trends and future possibilities</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="time-block">
-                            <span class="time">11:45 AM - 1:00 PM</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Workshop: AI Applications</h3>
-                            <p>Hands-on session on implementing AI in practical projects</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="time-block">
-                            <span class="time">1:00 PM - 2:00 PM</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Lunch Break</h3>
-                            <p>Networking lunch with fellow attendees and speakers</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="time-block">
-                            <span class="time">3:45 PM - 5:00 PM</span>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>Panel Discussion: Tech Industry Insights</h3>
-                            <p>Q&A with industry experts about career opportunities</p>
-                        </div>
-                    </div>
+                <div class="schedule-table-wrapper">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Sr. #</th>
+                                <th>Activity</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>REGISTRATION & NETWORKING</td><td>09:00 AM</td><td>10:00 AM</td></tr>
+                            <tr><td>2</td><td>WELCOME & INTRODUCTION</td><td>10:00 AM</td><td>10:05 AM</td></tr>
+                            <tr><td>3</td><td>KEYNOTE ADDRESS : DEAN FACULTY OF COMPUTER SCIENCES, LGU</td><td>10:05 AM</td><td>10:15 AM</td></tr>
+                            <tr><td>4</td><td>SPEAKER SESSION : "AI IN BUILDING PRODUCTS" – BY MR. USMAN ASLAM, FOUNDING DEVELOPER LEAD, GITHUB, SLACK, MIRO</td><td>10:15 AM</td><td>10:35 AM</td></tr>
+                            <tr class="energizer"><td colspan="4">Energizer/Giveaways</td></tr>
+                            <tr><td>5</td><td>SPEAKER SESSION : "GITHUB ACTIONS" – BY MR. SAMSOR REHMAN, GITHUB CAMPUS EXPERT</td><td>10:50 AM</td><td>11:15 AM</td></tr>
+                            <tr class="energizer"><td colspan="4">Energizer/Giveaways</td></tr>
+                            <tr><td>6</td><td>SPEAKER SESSION : "NO CODE/LOW CODE TOOLS" – BY MR. SAAD HASNAIN, PRODUCT MANAGER, NOTION AMBASSADOR</td><td>11:15 AM</td><td>11:50 AM</td></tr>
+                            <tr class="energizer"><td colspan="4">Energizer/Giveaways</td></tr>
+                            <tr><td>7</td><td>PANEL TALK 1 : "COMMUNITIES ECOSYSTEM IN PAKISTAN"</td><td>12:00 PM</td><td>12:25 PM</td></tr>
+                            <tr class="energizer"><td colspan="4">Energizer/Giveaways</td></tr>
+                            <tr><td>8</td><td>SPEAKER SESSION : "HOW TO WIN YOUR FIRST HACKATHON & CODING COMPETITION" – BY DR. ABDUL MATEEN, ASSOCIATE PROFESSOR CS, PU, LAHORE</td><td>12:25 PM</td><td>12:55 PM</td></tr>
+                            <tr class="energizer"><td colspan="4">Energizer/Giveaways</td></tr>
+                            <tr><td>9</td><td>GUEST OF HONOR : "GRAB YOUR FIRST CLIENT – 10 TIPS" – BY MR. USMAN ASIF, CEO @ DEVSINC</td><td>01:00 PM</td><td>01:30 PM</td></tr>
+                            <tr class="energizer"><td colspan="4">Energizer/Giveaways</td></tr>
+                            <tr><td>10</td><td>PANEL TALK 2 : "CHOOSING A FINAL YEAR PROJECT"</td><td>01:45 PM</td><td>02:15 PM</td></tr>
+                            <tr class="energizer"><td colspan="4">Energizer/Giveaways</td></tr>
+                            <tr><td>11</td><td>SPEAKER SESSION : "DEVEL – WHAT, WHY & HOW" – BY MR. FAIZAN ASIM, GDG LEAD @ UET LAHORE</td><td>02:15 PM</td><td>02:45 PM</td></tr>
+                            <tr><td>12</td><td>CLOSING CEREMONY (SOUVENIRS & CERTIFICATES)</td><td>02:45 PM</td><td>03:00 PM</td></tr>
+                            <tr><td>13</td><td>REFRESHMENT (INVITE ONLY)</td><td>03:00 PM</td><td>03:30 PM</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

@@ -2435,3 +2435,171 @@ p {
         transform: translateZ(0);
     }
 }
+
+/* Visually Enhanced Schedule Table Styles */
+.schedule-table-wrapper {
+    overflow-x: auto;
+    margin: 3rem 0 3.5rem 0;
+    background: none;
+    border-radius: var(--border-radius);
+    box-shadow: none;
+    padding: 0;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1.3rem;
+    background: none;
+    color: var(--text-color);
+    font-size: 1.08rem;
+    border-radius: var(--border-radius);
+    min-width: 600px;
+    margin-bottom: 0;
+    line-height: 1.7;
+}
+
+.schedule-table th, .schedule-table td {
+    padding: 1.3rem 1.2rem;
+    background: var(--card-bg);
+    border: none;
+    vertical-align: middle;
+    transition: box-shadow 0.2s, background 0.2s;
+}
+
+.schedule-table th {
+    background: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.12rem;
+    letter-spacing: 0.01em;
+    border-bottom: 2px solid var(--border-color-subtle);
+    text-align: left;
+}
+
+.schedule-table td {
+    font-size: 1.08rem;
+    border-bottom: none;
+    border-top: none;
+    box-shadow: none;
+}
+
+.schedule-table tbody tr {
+    box-shadow: 0 4px 24px rgba(163,255,46,0.10);
+    border-radius: 18px;
+    transition: box-shadow 0.2s, background 0.2s;
+    background: var(--card-bg);
+}
+
+.schedule-table tbody tr:not(.energizer) + tr:not(.energizer) {
+    margin-top: 1.2rem;
+}
+
+.schedule-table td:nth-child(2) {
+    font-weight: 700;
+    color: var(--secondary-color);
+    font-size: 1.13rem;
+    letter-spacing: 0.01em;
+    background: linear-gradient(90deg, rgba(163,255,46,0.08) 0%, transparent 100%);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 12px 0 0 12px;
+}
+
+.schedule-table td:nth-child(3),
+.schedule-table td:nth-child(4) {
+    font-family: var(--font-secondary);
+    color: var(--primary-color);
+    font-weight: 500;
+    text-align: right;
+    min-width: 90px;
+    font-size: 1.05rem;
+}
+
+.schedule-table tbody tr:not(.energizer):hover {
+    box-shadow: 0 8px 32px rgba(163,255,46,0.18);
+    background: rgba(163,255,46,0.04);
+}
+
+.schedule-table tbody tr:nth-child(even):not(.energizer) td {
+    background: rgba(255,255,255,0.02);
+}
+
+.schedule-table .energizer td {
+    background: linear-gradient(90deg, #e8ffe822 0%, #e8f0ff11 100%);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.05rem;
+    border-bottom: none;
+    border-radius: 18px;
+    position: relative;
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 10px rgba(163,255,46,0.04);
+}
+.schedule-table .energizer td::before {
+    content: '\1F389'; /* 🎉 */
+    margin-right: 0.5em;
+    font-size: 1.1em;
+    vertical-align: middle;
+    opacity: 0.5;
+}
+
+@media (max-width: 900px) {
+    .schedule-table {
+        min-width: 400px;
+        font-size: 1rem;
+    }
+    .schedule-table th, .schedule-table td {
+        padding: 1rem 0.7rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .schedule-table {
+        min-width: unset;
+        font-size: 1rem;
+        border-spacing: 0 1.5rem;
+    }
+    .schedule-table thead {
+        display: none;
+    }
+    .schedule-table tbody tr {
+        display: block;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 24px rgba(163,255,46,0.13);
+        border-radius: 18px;
+        background: var(--card-bg);
+        padding: 0.5rem 0.2rem;
+    }
+    .schedule-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.1rem 1.2rem;
+        border: none;
+        border-bottom: 1px solid var(--border-color-subtle);
+        background: none;
+        font-size: 1.08rem;
+    }
+    .schedule-table td:nth-child(1)::before { content: 'No.'; font-weight: 600; color: var(--primary-color); margin-right: 0.7em; }
+    .schedule-table td:nth-child(2)::before { content: 'Activity'; font-weight: 600; color: var(--primary-color); margin-right: 0.7em; }
+    .schedule-table td:nth-child(3)::before { content: 'Start'; font-weight: 600; color: var(--primary-color); margin-right: 0.7em; }
+    .schedule-table td:nth-child(4)::before { content: 'End'; font-weight: 600; color: var(--primary-color); margin-right: 0.7em; }
+    .schedule-table td::before {
+        min-width: 70px;
+        display: inline-block;
+    }
+    .schedule-table .energizer td {
+        justify-content: center;
+        font-size: 1.05rem;
+        padding: 1.1rem 0.5rem;
+        border-radius: 18px;
+    }
+    .schedule-table .energizer td::before {
+        content: '\1F389';
+        margin-right: 0.5em;
+        font-size: 1.1em;
+        vertical-align: middle;
+        opacity: 0.5;
+    }
+}
