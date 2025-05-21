@@ -88,9 +88,7 @@
             color: #ffffff;
             opacity: 1;
             transform: translateY(-2px);
-        }
-    </style>
-    <!-- Preload main stylesheet, then load non-blocking -->
+        }    </style>    <!-- Preload main stylesheet, then load non-blocking -->
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="styles.css"></noscript>
 
@@ -559,42 +557,39 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Event Agenda Section -->
-        <section class="section agenda" id="agenda">
+        </section>        <!-- Event Agenda Section -->        <section class="section agenda" id="agenda">
           <div class="container">
             <h2 class="section-title">Event Agenda</h2>
             <div class="agenda-table-wrapper">
               <table class="agenda-table">
                 <thead>
                   <tr>
-                    <th>Sr. #</th>
-                    <th>Activity</th>
-                    <th>Start Time</th>
-                    <th>End Time</th>
+                    <th class="session-title-header">Session Title</th>
+                    <th class="time-header">Time</th>
+                    <th class="speaker-header">Speaker</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>1</td><td>REGISTRATION & NETWORKING</td><td>09:00 AM</td><td>10:00 AM</td></tr>
-                  <tr><td>2</td><td>WELCOME & INTRODUCTION</td><td>10:00 AM</td><td>10:05 AM</td></tr>
-                  <tr><td>3</td><td>KEYNOTE ADDRESS : DEAN FACULTY OF COMPUTER SCIENCES, LGU</td><td>10:05 AM</td><td>10:15 AM</td></tr>
-                  <tr><td>4</td><td>SPEAKER SESSION : "AI IN BUILDING PRODUCTS" – BY MR. USMAN ASLAM, FOUNDING DEVREL LEAD @NOTION, SLACK, MIRO</td><td>10:15 AM</td><td>10:40 AM</td></tr>
-                  <tr><td></td><td>Energizer/Giveaways</td><td>10:40 AM</td><td>10:50 AM</td></tr>
-                  <tr><td>5</td><td>SPEAKER SESSION : "GITHUB ACTIONS" – BY MR. SAMSOR REHMAN, GITHUB CAMPUS EXPERT</td><td>10:50 AM</td><td>11:15 AM</td></tr>
-                  <tr><td></td><td>Energizer/Giveaways</td><td>11:15 AM</td><td>11:25 AM</td></tr>
-                  <tr><td>6</td><td>SPEAKER SESSION : "NO CODE/LOW CODE TOOLS" – BY MR. SAAD HASNAIN, PRODUCT MANAGER , NOTION AMBASSADOR</td><td>11:25 AM</td><td>11:50 AM</td></tr>
-                  <tr><td></td><td>Energizer/Giveaways</td><td>11:50 AM</td><td>12:00 PM</td></tr>
-                  <tr><td>7</td><td>PANEL TALK 1 : "COMMUNITIES ECOSYSTEM IN PAKISTAN"</td><td>12:00 PM</td><td>12:25 PM</td></tr>
-                  <tr><td></td><td>Energizer/Giveaways</td><td>12:25 PM</td><td>12:35 PM</td></tr>
-                  <tr><td>8</td><td>SPEAKER SESSION : "HOW TO WIN YOUR FIRST HACKATHON & CODING COMPETITION" – BY DR. ABDUL MATEEN, ASSOCIATE PROFESSOR CS, PUCIT LAHORE</td><td>12:35 PM</td><td>01:00 PM</td></tr>
-                  <tr><td></td><td>Energizer/Giveaways</td><td>01:00 PM</td><td>01:10 PM</td></tr>
-                  <tr><td>9</td><td>GUEST OF HONOR : "GRAB YOUR FIRST CLIENT – 10 TIPS" – BY MR. USMAN ASIF, CEO @ DEVSINC</td><td>01:10 PM</td><td>01:35 PM</td></tr>
-                  <tr><td></td><td>Energizer/Giveaways</td><td>01:35 PM</td><td>01:45 PM</td></tr>
-                  <tr><td>10</td><td>PANEL TALK 2 : "CHOOSING A FINAL YEAR PROJECT"</td><td>01:45 PM</td><td>02:15 PM</td></tr>
-                  <tr><td></td><td>Energizer/Giveaways</td><td>02:15 PM</td><td>02:25 PM</td></tr>
-                  <tr><td>11</td><td>SPEAKER SESSION : "DEVREL – WHAT, WHY & HOW" – BY MR. FAIZAN ASIM, GDGoC LEAD @ UET LAHORE</td><td>02:25 PM</td><td>02:45 PM</td></tr>                  <tr><td>13</td><td>CLOSING CEREMONY (SOUVENIRS & CERTIFICATES)</td><td>02:45 PM</td><td>03:00 PM</td></tr>
-                  <tr><td>14</td><td>REFRESHMENT (INVITEES ONLY)</td><td>03:00 PM</td><td>03:30 PM</td></tr>
+                  <tr><td data-label="Session Title" class="session-title">REGISTRATION & NETWORKING</td><td data-label="Time" class="time-column">09:00 AM - 10:00 AM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr><td data-label="Session Title" class="session-title">WELCOME & INTRODUCTION</td><td data-label="Time" class="time-column">10:00 AM - 10:05 AM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">KEYNOTE ADDRESS</td><td data-label="Time" class="time-column">10:05 AM - 10:15 AM</td><td data-label="Speaker" class="speaker-column">DEAN FACULTY OF COMPUTER SCIENCES, LGU</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">AI IN BUILDING PRODUCTS</td><td data-label="Time" class="time-column">10:15 AM - 10:40 AM</td><td data-label="Speaker" class="speaker-column">MR. USMAN ASLAM</td></tr>
+                  <tr class="energizer-row"><td data-label="Session Title" class="session-title">Energizer/Giveaways</td><td data-label="Time" class="time-column">10:40 AM - 10:50 AM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">GITHUB ACTIONS</td><td data-label="Time" class="time-column">10:50 AM - 11:15 AM</td><td data-label="Speaker" class="speaker-column">MR. SAMSOR REHMAN</td></tr>
+                  <tr class="energizer-row"><td data-label="Session Title" class="session-title">Energizer/Giveaways</td><td data-label="Time" class="time-column">11:15 AM - 11:25 AM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">NO CODE/LOW CODE TOOLS</td><td data-label="Time" class="time-column">11:25 AM - 11:50 AM</td><td data-label="Speaker" class="speaker-column">MR. SAAD HASNAIN</td></tr>
+                  <tr class="energizer-row"><td data-label="Session Title" class="session-title">Energizer/Giveaways</td><td data-label="Time" class="time-column">11:50 AM - 12:00 PM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">PANEL TALK 1: COMMUNITIES ECOSYSTEM IN PAKISTAN</td><td data-label="Time" class="time-column">12:00 PM - 12:25 PM</td><td data-label="Speaker" class="speaker-column">Panel</td></tr>
+                  <tr class="energizer-row"><td data-label="Session Title" class="session-title">Energizer/Giveaways</td><td data-label="Time" class="time-column">12:25 PM - 12:35 PM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">HOW TO WIN YOUR FIRST HACKATHON & CODING COMPETITION</td><td data-label="Time" class="time-column">12:35 PM - 01:00 PM</td><td data-label="Speaker" class="speaker-column">DR. ABDUL MATEEN</td></tr>
+                  <tr class="energizer-row"><td data-label="Session Title" class="session-title">Energizer/Giveaways</td><td data-label="Time" class="time-column">01:00 PM - 01:10 PM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">GRAB YOUR FIRST CLIENT – 10 TIPS</td><td data-label="Time" class="time-column">01:10 PM - 01:35 PM</td><td data-label="Speaker" class="speaker-column">MR. USMAN ASIF</td></tr>
+                  <tr class="energizer-row"><td data-label="Session Title" class="session-title">Energizer/Giveaways</td><td data-label="Time" class="time-column">01:35 PM - 01:45 PM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">PANEL TALK 2: CHOOSING A FINAL YEAR PROJECT</td><td data-label="Time" class="time-column">01:45 PM - 02:15 PM</td><td data-label="Speaker" class="speaker-column">Panel</td></tr>
+                  <tr class="energizer-row"><td data-label="Session Title" class="session-title">Energizer/Giveaways</td><td data-label="Time" class="time-column">02:15 PM - 02:25 PM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">DEVREL – WHAT, WHY & HOW</td><td data-label="Time" class="time-column">02:25 PM - 02:45 PM</td><td data-label="Speaker" class="speaker-column">MR. FAIZAN ASIM</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">CLOSING CEREMONY (SOUVENIRS & CERTIFICATES)</td><td data-label="Time" class="time-column">02:45 PM - 03:00 PM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
+                  <tr class="highlight-row"><td data-label="Session Title" class="session-title">REFRESHMENT (INVITEES ONLY)</td><td data-label="Time" class="time-column">03:00 PM - 03:30 PM</td><td data-label="Speaker" class="speaker-column">-</td></tr>
                 </tbody>
               </table>
             </div>
