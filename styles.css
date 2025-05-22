@@ -1,48 +1,110 @@
 :root {
+    /* Premium Color Palette */
     --primary-color: #A3FF2E;
-    /* Bright Green */
+    --primary-dark: #80E622;
+    --primary-light: #C6FF4D;
     --secondary-color: #ffffff;
-    /* White */
     --accent-color: #A3FF2E;
+    --accent-dark: #80E622;
+    --accent-light: #C6FF4D;
     --background-color: #0a0a0a;
+    --background-dark: #080808;
+    --background-light: #121212;
     --card-bg: #111111;
+    --card-bg-dark: #0f0f0f;
+    --card-bg-light: #131313;
     --text-color: #ffffff;
-    /* Increased contrast */
     --text-secondary: #f0f0f0;
-    /* Further increased contrast for better visibility */
-    --border-radius: 8px;
+    --text-tertiary: #d0d0d0;
+    --text-muted: #777777;
+    --text-disabled: #555555;
+    
+    /* Spacing System */
+    --spacing-xxs: 0.25rem;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    --spacing-xxxl: 4rem;
+    
+    /* Border Radius */
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 24px;
+    
+    /* Box Shadows */
+    --box-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --box-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25);
+    --box-shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.3);
+    --box-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.35);
+    
+    /* Transition Effects */
     --transition-speed: 0.3s;
-    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    --header-height: 80px;
-    --header-height-collapsed: 60px;
+    --transition-speed-slow: 0.4s;
+    --transition-speed-fast: 0.2s;
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-ease-out: cubic-bezier(0.4, 0, 1, 1);
+    
+    /* Typography */
     --font-primary: 'Space Grotesk', sans-serif;
     --font-secondary: 'Inter', sans-serif;
-    --border-color-subtle: rgba(163, 255, 46, 0.15);
-    --accent-blue-muted: #4361ee;
-    /* Updated accessibility variables */
-    --text-high-contrast: #ffffff;
-    --text-medium-contrast: #f0f0f0;
-    --text-low-contrast: #d0d0d0;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    
+    /* Border Colors */
+    --border-color-subtle: rgba(163, 255, 46, 0.2);
+    --border-color-strong: rgba(163, 255, 46, 0.5);
+    --border-color-hover: rgba(163, 255, 46, 0.3);
+    
+    /* Glass Effect */
+    --glass-bg: rgba(17, 17, 17, 0.9);
+    --glass-bg-strong: rgba(17, 17, 17, 0.95);
+    --glass-bg-light: rgba(17, 17, 17, 0.85);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --glass-border-strong: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* Focus States */
     --focus-outline-color: #A3FF2E;
     --focus-outline: 3px solid var(--focus-outline-color);
-    /* Spacing scale for consistent layout */
-    --spacing-xs: 0.5rem;
-    /* 8px */
-    --spacing-sm: 1rem;
-    /* 16px */
-    --spacing-md: 1.5rem;
-    /* 24px */
-    --spacing-lg: 2rem;
-    /* 32px */
-    --spacing-xl: 3rem;
-    /* 48px 
-    --spacing-2xl: 4rem;
-    /* 64px */
-    /* Interactive state colors */
-    --hover-bg: rgba(163, 255, 46, 0.15);
-    --active-bg: rgba(163, 255, 46, 0.25);
+    --focus-ring: 2px solid var(--focus-outline-color);
+    
+    /* Responsive Breakpoints */
+    --breakpoint-mobile: 480px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1024px;
+    --breakpoint-wide: 1440px;
+    
+    /* Header Dimensions */
+    --header-height: 80px;
+    --header-height-collapsed: 60px;
+    --header-padding: var(--spacing-md);
+    
+    /* Utility Variables */
+    --max-width: 1200px;
+    --container-padding: var(--spacing-xl);
+    --section-padding: var(--spacing-xxl);
+    
+    /* Animation Variables */
+    --animation-duration: 0.6s;
+    --animation-delay: 0.2s;
+    --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Interactive States */
+    --hover-bg: rgba(163, 255, 46, 0.2);
+    --active-bg: rgba(163, 255, 46, 0.3);
     --disabled-bg: #333333;
     --disabled-text: #777777;
+    
+    /* Gradient Variables */
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+    --gradient-background: linear-gradient(135deg, var(--background-color) 0%, var(--background-dark) 100%);
+    --glass-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 

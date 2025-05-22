@@ -1,7 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize GSAP ScrollTrigger
+    // Performance optimization - defer non-critical scripts
+    const deferScripts = () => {
+        const scripts = [
+            'gsap.min.js',
+            'ScrollTrigger.min.js',
+            'script.js'
+        ];
+        
+        scripts.forEach(script => {
+            const el = document.createElement('script');
+            el.src = script;
+            el.defer = true;
+            document.head.appendChild(el);
+        });
+    };
+    deferScripts();
+
+    // Initialize GSAP ScrollTrigger with performance optimizations
     if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
         gsap.registerPlugin(ScrollTrigger);
+        ScrollTrigger.config({
+            autoRefreshEvents: 'resize, orientationchange, visibilitychange',
+            ignoreMobileResize: true
+        });
     }
 
     // DOM Elements
@@ -317,38 +338,78 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Setup animations
+    // Setup animations with performance optimizations
     function setupAnimations() {
-        if (typeof gsap === 'undefined') return;
-
-        // Use will-change for elements that will animate
-        document.querySelectorAll('.hero-content h1, .hero-content p, .hero-content .btn, .tech-sphere')
-            .forEach(el => el.style.willChange = 'transform, opacity');
-
-        // Batch animations
-        const heroAnimations = gsap.timeline();
-        heroAnimations
-            .from('.hero-content h1', { opacity: 0, y: 30, duration: 0.8 })
-            .from('.hero-content p', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
-            .from('.hero-content .btn', { opacity: 0, y: 20, duration: 0.8 }, '-=0.4')
-            .from('.tech-sphere', { opacity: 0, scale: 0.8, duration: 1 }, '-=0.6');
-
-        // Optimize scroll-triggered animations
-        gsap.utils.toArray('.section').forEach(section => {
-            const elements = section.querySelectorAll('.section-title, .section-intro');
-            elements.forEach(el => el.style.willChange = 'transform, opacity');
-            
-            ScrollTrigger.batch(elements, {
-                onEnter: batch => gsap.from(batch, {
-                    opacity: 0,
-                    y: 30,
-                    duration: 0.6,
-                    stagger: 0.1
-                }),
-                once: true
-            });
+        // Smooth scroll animations
+        gsap.to('.section-title', {
+            scrollTrigger: {
+                trigger: '.section',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out'
         });
-    }
+
+    // Card animations with stagger
+    gsap.utils.toArray('.speaker-card, .organizer-card').forEach((card) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            stagger: 0.1
+        });
+    });
+
+    // Smooth scroll animations
+    gsap.to('.section-title', {
+        scrollTrigger: {
+            trigger: '.section',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+    });
+
+    // Card animations with stagger
+    gsap.utils.toArray('.speaker-card, .organizer-card').forEach((card, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            stagger: 0.1
+        });
+    });
+
+    // Parallax effect on scroll
+    gsap.to('.bg-particles', {
+        scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true
+        },
+        y: '100%',
+        ease: 'none'
+    });
+}
+
+// ... (rest of the code remains the same)
 
     // Create background particles
     function createBackgroundParticles() {
@@ -1399,5 +1460,5 @@ function setupGalleryView() {
             });
             announcementOverlay.setAttribute('data-inline-click-listener-attached', 'true');
         }
-    });
-});
+    };
+}
