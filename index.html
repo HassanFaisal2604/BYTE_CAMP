@@ -145,7 +145,98 @@
                 letter-spacing: -0.03em;
                 margin-top: 1rem;
             }
-        }    </style>    <!-- Preload main stylesheet, then load non-blocking -->
+        }    
+        
+        /* Modern button styling */
+        .lumabtn-main, .lumabtn-content {
+            background: linear-gradient(90deg, #2ecc71, #00c853);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .lumabtn-main:hover, .lumabtn-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.4);
+            background: linear-gradient(90deg, #00c853, #2ecc71);
+        }
+        
+        .lumabtn-main:active, .lumabtn-content:active {
+            transform: translateY(1px);
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+        }
+        
+        /* Add a subtle pulse animation */
+        @keyframes subtle-pulse {
+            0% { box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3); }
+            50% { box-shadow: 0 6px 20px rgba(46, 204, 113, 0.5); }
+            100% { box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3); }
+        }
+        
+        .lumabtn-main, .lumabtn-content {
+            animation: subtle-pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .hero-visual {
+                display: none !important;
+            }
+            
+            .tech-sphere {
+                display: none !important;
+            }
+            
+            .bg-particles {
+                display: none !important;
+            }
+            
+            /* Increase the size of the title text on mobile */
+            .highlight-title h1 {
+                font-size: 5rem !important;
+                line-height: 1;
+                letter-spacing: -0.03em;
+                margin-top: 1rem;
+            }
+            
+            /* Make buttons more prominent on mobile */
+            .lumabtn-main, .lumabtn-content {
+                padding: 16px 30px;
+                font-size: 1.2rem;
+                margin: 15px auto;
+                display: block;
+                text-align: center;
+                width: 85%;
+                max-width: 300px;
+                border-radius: 40px;
+                background: linear-gradient(90deg, #00e676, #00c853);
+                box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
+                animation: mobile-pulse 2s infinite;
+            }
+            
+            /* Mobile-specific button animation */
+            @keyframes mobile-pulse {
+                0% { transform: scale(1); box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4); }
+                50% { transform: scale(1.02); box-shadow: 0 10px 25px rgba(46, 204, 113, 0.5); }
+                100% { transform: scale(1); box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4); }
+            }
+        }
+    </style>    <!-- Preload main stylesheet, then load non-blocking -->
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="styles.css"></noscript>
 
