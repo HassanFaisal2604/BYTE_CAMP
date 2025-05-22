@@ -523,10 +523,10 @@ p {
         height: 44px;
     }
     .logo {
-        height: 36px;
-        max-width: 60px;
-        padding: 2px 2px;
-        margin: 0 0 0 -4px;
+        height: 28px;
+        max-width: 44px;
+        padding: 1px 1px;
+        margin: 0 0 0 -2px;
     }
     .header-date-register {
         gap: 0.2rem;
