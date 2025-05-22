@@ -23,11 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
             autoRefreshEvents: 'resize, orientationchange, visibilitychange',
             ignoreMobileResize: true
         });
-    }
-
-    // DOM Elements
+    }    // DOM Elements
     const header = document.getElementById('site-header');
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mainNav = document.getElementById('main-nav');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     const registerBtns = document.querySelectorAll('.register-btn');
@@ -183,17 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    }
-
-    // Set up the date link click handler
+    }    // Set up the date link click handler
     setupDateLinkClick();
-
-    // Mobile menu toggle
-    function toggleMobileMenu() {
-        mobileMenuToggle.classList.toggle('active');
-        mainNav.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
-    }
 
     // Scroll to top functionality
     function scrollToTop() {
@@ -411,38 +399,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ... (rest of the code remains the same)
 
-    // Create background particles
-    function createBackgroundParticles() {
-        const particlesContainer = document.querySelector('.bg-particles');
-        if (!particlesContainer) return;
+// Create background particles
+function createBackgroundParticles() {
+    // Don't create particles on mobile devices
+    if (window.innerWidth <= 768) return;
+    
+    const particlesContainer = document.querySelector('.bg-particles');
+    if (!particlesContainer) return;
 
-        // Reduce particle count on mobile
-        const particleCount = window.innerWidth <= 768 ? 25 : 50;
-        const fragment = document.createDocumentFragment();
+    // Only create particles on desktop
+    const particleCount = 50;
+    const fragment = document.createDocumentFragment();
 
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            // Use CSS custom properties for better performance
-            particle.style.cssText = `
-                --x: ${Math.random() * 100}%;
-                --y: ${Math.random() * 100}%;
-                --size: ${Math.random() * 3 + 1}px;
-                --opacity: ${Math.random() * 0.5 + 0.1};
-                --duration: ${Math.random() * 20 + 10}s;
-                --delay: ${Math.random() * 5}s;
-            `;
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Use CSS custom properties for better performance
+        particle.style.cssText = `
+            --x: ${Math.random() * 100}%;
+            --y: ${Math.random() * 100}%;
+            --size: ${Math.random() * 3 + 1}px;
+            --opacity: ${Math.random() * 0.5 + 0.1};
+            --duration: ${Math.random() * 20 + 10}s;
+            --delay: ${Math.random() * 5}s;
+        `;
 
-            fragment.appendChild(particle);
-        }
-
-        particlesContainer.appendChild(fragment);
+        fragment.appendChild(particle);
     }
 
-    // Progressive/lazy loading for gallery images
-    function progressiveGalleryImages() {
-        const galleryImgs = document.querySelectorAll('.gallery-grid img[data-src]');
+    particlesContainer.appendChild(fragment);
+}
+
+// Progressive/lazy loading for gallery images
+function progressiveGalleryImages() {
+    const galleryImgs = document.querySelectorAll('.gallery-grid img[data-src]');
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
@@ -478,12 +477,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (window.innerWidth > 768) updateParallaxPositions();
                 scrollTimeout = null;
             });
-        }
-    }, { passive: true });
-
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-    }
+        }    }, { passive: true });
 
     if (scrollTopBtn) {
         scrollTopBtn.addEventListener('click', scrollToTop);

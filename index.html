@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0a0a0a">
     <meta name="description" content="BYTE CAMP 2025 - An exclusive event for tech enthusiasts to Code, Create, and Conquer. Join us on May 29th for an unforgettable experience.">
     <title>BYTE CAMP 2025 - Code. Create. Conquer. | Tech Conference</title>
@@ -30,6 +30,22 @@
 
     <!-- 3) Load Vercel's speed insights runtime -->
     <script defer src="/_vercel/speed-insights/script.js"></script>
+
+    <script>
+        // Immediately hide spheres and particles on mobile
+        (function() {
+            if (window.innerWidth <= 768) {
+                // Hide all sphere and particle elements
+                var elements = ['hero-visual', 'tech-sphere', 'bg-particles', 'sphere-element'];
+                elements.forEach(function(className) {
+                    var els = document.getElementsByClassName(className);
+                    for (var i = 0; i < els.length; i++) {
+                        els[i].style.display = 'none';
+                    }
+                });
+            }
+        })();
+    </script>
 
     <style>
         /* CRITICAL CSS - MINIMAL FOR ABOVE-THE-FOLD */
@@ -100,6 +116,35 @@
             color: #ffffff;
             opacity: 1;
             transform: translateY(-2px);
+        }
+        
+        /* Mobile view adjustments for sphere and content */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .hero-visual {
+                display: none !important;
+            }
+            
+            .tech-sphere {
+                display: none !important;
+            }
+            
+            .bg-particles {
+                display: none !important;
+            }
+            
+            /* Increase the size of the title text on mobile */
+            .highlight-title h1 {
+                font-size: 5rem !important;
+                line-height: 1;
+                letter-spacing: -0.03em;
+                margin-top: 1rem;
+            }
         }    </style>    <!-- Preload main stylesheet, then load non-blocking -->
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="styles.css"></noscript>
@@ -154,7 +199,7 @@
     <div id="scroll-progress-indicator"></div>
 
     <!-- Background Elements -->
-    <div class="bg-particles"></div>
+    <div class="bg-particles" style="display: none !important;"></div>
     <div class="bg-gradient"></div>
     <!-- Loading Spinner -->
     <div id="loading-spinner">
@@ -165,9 +210,7 @@
         <div class="container header-container">
             <div class="logo-container">
                 <img src="/logo.png" alt="BYTE CAMP Logo" class="logo" width="150" height="50">
-            </div>
-
-            <div class="header-date-register">
+            </div>            <div class="header-date-register">
                 <a href="#event-details" class="event-date header-event-date">
                     <i class="far fa-calendar-alt"></i> 29 May
                 </a>
@@ -182,20 +225,7 @@
                 </a>
             </div>
 
-            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-
-            <nav class="main-nav" id="main-nav">
-                <ul>
-                    <li><a href="#whatIsByteCamp">About</a></li>
-                    <li><a href="#schedule">Schedule</a></li>
-                    <li><a href="#speakers">Speakers</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                </ul>
-            </nav>
+            
         </div>
     </header>
 
@@ -223,8 +253,8 @@
                       Register for Event
                     </a>
                 </div>
-                <div class="hero-visual">
-                    <div class="tech-sphere">
+                <div class="hero-visual" style="display: none;">
+                    <div class="tech-sphere" style="display: none;">
                         <div class="sphere-element"></div>
                         <div class="sphere-element"></div>
                         <div class="sphere-element"></div>
@@ -425,7 +455,6 @@
                     </div>
                     <div class="organizer-card">
                         <div class="organizer-image">
-                            <img src="or_pics/Advisor.webp" alt="Muhammad Bilal Butt" loading="lazy">
                         </div>
                         <div class="organizer-info">
                             <h3>Muhammad Bilal Butt</h3>
