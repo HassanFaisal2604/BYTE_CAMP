@@ -2202,6 +2202,7 @@ p {
     background-color: rgba(17, 17, 17, 0.8);
     border-top: 1px solid rgba(163, 255, 46, 0.1);
     border-bottom: 1px solid rgba(163, 255, 46, 0.1);
+    overflow: hidden;
 }
 
 .section-subtitle {
@@ -2223,17 +2224,50 @@ p {
 .sponsor-logos-container {
     width: 100%;
     text-align: center;
+    overflow: hidden;
+    position: relative;
 }
 
-.sponsor-logos {
-    display: flex;
-    justify-content: center;
+.sponsor-logos-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    mask: linear-gradient(
+        90deg,
+        transparent,
+        white 20%,
+        white 80%,
+        transparent
+    );
+    -webkit-mask: linear-gradient(
+        90deg,
+        transparent,
+        white 20%,
+        white 80%,
+        transparent
+    );
+}
+
+.sponsor-logos-track {
+    display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
     gap: var(--spacing-xl);
-    padding: var(--spacing-lg);
-    max-width: 1000px;
-    margin: 0 auto;
+    animation: scroll-logos 30s linear infinite;
+    padding: var(--spacing-lg) 0;
+}
+
+/* Pause animation on hover for better UX */
+.sponsor-logos-wrapper:hover .sponsor-logos-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-logos {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .sponsor-logo {
@@ -2250,6 +2284,8 @@ p {
     transition: all var(--transition-speed) ease;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
 .sponsor-logo::before {
@@ -2263,10 +2299,16 @@ p {
 }
 
 .sponsor-logo:hover {
-    transform: translateY(-8px);
+    transform: translateY(-8px) scale(1.05);
     border-color: var(--primary-color);
-    box-shadow: 0 10px 25px rgba(163, 255, 46, 0.2);
-    background-color: rgba(163, 255, 46, 0.05);
+    box-shadow: 0 15px 35px rgba(163, 255, 46, 0.25);
+    background-color: rgba(163, 255, 46, 0.08);
+    z-index: 10;
+}
+
+.sponsor-logo:hover::before {
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
 }
 
 .sponsor-logo img {
@@ -2280,8 +2322,8 @@ p {
 }
 
 .sponsor-logo:hover img {
-    filter: brightness(1.1) contrast(1.2);
-    transform: scale(1.05);
+    filter: brightness(1.15) contrast(1.2);
+    transform: scale(1.08);
 }
 
 /* SVG logo styling */
@@ -2294,7 +2336,7 @@ p {
 
 .sponsor-logo:hover svg {
     color: var(--primary-color);
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .sponsor-logo span {
@@ -2318,9 +2360,9 @@ p {
 
 /* Responsive Design for Sponsors Section */
 @media (max-width: 1024px) {
-    .sponsor-logos {
+    .sponsor-logos-track {
         gap: var(--spacing-lg);
-        max-width: 800px;
+        animation-duration: 25s;
     }
     
     .sponsor-logo {
@@ -2330,10 +2372,10 @@ p {
 }
 
 @media (max-width: 768px) {
-    .sponsor-logos {
+    .sponsor-logos-track {
         gap: var(--spacing-md);
-        padding: var(--spacing-md);
-        max-width: 600px;
+        animation-duration: 20s;
+        padding: var(--spacing-md) 0;
     }
     
     .sponsor-logo {
@@ -2348,7 +2390,48 @@ p {
     
     .github-logo, .notion-logo {
         width: 50px !important;
-        height: 50px !important;    }
+        height: 50px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .sponsor-logos-track {
+        gap: var(--spacing-sm);
+        animation-duration: 15s;
+    }
+    
+    .sponsor-logo {
+        width: 120px;
+        height: 90px;
+    }
+    
+    .sponsor-logo img {
+        max-height: 50px;
+    }
+    
+    .github-logo, .notion-logo {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .sponsor-logos-track {
+        animation: none;
+    }
+    
+    .sponsor-logos-wrapper {
+        mask: none;
+        -webkit-mask: none;
+    }
+    
+    .sponsor-logos-track {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        white-space: normal;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2472,7 +2555,7 @@ p {
 }
 
 .partner-logo img {
-    max-width: 100%;
+    max-width:  100%;
     max-height: 100px;
     width: auto;
     height: auto;
@@ -2486,60 +2569,79 @@ p {
     transform: scale(1.08);
 }
 
-/* Responsive Design for Partners Section */
-@media (max-width: 1024px) {
-    .partner-logos {
-        gap: var(--spacing-lg);
-        max-width: 600px;
-    }
-    
-    .partner-logo {
-        width: 200px;
-        height: 130px;
-    }
+/* Partner link styles for clickable partners like YouTube channels */
+.partner-logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed) ease;
 }
 
+.partner-logo-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.partner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+    height: 100%;
+}
+
+/* YouTube logo styling */
+.youtube-logo {
+    width: 60px;
+    height: 60px;
+    color: #ff0000;
+    transition: all var(--transition-speed) ease;
+}
+
+.partner-logo-link:hover .youtube-logo {
+    color: #ff3333;
+    transform: scale(1.1);
+}
+
+.partner-content span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+    letter-spacing: 0.5px;
+    transition: color var(--transition-speed) ease;
+    text-align: center;
+}
+
+.partner-logo-link:hover .partner-content span {
+    color: var(--primary-color);
+}
+
+/* Responsive adjustments for partner links */
 @media (max-width: 768px) {
-    .partners {
-        padding: var(--spacing-xl) 0;
+    .youtube-logo {
+        width: 50px;
+        height: 50px;
     }
     
-    .partners .section-title {
-        font-size: 2rem;
-    }
-    
-    .partner-logos {
-        gap: var(--spacing-md);
-        padding: var(--spacing-md);
-        max-width: 500px;
-    }
-    
-    .partner-logo {
-        width: 180px;
-        height: 120px;
-        padding: var(--spacing-md);
-    }
-    
-    .partner-logo img {
-        max-height: 80px;
+    .partner-content span {
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 480px) {
-    .partner-logos {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-        max-width: 300px;
+    .youtube-logo {
+        width: 45px;
+        height: 45px;
     }
     
-    .partner-logo {
-        width: 100%;
-        height: 100px;
-    }
-    
-    .partner-logo img {
-        max-height: 60px;
+    .partner-content span {
+        font-size: 0.75rem;
     }
 }
 
