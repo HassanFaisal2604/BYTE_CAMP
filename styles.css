@@ -2158,21 +2158,4 @@ p {
   }
 }
 
-/* Menu Overlay for mobile */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 990; /* Below the menu but above other content */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
 
-.menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}

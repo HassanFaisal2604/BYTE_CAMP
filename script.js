@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded'), function() {
     // Performance optimization - defer non-critical scripts
     const deferScripts = () => {
         const scripts = [
@@ -442,30 +442,22 @@ function progressiveGalleryImages() {
                     if (img.dataset.src) {
                         img.src = img.dataset.src;
                         img.removeAttribute('data-src');
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.dataset.src) {
-                            img.src = img.dataset.src;
-                            img.removeAttribute('data-src');
-                        }
-                        obs.unobserve(img);
                     }
-                });
-            }, { rootMargin: '200px' });
-            galleryImgs.forEach(img => observer.observe(img));
-        } else {
-            // Fallback: load all images
-            galleryImgs.forEach(img => {
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
+                    obs.unobserve(img);
                 }
             });
-        }
+        }, { rootMargin: '200px' });
+        galleryImgs.forEach(img => observer.observe(img));
+    } else {
+        // Fallback: load all images
+        galleryImgs.forEach(img => {
+            if (img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+            }
+        });
     }
+}
 
     // Event Listeners
     let scrollTimeout;
@@ -754,7 +746,7 @@ function progressiveGalleryImages() {
                 break;
         }
     });
-});
+};
 
 // Show loading spinner on page load and hide when ready
 window.addEventListener('load', function() {
@@ -1076,27 +1068,10 @@ function setupGalleryView() {
     if (!galleryModal) {
         galleryModal = document.createElement('div');
         galleryModal.className = 'gallery-modal';
+
         galleryModal.setAttribute('role', 'dialog');
         galleryModal.setAttribute('aria-modal', 'true');
         galleryModal.setAttribute('aria-label', 'Image gallery');
-
-        galleryModal.innerHTML = `
-            <div class="gallery-modal-content">
-                <img src="" alt="" class="gallery-modal-image">
-                <div class="gallery-modal-caption"></div>
-                <button class="gallery-modal-close" aria-label="Close gallery">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="gallery-controls">
-                    <button class="gallery-control gallery-prev" aria-label="Previous image">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="gallery-control gallery-next" aria-label="Next image">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        `;
         document.body.appendChild(galleryModal);
     }
 
@@ -1127,6 +1102,7 @@ function setupGalleryView() {
             }
         });
     });
+}
 
     // Setup modal functionality
     const modalImage = galleryModal.querySelector('.gallery-modal-image');
@@ -1209,6 +1185,7 @@ function setupGalleryView() {
             }
         });
     }
+    
 
     // Enhance hover effects for better interactive feedback
     function enhanceInteractiveElements() {
@@ -1454,5 +1431,4 @@ function setupGalleryView() {
             });
             announcementOverlay.setAttribute('data-inline-click-listener-attached', 'true');
         }
-    };
-}
+    }
