@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded'), function() {
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     // Performance optimization - defer non-critical scripts
     const deferScripts = () => {
         const scripts = [
@@ -155,10 +156,13 @@ document.addEventListener('DOMContentLoaded'), function() {
                 const targetId = this.getAttribute('href') || '#event-details';
                 const targetElement = document.querySelector(targetId);
 
-                if (targetElement) {
-                    // Close mobile menu if open
+                if (targetElement) {                    // Close mobile menu if open
                     if (mainNav && mainNav.classList.contains('active')) {
-                        toggleMobileMenu();
+                        // Use the mobile menu close functionality
+                        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                        if (mobileMenuToggle) {
+                            mobileMenuToggle.click();
+                        }
                     }
 
                     // Get header height for offset
@@ -292,11 +296,12 @@ document.addEventListener('DOMContentLoaded'), function() {
     function setupSmoothScroll() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                // Close mobile menu if open
+                e.preventDefault();                // Close mobile menu if open
                 if (mainNav.classList.contains('active')) {
-                    toggleMobileMenu();
+                    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                    if (mobileMenuToggle) {
+                        mobileMenuToggle.click();
+                    }
                 }
 
                 const targetId = this.getAttribute('href');
@@ -393,11 +398,8 @@ document.addEventListener('DOMContentLoaded'), function() {
             scrub: true
         },
         y: '100%',
-        ease: 'none'
-    });
+        ease: 'none'    });
 }
-
-// ... (rest of the code remains the same)
 
 // Create background particles
 function createBackgroundParticles() {
@@ -528,9 +530,86 @@ function progressiveGalleryImages() {
     enhanceGallery();
     addSocialIconHoverEffects();
     setupMobileMenu();
-    setupScrollToTop();
-    setupParallaxEffect();
-    setupDateLinkClick();
+    setupScrollToTop();    setupParallaxEffect();    setupDateLinkClick();
+
+    // Countdown Timer Functionality
+    function initializeCountdownTimer() {
+        // Set the target date - May 29, 2025
+        const targetDate = new Date('2025-05-29T10:00:00').getTime();
+
+        // Get countdown elements
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+
+        if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+            console.warn('Countdown elements not found:', {
+                days: !!daysElement,
+                hours: !!hoursElement,
+                minutes: !!minutesElement,
+                seconds: !!secondsElement
+            });
+            return; // Exit if elements don't exist
+        }
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft > 0) {
+                // Calculate time units
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                // Update the display with animation
+                updateNumberWithAnimation(daysElement, days.toString().padStart(2, '0'));
+                updateNumberWithAnimation(hoursElement, hours.toString().padStart(2, '0'));
+                updateNumberWithAnimation(minutesElement, minutes.toString().padStart(2, '0'));
+                updateNumberWithAnimation(secondsElement, seconds.toString().padStart(2, '0'));
+            } else {
+                // Event has started or passed
+                daysElement.textContent = '00';
+                hoursElement.textContent = '00';
+                minutesElement.textContent = '00';
+                secondsElement.textContent = '00';
+                
+                // Optional: Show "Event Started" message
+                const countdownHeader = document.querySelector('.countdown-header h3');
+                if (countdownHeader) {
+                    countdownHeader.textContent = 'Event Has Started!';
+                }
+            }
+        }
+
+        function updateNumberWithAnimation(element, newValue) {
+            if (element.textContent !== newValue) {
+                element.classList.add('updated');
+                element.textContent = newValue;
+                
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    element.classList.remove('updated');
+                }, 500);
+            }
+        }
+
+        // Update countdown immediately
+        updateCountdown();
+
+        // Update countdown every second
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        // Store interval ID for potential cleanup
+        window.countdownInterval = countdownInterval;
+        
+        console.log('Countdown timer initialized successfully');
+    }
+
+    // Initialize countdown timer
+    initializeCountdownTimer();
 
     // Progressive gallery image loading
     progressiveGalleryImages();
@@ -573,16 +652,26 @@ function progressiveGalleryImages() {
     document.addEventListener('DOMContentLoaded', function() {
         // Add these to your existing DOMContentLoaded handler
         setupGalleryView();
-        enhanceInteractiveElements();
-        setupSpeakerModals();
+        enhanceInteractiveElements();        setupSpeakerModals();
         improveScrollToTopButton();
         setupKeyboardFocusStyles();
     });
+}); // End of main DOMContentLoaded
 
-    // New consolidated listener for scripts previously inline in index.html
-    document.addEventListener('DOMContentLoaded', function() {
+// ==================================
+// STANDALONE EVENT LISTENERS  
+// ==================================
 
-        // AOS library initialization (from index.html)
+// Show loading spinner on page load and hide when ready
+window.addEventListener('load', function() {
+    var spinner = document.getElementById('loading-spinner');
+    if (spinner) {
+        spinner.classList.remove('active');
+        spinner.style.display = 'none';
+    }
+});
+
+// AOS library initialization (from index.html)
         if (window.AOS) {
             AOS.init();
         }
@@ -640,7 +729,7 @@ function progressiveGalleryImages() {
                 }
             });
         }
-    });
+
 
     // Gallery Lightbox
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -678,7 +767,7 @@ function progressiveGalleryImages() {
     nextButton.setAttribute('aria-label', 'Next image');
     lightbox.appendChild(nextButton);
 
-    let currentIndex = 0;
+
 
     function openLightbox(index) {
         const item = galleryItems[index];
@@ -744,9 +833,7 @@ function progressiveGalleryImages() {
             case 'ArrowRight':
                 navigateGallery(1);
                 break;
-        }
-    });
-};
+        }    });
 
 // Show loading spinner on page load and hide when ready
 window.addEventListener('load', function() {
@@ -1058,134 +1145,7 @@ function setupParallaxEffect() {
     if (window.innerWidth > 768) updateParallaxPositions();
 }
 
-// Gallery view functionality
-function setupGalleryView() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    if (!galleryItems.length) return;
-
-    // Create modal container if it doesn't exist
-    let galleryModal = document.querySelector('.gallery-modal');
-    if (!galleryModal) {
-        galleryModal = document.createElement('div');
-        galleryModal.className = 'gallery-modal';
-
-        galleryModal.setAttribute('role', 'dialog');
-        galleryModal.setAttribute('aria-modal', 'true');
-        galleryModal.setAttribute('aria-label', 'Image gallery');
-        document.body.appendChild(galleryModal);
-    }
-
-    // Add fullscreen view button to each gallery item
-    galleryItems.forEach((item, index) => {
-        // Make gallery items focusable with keyboard
-        item.setAttribute('tabindex', '0');
-
-        // Add fullscreen button if it doesn't exist
-        if (!item.querySelector('.gallery-view-fullscreen')) {
-            const viewButton = document.createElement('button');
-            viewButton.className = 'gallery-view-fullscreen';
-            viewButton.setAttribute('aria-label', 'View full image');
-            viewButton.innerHTML = '<i class="fas fa-expand-alt"></i>';
-            item.appendChild(viewButton);
-        }
-
-        // Make entire item clickable
-        item.addEventListener('click', (e) => {
-            openGalleryModal(index);
-        });
-
-        // Support keyboard users
-        item.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openGalleryModal(index);
-            }
-        });
-    });
-}
-
-    // Setup modal functionality
-    const modalImage = galleryModal.querySelector('.gallery-modal-image');
-    const modalCaption = galleryModal.querySelector('.gallery-modal-caption');
-    const closeButton = galleryModal.querySelector('.gallery-modal-close');
-    const prevButton = galleryModal.querySelector('.gallery-prev');
-    const nextButton = galleryModal.querySelector('.gallery-next');
-
-    let currentIndex = 0;
-
-    function openGalleryModal(index) {
-        currentIndex = index;
-        updateModalContent();
-        galleryModal.classList.add('active');
-        document.body.classList.add('no-scroll');
-
-        // Focus on close button for keyboard users
-        setTimeout(() => {
-            closeButton.focus();
-        }, 100);
-    }
-
-    function closeGalleryModal() {
-        galleryModal.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-
-        // Return focus to the item that was clicked
-        setTimeout(() => {
-            galleryItems[currentIndex].focus();
-        }, 100);
-    }
-
-    function updateModalContent() {
-        const currentItem = galleryItems[currentIndex];
-        const img = currentItem.querySelector('img');
-        const caption = currentItem.querySelector('.gallery-caption');
-
-        // Update modal content
-        modalImage.src = img.src;
-        modalImage.alt = img.alt;
-
-        //     if (caption) {
-        //         const captionTitle = caption.querySelector('h3') ? .textContent || '';
-        //         const captionText = caption.querySelector('p') ? .textContent || '';
-        //         modalCaption.innerHTML = `<h3>${captionTitle}</h3><p>${captionText}</p>`;
-        //     } else {
-        //         modalCaption.innerHTML = '';
-        //     }
-        // }
-
-        function navigateGallery(direction) {
-            currentIndex = (currentIndex + direction + galleryItems.length) % galleryItems.length;
-            updateModalContent();
-        }
-
-        // Event listeners for modal controls
-        closeButton.addEventListener('click', closeGalleryModal);
-        prevButton.addEventListener('click', () => navigateGallery(-1));
-        nextButton.addEventListener('click', () => navigateGallery(1));
-
-        // Close when clicking outside content area
-        galleryModal.addEventListener('click', (e) => {
-            if (e.target === galleryModal) {
-                closeGalleryModal();
-            }
-        });
-
-        // Keyboard navigation
-        galleryModal.addEventListener('keydown', (e) => {
-            switch (e.key) {
-                case 'Escape':
-                    closeGalleryModal();
-                    break;
-                case 'ArrowLeft':
-                    navigateGallery(-1);
-                    break;
-                case 'ArrowRight':
-                    navigateGallery(1);
-                    break;
-            }
-        });
-    }
-    
+// Gallery view functionality - REMOVED DUPLICATE IMPLEMENTATION
 
     // Enhance hover effects for better interactive feedback
     function enhanceInteractiveElements() {
@@ -1421,9 +1381,7 @@ function setupGalleryView() {
                 closeAnnouncementBtn.addEventListener('click', closePreviouslyAttachedAnnouncement);
                 closeAnnouncementBtn.setAttribute('data-inline-listener-attached', 'true');
             }
-        }
-
-        if (!announcementOverlay.hasAttribute('data-inline-click-listener-attached')) {
+        }        if (!announcementOverlay.hasAttribute('data-inline-click-listener-attached')) {
             announcementOverlay.addEventListener('click', function(e) {
                 if (e.target === announcementOverlay) {
                     closePreviouslyAttachedAnnouncement();
@@ -1431,4 +1389,6 @@ function setupGalleryView() {
             });
             announcementOverlay.setAttribute('data-inline-click-listener-attached', 'true');
         }
-    }
+
+}
+})

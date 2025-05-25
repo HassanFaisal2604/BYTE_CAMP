@@ -319,8 +319,7 @@
         </div>
     </header>
 
-    <main id="main-content">
-        <section class="hero">
+    <main id="main-content">        <section class="hero">
             <div class="container">
                 <div class="hero-content">
                     <div class=highlight-title>
@@ -343,6 +342,36 @@
                       Register for Event
                     </a>
                 </div>
+                
+                <!-- Countdown Timer -->
+                <div class="countdown-container">
+                    <div class="countdown-header">
+                        <h3>Event Starts In</h3>
+                    </div>
+                    <div class="countdown-timer" id="countdown-timer">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">--</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">--</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">--</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">--</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                    <div class="countdown-date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>May 29, 2025</span>
+                    </div>
+                </div>
+                
                 <div class="hero-visual" style="display: none;">
                     <div class="tech-sphere" style="display: none;">
                         <div class="sphere-element"></div>
@@ -437,9 +466,21 @@
         </section>
 
         <section class="section speakers" id="speakers">
-            <div class="container">
-                <h2 class="section-title">Featured Speakers</h2>
+            <div class="container">                <h2 class="section-title">Featured Speakers</h2>
                 <div class="speakers-grid">
+                    <div class="speaker-card" tabindex="0">
+                        <div class="speaker-image">
+                            <img src="Speakers/usmanasif.jpg" alt="Usman Asif - Founder and CEO at Devsinc" loading="lazy" width="300" height="300">
+                            <div class="speaker-overlay"></div>
+                        </div>                        <div class="speaker-info">
+                            <h3>Usman Asif</h3>
+                            <p class="speaker-role">Founder and CEO @ Devsinc</p>
+                            <p class="speaker-bio">As Founder and CEO of Devsinc, Usman has been helping startups and enterprises deliver world-class technology experiences for over 14 years, empowering companies with access to 2000+ software engineers.</p>
+                            <button class="speaker-more-btn" aria-label="Learn more about Usman Asif">
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="speaker-card" tabindex="0">
                         <div class="speaker-image">
                             <img src="Speakers/Awais.webp" alt="Awais Kamran - Engineering Lead at Conrad Labs" loading="lazy" width="300" height="300">
@@ -523,8 +564,51 @@
                             </button>
                         </div>
                     </div>
+
+                    <div class="speaker-card" tabindex="0">
+                        <div class="speaker-image">
+                            <img src="Speakers/Samsor.jpg" alt="Samsor Rehman - Community Leader and Tech Enthusiast" loading="lazy">
+                            <div class="speaker-overlay"></div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3>Samsor Rehman</h3>
+                            <p class="speaker-role">Community Leader & Tech Enthusiast</p>
+                            <p class="speaker-bio">Samsor Rehman is a dynamic community leader and tech enthusiast known for empowering youth through innovation and collaboration. He actively contributes to various tech communities, fostering growth and learning opportunities across diverse platforms.</p>
+                            <button class="speaker-more-btn" aria-label="Learn more about Samsor Rehman">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card" tabindex="0">
+                        <div class="speaker-image">
+                            <img src="Speakers/saad.jpg" alt="Saad Hasnain - Notion Ambassador and UX Researcher" loading="lazy">
+                            <div class="speaker-overlay"></div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3>Saad Hasnain</h3>
+                            <p class="speaker-role">Notion Ambassador & UX Researcher</p>
+                            <p class="speaker-bio">Saad Hasnain is a Notion Ambassador and UX researcher based in Lahore, Pakistan, known for founding Notion Community Pakistan and leading regional user groups across the Middle East.</p>
+                            <button class="speaker-more-btn" aria-label="Learn more about Saad Hasnain">
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="speaker-card" tabindex="0">
+                        <div class="speaker-image">
+                            <img src="Speakers/Usman.jpg" alt="Usman Aslam - Ecosystem Builder and Strategist" loading="lazy">
+
+                            <div class="speaker-overlay"></div>
+                        </div>
+                        <div class="speaker-info">
+                            <h3>Usman Aslam</h3>
+                            <p class="speaker-role">Ecosystem Builder & Strategist</p>
+                            <p class="speaker-bio">Usman Aslam is an experienced ecosystem builder and strategist with 8 years in the tech and entrepreneurial space, collaborating with global platforms like Microsoft, Google, and TEDx.</p>
+                            <button class="speaker-more-btn" aria-label="Learn more about Usman Aslam">
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div>  
         </section>
 
         <section class="section organizers">
@@ -545,6 +629,7 @@
                     </div>
                     <div class="organizer-card">
                         <div class="organizer-image">
+                        <img src="or_pics/Bilal.webp" alt="Muhammad Bilal Butt" loading="lazy">
                         </div>
                         <div class="organizer-info">
                             <h3>Muhammad Bilal Butt</h3>
@@ -806,6 +891,62 @@
             </div>
         </section>
 
+        <!-- Sponsors Section -->
+        <section class="section sponsors" id="sponsors">
+            <div class="container">
+                <h2 class="section-title">Our Sponsors</h2>
+                <p class="section-subtitle">We are grateful to our sponsors who make BYTE CAMP possible</p>
+                  <div class="sponsors-grid">
+                    <div class="sponsor-logos-container">
+                        <div class="sponsor-logos">
+                            <div class="sponsor-logo">
+                                <img src="sponsers/defang-white-colour.af814d05.png" alt="Defang" loading="lazy">
+                            </div>
+                            <div class="sponsor-logo">
+                                <svg viewBox="0 0 24 24" fill="currentColor" class="github-logo">
+                                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                                </svg>
+                                <span>GitHub</span>
+                            </div>
+                            <div class="sponsor-logo">
+                                <svg viewBox="0 0 24 24" fill="currentColor" class="notion-logo">
+                                    <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/>
+                                </svg>
+                                <span>Notion</span>
+                            </div>
+                            <div class="sponsor-logo">
+                                <img src="sponsers/Logo.webp" alt="Event Sponsor" loading="lazy">
+                            </div>
+                            <div class="sponsor-logo">
+                                <img src="sponsers/organic.webp" alt="Organic" loading="lazy">
+                            </div>
+                            <div class="sponsor-logo">
+                                <img src="sponsers/image.png" alt="Partner" loading="lazy">
+                            </div>
+                        </div>
+                    </div>                </div>
+            </div>        </section>
+
+        <!-- Partners Section -->
+        <section class="section partners" id="partners">
+            <div class="container">
+                <h2 class="section-title">Our Partners</h2>
+                <p class="section-subtitle">Collaborating with leading organizations to empower the tech community</p>
+                <div class="partners-grid">
+                    <div class="partner-logos-container">
+                        <div class="partner-logos">
+                            <div class="partner-logo">
+                                <img src="partners/devsinc.png" alt="Devsinc" loading="lazy">
+                            </div>
+                            <div class="partner-logo">
+                                <img src="partners/fastn.png" alt="Fastn" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Code of Conduct Section -->
         <section class="section code-of-conduct" id="code-of-conduct">
             <div class="container">
@@ -919,10 +1060,61 @@
                 </div>
             </div>
         </div>
-    </footer>
-
-    <script src="script.js" defer></script>
+    </footer>    <script src="script.js" defer></script>
     <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+    
+    <!-- Countdown Timer Debug Script -->
+    <script>
+        // Simple countdown timer fallback
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                const daysElement = document.getElementById('days');
+                const hoursElement = document.getElementById('hours');
+                const minutesElement = document.getElementById('minutes');
+                const secondsElement = document.getElementById('seconds');
+                
+                console.log('Countdown elements found:', {
+                    days: !!daysElement,
+                    hours: !!hoursElement,
+                    minutes: !!minutesElement,
+                    seconds: !!secondsElement
+                });
+                
+                if (daysElement && hoursElement && minutesElement && secondsElement) {
+                    // Simple manual countdown for May 29, 2025
+                    function updateTimer() {
+                        const targetDate = new Date('2025-05-29T10:00:00').getTime();
+                        const now = new Date().getTime();
+                        const timeLeft = targetDate - now;
+                        
+                        if (timeLeft > 0) {
+                            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                            
+                            daysElement.textContent = days.toString().padStart(2, '0');
+                            hoursElement.textContent = hours.toString().padStart(2, '0');
+                            minutesElement.textContent = minutes.toString().padStart(2, '0');
+                            secondsElement.textContent = seconds.toString().padStart(2, '0');
+                        } else {
+                            daysElement.textContent = '00';
+                            hoursElement.textContent = '00';
+                            minutesElement.textContent = '00';
+                            secondsElement.textContent = '00';
+                        }
+                    }
+                    
+                    // Update immediately and then every second
+                    updateTimer();
+                    setInterval(updateTimer, 1000);
+                    console.log('Countdown timer started successfully');
+                } else {
+                    console.error('Countdown elements not found');
+                }
+            }, 100);
+        });
+    </script>
 </body>
 
 </html>
