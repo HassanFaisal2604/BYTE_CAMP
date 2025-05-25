@@ -2645,4 +2645,13 @@ p {
     }
 }
 
+/* Zoom effect for Organic Heritage sponsor logo */
+.sponsor-logo img[alt="Organic Heritage"] {
+    transform: scale(1.12);
+    transition: transform 0.3s;
+}
+.sponsor-logo img[alt="Organic Heritage"]:hover {
+    transform: scale(1.18);
+}
+
 
