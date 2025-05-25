@@ -1350,7 +1350,7 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 4px;
     background: linear-gradient(90deg, var(--primary-color), transparent);
 }
 
@@ -2652,6 +2652,34 @@ p {
 }
 .sponsor-logo img[alt="Organic Heritage"]:hover {
     transform: scale(1.18);
+}
+
+/* Move countdown timer towards the right on desktop */
+@media (min-width: 1024px) {
+  .hero .countdown-container {
+    margin-left: 60px;
+  }
+}
+
+/* Center the scroll-indicator at the bottom of the hero section */
+.scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 10;
+  font-size: 2rem;
+  color: var(--primary-color);
+  animation: bounce-down 1.5s infinite;
+}
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+.fa-chevron-down:before {
+  content: "\f078";
 }
 
 
