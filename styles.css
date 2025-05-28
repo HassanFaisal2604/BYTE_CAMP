@@ -2142,10 +2142,18 @@ p {
 }
 
 .session-title {
-  font-weight: 800;
+  font-weight: 900;
   color: #fff;
-  font-size: 1.18rem;
-  letter-spacing: 0.5px;
+  font-size: 1.2rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #A3FF2E 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 8px rgba(163, 255, 46, 0.3);
+  line-height: 1.4;
+  position: relative;
 }
 
 .time-column,
@@ -2154,12 +2162,65 @@ p {
   font-weight: 500;
 }
 
+.highlight-row {
+  background: linear-gradient(135deg, rgba(163, 255, 46, 0.08) 0%, rgba(163, 255, 46, 0.03) 100%);
+  border-left: 4px solid var(--primary-color);
+  position: relative;
+}
+
+.highlight-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(163, 255, 46, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.energizer-row {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.06) 0%, rgba(255, 193, 7, 0.02) 100%);
+  border-left: 4px solid #ffc107;
+  font-style: italic;
+  position: relative;
+}
+
+.energizer-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 193, 7, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
 .highlight-row td,
 .energizer-row td {
   background: none;
   color: #fff;
   font-style: normal;
   border-left: none;
+  position: relative;
+  z-index: 1;
+}
+
+.highlight-row .session-title {
+  background: linear-gradient(135deg, #A3FF2E 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+.energizer-row .session-title {
+  background: linear-gradient(135deg, #ffc107 0%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
