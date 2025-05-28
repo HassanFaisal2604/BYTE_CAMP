@@ -56,34 +56,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (announcementOverlay) {
         // Make sure announcement is initially hidden correctly
         announcementOverlay.style.opacity = '0';
-        announcementOverlay.style.visibility = 'hidden';
-
-        // Use window.onload to ensure the announcement displays after everything is ready
+        announcementOverlay.style.visibility = 'hidden';        // Use window.onload to ensure the announcement displays after everything is ready
         window.addEventListener('load', function() {
-            // Show the announcement after a brief delay
-            setTimeout(function() {
-                announcementOverlay.style.opacity = '1';
-                announcementOverlay.style.visibility = 'visible';
-                announcementOverlay.classList.add('show');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            }, 800);
-        });
-
-        // Function to show CodeCruise alert after announcement is closed
+            // Show the announcement immediately
+            announcementOverlay.style.opacity = '1';
+            announcementOverlay.style.visibility = 'visible';
+            announcementOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });// Function to show CodeCruise alert after announcement is closed
         function showCodeCruiseAfterAnnouncement() {
-            setTimeout(function() {
-                const codecruiseAlert = document.getElementById('codecruise-alert');
-                if (codecruiseAlert) {
-                    const lastShown = localStorage.getItem('codecruise-alert-shown');
-                    const today = new Date().toDateString();
-                    
-                    if (lastShown !== today) {
-                        codecruiseAlert.classList.add('show');
-                        codecruiseModalOpen = true;
-                        document.body.style.overflow = 'hidden';
-                    }
+            const codecruiseAlert = document.getElementById('codecruise-alert');
+            if (codecruiseAlert) {
+                const lastShown = localStorage.getItem('codecruise-alert-shown');
+                const today = new Date().toDateString();
+                
+                if (lastShown !== today) {
+                    codecruiseAlert.classList.add('show');
+                    codecruiseModalOpen = true;
+                    document.body.style.overflow = 'hidden';
                 }
-            }, 1000); // Show CodeCruise alert 1 second after announcement is closed
+            }
         }
 
         // Close announcement when close button is clicked
@@ -329,12 +321,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 title: 'DevOps Engineer',
                 bio: 'Samsor Rehman specializes in DevOps practices and GitHub Actions automation.',
                 image: 'Speakers/Samsor.jpg'
-            },
-            'saad-hasnain': {
-                name: 'Mr. Saad Hasnain',
-                title: 'No-Code/Low-Code Expert',
-                bio: 'Saad Hasnain is an expert in no-code and low-code development platforms.',
-                image: 'Speakers/saad.jpg'
             },
             'abdul-mateen': {
                 name: 'Abdul Mateen',
