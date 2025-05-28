@@ -149,19 +149,1289 @@ a {
     transition: color var(--transition-speed) ease;
 }
 
-a:hover {
-    color: var(--secondary-color);
+/* ===========================
+   CODECRUISE SUBSCRIPTION ALERT 
+   =========================== */
+
+.codecruise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
-a:focus {
-    outline: 2px solid var(--focus-outline-color);
-    outline-offset: 3px;
+.codecruise-overlay.show {
+    opacity: 1;
+    visibility: visible;
 }
 
-ul {
-    list-style: none;
+.codecruise-modal {
+    background: var(--glass-bg-strong);
+    border: var(--glass-border-strong);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-xxl);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--box-shadow-xl);
+    transform: translateY(50px) scale(0.9);
+    transition: all 0.3s ease;
 }
 
+.codecruise-overlay.show .codecruise-modal {
+    transform: translateY(0) scale(1);
+}
+
+.codecruise-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.codecruise-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.codecruise-content {
+    text-align: center;
+}
+
+.codecruise-logo {
+    margin-bottom: var(--spacing-xl);
+}
+
+.codecruise-logo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(163, 255, 46, 0.3);
+}
+
+.codecruise-text h3 {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.codecruise-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.codecruise-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(163, 255, 46, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(163, 255, 46, 0.2);
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+.benefit-item span {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+}
+
+.codecruise-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.codecruise-subscribe-btn {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.codecruise-subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, #cc0000, #ff0000);
+}
+
+.codecruise-subscribe-btn i {
+    font-size: 1.3rem;
+}
+
+.codecruise-later-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.codecruise-later-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* ===========================
+   CODECRUISE SUBSCRIPTION ALERT 
+   =========================== */
+
+.codecruise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.codecruise-modal {
+    background: var(--glass-bg-strong);
+    border: var(--glass-border-strong);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-xxl);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--box-shadow-xl);
+    transform: translateY(50px) scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show .codecruise-modal {
+    transform: translateY(0) scale(1);
+}
+
+.codecruise-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.codecruise-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.codecruise-content {
+    text-align: center;
+}
+
+.codecruise-logo {
+    margin-bottom: var(--spacing-xl);
+}
+
+.codecruise-logo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(163, 255, 46, 0.3);
+}
+
+.codecruise-text h3 {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.codecruise-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.codecruise-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(163, 255, 46, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(163, 255, 46, 0.2);
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+.benefit-item span {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+}
+
+.codecruise-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.codecruise-subscribe-btn {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.codecruise-subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, #cc0000, #ff0000);
+}
+
+.codecruise-subscribe-btn i {
+    font-size: 1.3rem;
+}
+
+.codecruise-later-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.codecruise-later-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* ===========================
+   CODECRUISE SUBSCRIPTION ALERT 
+   =========================== */
+
+.codecruise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.codecruise-modal {
+    background: var(--glass-bg-strong);
+    border: var(--glass-border-strong);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-xxl);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--box-shadow-xl);
+    transform: translateY(50px) scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show .codecruise-modal {
+    transform: translateY(0) scale(1);
+}
+
+.codecruise-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.codecruise-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.codecruise-content {
+    text-align: center;
+}
+
+.codecruise-logo {
+    margin-bottom: var(--spacing-xl);
+}
+
+.codecruise-logo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(163, 255, 46, 0.3);
+}
+
+.codecruise-text h3 {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.codecruise-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.codecruise-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(163, 255, 46, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(163, 255, 46, 0.2);
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+.benefit-item span {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+}
+
+.codecruise-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.codecruise-subscribe-btn {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.codecruise-subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, #cc0000, #ff0000);
+}
+
+.codecruise-subscribe-btn i {
+    font-size: 1.3rem;
+}
+
+.codecruise-later-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.codecruise-later-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* ===========================
+   CODECRUISE SUBSCRIPTION ALERT 
+   =========================== */
+
+.codecruise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.codecruise-modal {
+    background: var(--glass-bg-strong);
+    border: var(--glass-border-strong);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-xxl);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--box-shadow-xl);
+    transform: translateY(50px) scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show .codecruise-modal {
+    transform: translateY(0) scale(1);
+}
+
+.codecruise-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.codecruise-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.codecruise-content {
+    text-align: center;
+}
+
+.codecruise-logo {
+    margin-bottom: var(--spacing-xl);
+}
+
+.codecruise-logo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(163, 255, 46, 0.3);
+}
+
+.codecruise-text h3 {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.codecruise-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.codecruise-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(163, 255, 46, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(163, 255, 46, 0.2);
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+.benefit-item span {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+}
+
+.codecruise-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.codecruise-subscribe-btn {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.codecruise-subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, #cc0000, #ff0000);
+}
+
+.codecruise-subscribe-btn i {
+    font-size: 1.3rem;
+}
+
+.codecruise-later-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.codecruise-later-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* ===========================
+   CODECRUISE SUBSCRIPTION ALERT 
+   =========================== */
+
+.codecruise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.codecruise-modal {
+    background: var(--glass-bg-strong);
+    border: var(--glass-border-strong);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-xxl);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--box-shadow-xl);
+    transform: translateY(50px) scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show .codecruise-modal {
+    transform: translateY(0) scale(1);
+}
+
+.codecruise-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.codecruise-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.codecruise-content {
+    text-align: center;
+}
+
+.codecruise-logo {
+    margin-bottom: var(--spacing-xl);
+}
+
+.codecruise-logo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(163, 255, 46, 0.3);
+}
+
+.codecruise-text h3 {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.codecruise-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.codecruise-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(163, 255, 46, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(163, 255, 46, 0.2);
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+.benefit-item span {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+}
+
+.codecruise-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.codecruise-subscribe-btn {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.codecruise-subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, #cc0000, #ff0000);
+}
+
+.codecruise-subscribe-btn i {
+    font-size: 1.3rem;
+}
+
+.codecruise-later-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.codecruise-later-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* ===========================
+   CODECRUISE SUBSCRIPTION ALERT 
+   =========================== */
+
+.codecruise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.codecruise-modal {
+    background: var(--glass-bg-strong);
+    border: var(--glass-border-strong);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-xxl);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--box-shadow-xl);
+    transform: translateY(50px) scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show .codecruise-modal {
+    transform: translateY(0) scale(1);
+}
+
+.codecruise-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.codecruise-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.codecruise-content {
+    text-align: center;
+}
+
+.codecruise-logo {
+    margin-bottom: var(--spacing-xl);
+}
+
+.codecruise-logo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(163, 255, 46, 0.3);
+}
+
+.codecruise-text h3 {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.codecruise-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.codecruise-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(163, 255, 46, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(163, 255, 46, 0.2);
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+.benefit-item span {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+}
+
+.codecruise-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.codecruise-subscribe-btn {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.codecruise-subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, #cc0000, #ff0000);
+}
+
+.codecruise-subscribe-btn i {
+    font-size: 1.3rem;
+}
+
+.codecruise-later-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.codecruise-later-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* ===========================
+   CODECRUISE SUBSCRIPTION ALERT 
+   =========================== */
+
+.codecruise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.codecruise-modal {
+    background: var(--glass-bg-strong);
+    border: var(--glass-border-strong);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-xxl);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--box-shadow-xl);
+    transform: translateY(50px) scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.codecruise-overlay.show .codecruise-modal {
+    transform: translateY(0) scale(1);
+}
+
+.codecruise-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.codecruise-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.codecruise-content {
+    text-align: center;
+}
+
+.codecruise-logo {
+    margin-bottom: var(--spacing-xl);
+}
+
+.codecruise-logo-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(163, 255, 46, 0.3);
+}
+
+.codecruise-text h3 {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.codecruise-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.codecruise-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(163, 255, 46, 0.1);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(163, 255, 46, 0.2);
+}
+
+.benefit-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+.benefit-item span {
+    font-weight: var(--font-weight-medium);
+    color: var(--text-color);
+}
+
+.codecruise-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.codecruise-subscribe-btn {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.codecruise-subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+    background: linear-gradient(135deg, #cc0000, #ff0000);
+}
+
+.codecruise-subscribe-btn i {
+    font-size: 1.3rem;
+}
+
+.codecruise-later-btn {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-secondary);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.codecruise-later-btn:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+/* Mobile responsive styles for CodeCruise alert */
+@media (max-width: 768px) {
+    .codecruise-modal {
+        padding: var(--spacing-xl);
+        margin: var(--spacing-lg);
+    }
+    
+    .codecruise-logo-img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .codecruise-text h3 {
+        font-size: 1.5rem;
+    }
+    
+    .codecruise-text p {
+        font-size: 1rem;
+    }
+    
+    .benefit-item {
+        padding: var(--spacing-sm);
+    }
+    
+    .codecruise-subscribe-btn,
+    .codecruise-later-btn {
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 1rem;
+    }
+}
 
 /* Accessibility Improvements */
 
@@ -2275,10 +3545,10 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 180px;
-    height: 120px;
+    width: 160px;
+    height: 100px;
     background-color: var(--card-bg);
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius-md);
     padding: var(--spacing-md);
     border: 2px solid var(--border-color-subtle);
     transition: all var(--transition-speed) ease;
@@ -2313,11 +3583,11 @@ p {
 
 .sponsor-logo img {
     max-width: 100%;
-    max-height: 80px;
+    max-height: 50px;
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: brightness(0.9) contrast(1.1);
+    filter: brightness(0.95) contrast(1.1);
     transition: all var(--transition-speed) ease;
 }
 
@@ -2328,19 +3598,19 @@ p {
 
 /* SVG logo styling */
 .sponsor-logo svg {
-    width: 80px;
-    height: 80px;
-    color: var(--text-color);
+    max-width: 45px;
+    max-height: 45px;
+    fill: var(--text-secondary);
     transition: all var(--transition-speed) ease;
 }
 
 .sponsor-logo:hover svg {
-    color: var(--primary-color);
-    transform: scale(1.08);
+    fill: var(--primary-color);
+    transform: scale(1.1);
 }
 
 .sponsor-logo span {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-secondary);
     margin-top: var(--spacing-xs);
@@ -2352,161 +3622,17 @@ p {
     color: var(--primary-color);
 }
 
-/* Special styling for GitHub and Notion logos */
-.github-logo, .notion-logo {
-    width: 60px !important;
-    height: 60px !important;
-}
-
-/* Responsive Design for Sponsors Section */
-@media (max-width: 1024px) {
-    .sponsor-logos-track {
-        gap: var(--spacing-lg);
-        animation-duration: 25s;
-    }
-    
-    .sponsor-logo {
-        width: 160px;
-        height: 110px;
-    }
-}
-
-@media (max-width: 768px) {
-    .sponsor-logos-track {
-        gap: var(--spacing-md);
-        animation-duration: 20s;
-        padding: var(--spacing-md) 0;
-    }
-    
-    .sponsor-logo {
-        width: 140px;
-        height: 100px;
-        padding: var(--spacing-sm);
-    }
-    
-    .sponsor-logo img {
-        max-height: 60px;
-    }
-    
-    .github-logo, .notion-logo {
-        width: 50px !important;
-        height: 50px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .sponsor-logos-track {
-        gap: var(--spacing-sm);
-        animation-duration: 15s;
-    }
-    
-    .sponsor-logo {
-        width: 120px;
-        height: 90px;
-    }
-    
-    .sponsor-logo img {
-        max-height: 50px;
-    }
-    
-    .github-logo, .notion-logo {
-        width: 40px !important;
-        height: 40px !important;
-    }
-}
-
-/* Accessibility: Respect user's motion preferences */
-@media (prefers-reduced-motion: reduce) {
-    .sponsor-logos-track {
-        animation: none;
-    }
-    
-    .sponsor-logos-wrapper {
-        mask: none;
-        -webkit-mask: none;
-    }
-    
-    .sponsor-logos-track {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        white-space: normal;
-    }
-}
-
-@media (max-width: 480px) {
-    .sponsor-logos {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-sm);
-        max-width: 400px;
-    }
-    
-    .sponsor-logo {
-        width: 120px;
-        height: 90px;
-    }
-    
-    .sponsor-logo img {
-        max-height: 50px;
-    }
-    
-    .github-logo, .notion-logo {
-        width: 40px !important;
-        height: 40px !important;
-    }
-}
-
-/* Partners Section Styling */
+/* Partners Section - Using static grid layout */
 .partners {
-    background-color: var(--background-dark);
-    position: relative;
-    padding: var(--spacing-xxl) 0;
-}
-
-.partners::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgba(163, 255, 46, 0.02) 0%,
-        transparent 50%,
-        rgba(163, 255, 46, 0.02) 100%
-    );
-    pointer-events: none;
-}
-
-.partners .section-title {
-    color: var(--text-color);
-    margin-bottom: var(--spacing-md);
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    position: relative;
-}
-
-.partners .section-subtitle {
-    color: var(--text-secondary);
-    text-align: center;
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-xl);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: rgba(17, 17, 17, 0.8);
+    border-top: 1px solid rgba(163, 255, 46, 0.1);
+    border-bottom: 1px solid rgba(163, 255, 46, 0.1);
 }
 
 .partners-grid {
-    width: 100%;
+    display: flex;
+    justify-content: center;
     margin: var(--spacing-xl) 0;
-}
-
-.partner-logos-container {
-    width: 100%;
-    text-align: center;
 }
 
 .partner-logos {
@@ -2525,8 +3651,8 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 220px;
-    height: 140px;
+    width: 180px;
+    height: 120px;
     background-color: var(--card-bg);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-lg);
@@ -2555,8 +3681,8 @@ p {
 }
 
 .partner-logo img {
-    max-width:  100%;
-    max-height: 100px;
+    max-width: 100%;
+    max-height: 80px;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -2569,89 +3695,36 @@ p {
     transform: scale(1.08);
 }
 
-/* Partner link styles for clickable partners like YouTube channels */
-.partner-logo-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-speed) ease;
-}
-
-.partner-logo-link:hover {
-    text-decoration: none;
-    color: inherit;
-}
-
-.partner-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    width: 100%;
-    height: 100%;
-}
-
-/* YouTube logo styling */
-.youtube-logo {
-    width: 60px;
-    height: 60px;
-    color: #ff0000;
-    transition: all var(--transition-speed) ease;
-}
-
-.partner-logo-link:hover .youtube-logo {
-    color: #ff3333;
-    transform: scale(1.1);
-}
-
-.partner-content span {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    margin-top: var(--spacing-xs);
-    letter-spacing: 0.5px;
-    transition: color var(--transition-speed) ease;
-    text-align: center;
-}
-
-.partner-logo-link:hover .partner-content span {
-    color: var(--primary-color);
-}
-
-/* Responsive adjustments for partner links */
+/* Responsive adjustments for partners section */
 @media (max-width: 768px) {
-    .youtube-logo {
-        width: 50px;
-        height: 50px;
+    .partner-logos {
+        gap: var(--spacing-lg);
     }
     
-    .partner-content span {
-        font-size: 0.8rem;
+    .partner-logo {
+        width: 180px;
+        height: 120px;
+    }
+    
+    .partner-logo img {
+        max-height: 80px;
     }
 }
 
 @media (max-width: 480px) {
-    .youtube-logo {
-        width: 45px;
-        height: 45px;
+    .partner-logos {
+        flex-direction: column;
+        gap: var(--spacing-md);
     }
     
-    .partner-content span {
-        font-size: 0.75rem;
+    .partner-logo {
+        width: 160px;
+        height: 100px;
     }
-}
-
-/* Zoom effect for Organic Heritage sponsor logo */
-.sponsor-logo img[alt="Organic Heritage"] {
-    transform: scale(1.12);
-    transition: transform 0.3s;
-}
-.sponsor-logo img[alt="Organic Heritage"]:hover {
-    transform: scale(1.18);
+    
+    .partner-logo img {
+        max-height: 60px;
+    }
 }
 
 /* Move countdown timer towards the right on desktop */
@@ -2680,6 +3753,57 @@ p {
 
 .fa-chevron-down:before {
   content: "\f078";
+}
+
+/* Linked sponsor logos styling */
+.sponsor-logo a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sponsor-logo a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Responsive adjustments for sponsor logos */
+@media (max-width: 768px) {
+    .sponsor-logo {
+        width: 140px;
+        height: 90px;
+    }
+    
+    .sponsor-logo img {
+        max-height: 50px;
+    }
+      .sponsor-logo svg {
+        max-width: 38px;
+        max-height: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sponsor-logo {
+        width: 120px;
+        height: 80px;
+    }
+    
+    .sponsor-logo img {
+        max-height: 40px;
+    }
+      .sponsor-logo svg {
+        max-width: 32px;
+        max-height: 32px;
+    }
+    
+    .sponsor-logo span {
+        font-size: 0.75rem;
+    }
 }
 
 
